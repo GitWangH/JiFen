@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>带图片打印demo</title>
+<link rel="stylesheet" href="static/css/bootstrap.css"/>
+<link rel="stylesheet" href="static/css/common.css"/>
+<script src="static/js/jquery-1.9.1.min.js"></script>
+<script src="static/js/	bootstrap.min.js"></script>
+<script src="static/js/main.js"></script>
+</head>
+<body style="background-color: #fff;">
+	<div id="printView">
+		<div>
+			<span>大海因为有了波澜所以更加雄伟壮阔，人生因为有了遗憾所以更加珍惜懂得。倘若未曾有过遗憾的痛。今天也不至于学会懂。倘若未曾有过遗憾的伤，今天也不至于坚强。谁今天的坚强，不是用曾经的那些憾缺构筑起来的成长。</span>
+			<span>世间少有一直风平浪静的海，同样也少有一生万事如意的人。无论我们多不愿意，在我们生命中，或多或少都会有一个缺角的遗憾。也许是一个未能见到的人，也许是一件未能完成的事，又也许是一句来不及对别人说的话。</span>
+		</div>
+		<div>
+			<img src="http://pic36.nipic.com/20131128/11748057_141932278338_2.jpg">
+		</div>
+	</div>
+	<input type="button" id="doprint" onclick="doprint();" name="doprint" value="打印"/>
+</body>
+<script type="text/javascript">
+function doprint(){
+	var newstr = document.getElementById("printView").innerHTML;
+	printWindow = window.open();
+	printWindow.document.write(newstr);
+	printWindow.print();
+	return false;
+}
+</script>
+</html>

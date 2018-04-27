@@ -1,0 +1,350 @@
+<!-- åŠ è½½å†…å®¹å¼€å§‹ -->
+<section>
+	<!-- æ��ç¤ºå†…å®¹å¼€å§‹ -->
+	<alert></alert>
+	<!-- æ��ç¤ºå†…å®¹ç»“æ�Ÿ -->
+	<!-- æ ‡é¢˜æ �å¼€å§‹  -->
+	<div class="page-breadcrumb">
+		<ol class="breadcrumb">
+			<li><a href="#">{{moduleName}}</a></li>
+			<li class="active">{{subModuleName}}</li>
+		</ol>
+	</div>
+	<!-- æ ‡é¢˜æ �ç»“æ�Ÿ -->
+	<div class="form">
+		<div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+			<h3>{{columnWrap.wrapTitle}}</h3>
+			<div class="column-group">
+				<div class="form-horizontal">
+					<div class="container-fluid">
+						<div class="row">
+							<div ng-if="formField.column == columnWrap.id"
+								ng-repeat="formField in formFieldArrayList ">
+								<!-- æ–‡æœ¬æ¡† -->
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+									ng-if="formField.model==null || formField.model==''"
+									ng-show="formField.isShow">
+									<div class="form-group">
+										<label
+											class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+											class="require"
+											ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+											<input type="text"
+												ng-readonly="formField.readonly=='readonly' || formField.readonly"
+												ng-model="formField.value" class="form-control"
+												ng-blur="checkData($index);formField.event(formField.value)" ng-class="formField.css" bs-tooltip="formField.errorMsg"/>
+										</div>
+									</div>
+								</div>
+								
+								<!-- æ–‡æœ¬åŸŸ -->
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+									ng-if="formField.model=='textarea'" ng-show="formField.isShow">
+									<div class="form-group">
+										<label
+											class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+											class="require"
+											ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+											<textarea ng-model="formField.value"
+												name="{{formField.name}}" class="form-control" rows="3"
+												ng-disabled = "formField.readonly=='readonly' || formField.readonly"
+												placeholder=""  ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)"></textarea>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								
+								<!-- æ–‡ä»¶ä¸Šä¼  -->
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+									ng-if="formField.model=='file'" ng-show="formField.isShow">
+									<!-- é¢�å¤–å�‚æ•°,ä¸šåŠ¡idï¼Œæ˜¾ç¤ºå›¾ç‰‡div -->
+									<div class="form-group">
+										<label class="col-xs-5 control-label">{{formField.title}}<span
+											class="require" ng-if="formField.require == 'require'">*</span></label>
+										<div class="col-xs-7 item">
+										 	<div class="col-xs-7 item">
+												<!-- <div id="uploadifytest" ng-model="formField.value" huatek-uploadify="{auto:false,buttonText:'å›¾ç‰‡ä¸Šä¼ ',businessId:formField.businessId,viewDivId:formField.viewDivId,busiType:formField.busiType}"></div> -->
+												<div placeholder ="formField.name" ng-model="formField.value" nl-uploadify="" huatek-uploadify="{auto:false,buttonText:'å›¾ç‰‡ä¸Šä¼ ',businessId:formField.businessId,viewDivId:formField.viewDivId,busiType:formField.busiType}"></div>
+											 	<div  style="float: left"></div>
+												<!-- ç”¨äºŽæ˜¾ç¤ºä¸Šä¼ å�Žçš„å›¾ç‰‡ -->
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+									ng-if="formField.model=='time'" ng-show="formField.isShow">
+									<!-- æ—¶é—´é€‰æ‹©å™¨ -->
+									<div class="form-group">
+										<label
+											class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+											class="require"
+											ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+											<input type="text" class="form-control"
+												ng-model="formField.value" name="{{formField.name}}"
+												data-time-format="{{formField.timeFormat}}"
+												data-autoclose="0" data-time-type="{{formField.timeType}}"  
+												ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+												ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)"
+												bs-timepicker>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-6 item"
+									ng-if="formField.model=='date-section' || formField.model=='dateSection'"
+									ng-show="formField.isShow">
+									<!-- æ—¥æœŸåŒºé—´ -->
+									<div class="row">
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+													<input type="text" class="form-control"
+														ng-model="formField.minValue"
+														data-max-date="{{formField.maxValue}}"
+														data-date-format="{{formField.dateFormat}}"
+														data-autoclose="{{formField.autoclose}}"
+														data-date-type="{{formField.dateType}}" 
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														placeholder="From"  ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)"
+														bs-datepicker>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+													<input type="text" class="form-control"
+														ng-model="formField.maxValue"
+														data-min-date="{{formField.minValue}}"
+														data-date-format="{{formField.dateFormat}}"
+														data-autoclose="{{formField.autoclose}}"
+														data-date-type="{{formField.dateType}}"
+														placeholder="Until"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)"  bs-datepicker>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-6 item"
+									ng-if="formField.model=='time-section' || formField.model=='timeSection'"
+									ng-show="formField.isShow">
+									<!-- æ—¶é—´åŒºé—´ -->
+									<div class="row">
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+													<input type="text" class="form-control"
+														ng-model="formField.minValue" name="{{formField.name}}"
+														data-max-time="{{formField.maxValue}}"
+														data-time-format="{{formField.timeFormat}}"
+														data-autoclose="0" data-time-type="{{formField.timeType}}"
+														placeholder="From"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+													<input type="text" class="form-control"
+														ng-model="formField.maxValue" name="{{formField.name}}"
+														data-min-time="{{formField.minValue}}"
+														data-time-format="{{formField.timeFormat}}"
+														data-autoclose="0" data-time-type="{{formField.timeType}}"
+														placeholder="Until"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)"  bs-timepicker>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-8 col-sm-8 col-md-8 col-lg-6 item"
+									ng-if="formField.model=='dateTime-section' || formField.model=='dateTimeSection'"
+									ng-show="formField.isShow">
+									<!-- æ—¶é—´åŒºé—´ -->
+									<div class="row">
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+													<input type="text" class="form-control"
+														ng-model="formField.minValue"
+														data-max-date="{{formField.maxValue}}"
+														data-date-format="{{formField.dateFormat}}"
+														data-autoclose="{{formField.autoclose}}"
+														data-date-type="{{formField.dateType}}"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														placeholder="From"  ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)"
+														bs-datepicker>
+												</div>
+												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 item">
+													<input type="text" class="form-control"
+														ng-model="formField.minTimeValue"
+														data-time-format="{{formField.timeFormat}}"
+														data-autoclose="0" data-time-type="{{formField.timeType}}"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														ng-class="formField.minTimeCss" bs-tooltip="formField.minTimeErrorMsg" ng-blur="checkData($index)"
+														bs-timepicker>
+												</div>
+											</div>
+										</div>
+										<div class="col-xs-6 item">
+											<div class="form-group">
+												<label
+													class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span
+													class="require"
+													ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+													<input type="text" class="form-control"
+														ng-model="formField.maxValue"
+														data-min-date="{{formField.minValue}}"
+														data-date-format="{{formField.dateFormat}}"
+														data-autoclose="{{formField.autoclose}}"
+														data-date-type="{{formField.dateType}}"
+														placeholder="Until"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+												</div>
+												<div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 item">
+													<input type="text" class="form-control"
+														ng-model="formField.maxTimeValue"
+														data-time-format="{{formField.timeFormat}}"
+														data-autoclose="1"
+														ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+														data-time-type="{{formField.timeType}}" ng-class="formField.maxTimeCss" bs-tooltip="formField.maxTimeErrorMsg" ng-blur="checkData($index)"
+														bs-timepicker>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+									ng-if="formField.model=='date-time' || formField.model=='dateTime'"
+									ng-show="formField.isShow">
+									<!-- æ—¶é—´åŒºé—´ -->
+									<div class="form-group">
+										<label
+											class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span
+											class="require"
+											ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+											<input type="text" class="form-control"
+												ng-model="formField.minValue"
+												data-date-format="{{formField.dateFormat}}"
+												data-autoclose="{{formField.autoclose}}"
+												data-date-type="{{formField.dateType}}"
+												ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+												ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)"  bs-datepicker>
+										</div>
+										<div class="col-xs-3 col-sm-3 col-md-3 col-lg-4 item">
+											<input type="text" class="form-control"
+												ng-model="formField.maxValue"
+												data-time-format="{{formField.timeFormat}}"
+												data-autoclose="{{formField.autoclose}}"
+												data-time-type="{{formField.timeType}}"
+												ng-readOnly = "formField.readonly=='readonly' || formField.readonly"
+												ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+										</div>
+									</div>
+									</div>
+								<!-- æ–‡ä»¶ä¸Šä¼  --å¤šé™„ä»¶ -->
+								<div class="col-xs-12 item" ng-if="formField.model=='fileMultiple'" ng-show="formField.isShow">
+									<div class="form-group">
+										<label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+											<cenx4-file-upload ng-model="formField.value" cnex4-multiple="true" files-count="formField.filesCount" max-files-count="formField.maxFilesCount" system-header="formField.systemHeader" cnex4-show-btn="formField.readonly" ></cenx4-file-upload>
+										</div>
+									</div>
+								</div>
+								
+								<!-- å›¾ç‰‡é¢„è§ˆ -->
+								<div class="col-xs-12 item" ng-if="formField.model=='imagePreview'" ng-show="formField.isShow">
+									<div class="form-group">
+										<label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+											<cenx4-image-preview ng-model="formField.value"></cenx4-image-preview>
+										</div>
+									</div>
+								</div>
+								
+								<!-- å›¾ç‰‡é¢„è§ˆ -->
+								<div class="col-xs-12 item" ng-if="formField.model=='imagePreviewList'" ng-show="formField.isShow">
+									<div class="form-group">
+										<label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+										<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+											<cenx4-image-preview-list ng-model="formField.value"></cenx4-image-preview-list>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center page-btn">
+        	<button class="btn btn-clear" ng-click="save()">æ��äº¤</button> 
+        	<button class="btn btn-clear" ng-click="reset()">é‡�ç½®</button> 
+		</div>
+	</div>
+</section>
+<!-- åŠ è½½å†…å®¹ç»“æ�Ÿ-->
+
+
+
+
+
+
+
+<!-- <section>
+    æ ‡é¢˜æ �ç»“æ�Ÿ
+    <p class="results-title no-margin"><i></i><span class="ng-binding">æŸ¥è¯¢</span></p>
+    è¾“å‡ºå†…å®¹å¼€å§‹
+    <div class="results">
+        <div class="content no-tree">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <p class="results-title"><i></i><span>{{subModuleName}}åˆ—è¡¨</span></p>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    é¡µé�¢æŒ‰é’®å¼€å§‹
+                    <btn></btn>
+                    é¡µé�¢æŒ‰é’®ç»“æ�Ÿ
+                </div>
+            </div>
+            <div class="result-list">
+                <div ui-grid="tableGrid" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pagination ui-grid-auto-resize></div>
+            </div>
+        </div>
+    </div>
+</section> -->

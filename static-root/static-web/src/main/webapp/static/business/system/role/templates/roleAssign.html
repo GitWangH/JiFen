@@ -1,0 +1,27 @@
+<!-- 加载内容开始 -->
+<!-- 提示内容开始 -->
+<alert></alert>
+<!-- 提示内容结束 -->
+<!-- 标题栏开始  -->
+<!-- 标题栏结束 -->
+<div class="form">
+    <div class="form-column">
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="result-handle text-right">
+                    </div>
+                    <p class="results-title"><i></i><span class="ng-binding">选择</span></p>
+
+                    <ul id="roleMenuTree" class="ztree alert-ztree">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn type1">
+        <button class="btn btn-cancel" ng-click="back()">关闭</button>
+        <button class="btn btn-save" ng-click="checkNodeInfo();waitForDbCommint();" ng-disabled="btnDisabledStatus">保存</button>
+    </div>
+</div>
+<!-- 加载内容结束-->

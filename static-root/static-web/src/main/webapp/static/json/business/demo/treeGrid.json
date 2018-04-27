@@ -1,0 +1,22 @@
+[{
+    "uuid": 2,
+    "parentId": 1,
+    "name": "Audi",
+    "priceRange": "30k to 200k",
+    "groupLevel": 2,
+    "launch":false,
+    "isLeaf": 0,
+    "isShow":true,
+    "orderNumber": 2
+},
+{
+    "uuid": 4,
+    "parentId": 1,
+    "name": "Honda",
+    "priceRange": "15k to 50k",
+    "groupLevel": 2,
+    "launch":false,
+    "isLeaf": 1,
+    "isShow":true,
+    "orderNumber": 3
+}]

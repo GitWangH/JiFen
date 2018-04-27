@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <title>斐讯积分商城管理平台</title>
+
+    <!-- bootStrap样式 -->
+    <link rel="stylesheet" href="static/css/theme-default/bootstrap.min.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="static/css/theme-default/mod.main.css">
+    <!-- unlock -->
+    <link rel="stylesheet" href="static/css/unlock/unlock.css">
+</head>
+
+<body class="no-skin">
+    <!-- 登录 -->
+    <div class="login-wrap">
+        <div class="content login-content">
+           <div class="login-head">
+                <div class="head-cont">
+                    <div class="item-cn clearfix">
+                        <div class="pull-left log-img">
+                           <!--  <i class="login-logo"></i> -->
+                        </div>
+                        <div class="pull-left log-ti">
+                            <div class="top">斐讯积分商城管理平台</div>
+                            <div class="bottom">斐讯积分商城管理平台</div>
+                        </div>
+                    </div>
+                      <!-- <div class="twocode">
+                        <div class="download-title">
+                          <p>iOS/Android</p> 
+                            <p>扫码直接下载</p>
+                        </div>
+                         <div class="code-img">
+                        	扫码
+                            <img src="static/images/login_erweima.png" alt="" class="small">
+                            <div class="big-codeimg">
+                                <p>Android下载</p>
+                                <img src="static/images/android.png" alt="">
+                                <p>iOS下载</p>
+                                <img src="static/images/ios.png" alt="">
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+ 
+            <div class="login">
+                <div class="login-box clearfix">
+                    <div class="login-form">
+                        <h3>
+                            <span>账户登录</span>
+                        </h3>
+                        <div class="error-message"><span id="loginMesg"></span></div>
+                        <form method="POST">
+                            <div class="login-input">
+                                <div class="input-group">
+                                    <input type="text" class="form-control username" placeholder="用户名" id="username" autocomplete="off" name="username" ng-model="username" value="">
+                                </div>
+                                <div class="input-group">
+                                    <input type="password" class="form-control password" placeholder="密码" id="password" name="password" ng-model="password" value="">
+                                </div>
+                                <div class="input-group verify-code clearfix">
+                                    <div class="bar2 bar"></div>
+                                </div>
+                            </div>
+                            <button id="loginBtn" type="button" class="btn btn-danger">登&nbsp;&nbsp;录</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="login-footer">
+               <!--  <p>
+                    <a href="http://www.ghatg.com" target="_blank">公航旅集团</a> | <a href="http://www.gsjtzj.com/" target="_blank">甘肃省交通质监局</a> | <a href="http://www.gsjt.gov.cn/" target="_blank">甘肃省交通运输厅</a> | <a href="http://www.gsgjg.com.cn/" target="_blank">公建官网</a> | <a href="http://61.178.105.88:8088/" target="_blank">公建OA</a>
+
+                </p> -->
+                <p>技术支持：西安华讯科技有限责任公司</p>
+            </div>
+        </div>
+    </div>
+    <!-- 登录结束 -->
+    <script src="static/js/coreJs/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+    <script src="static/js/thirdPartJs/unlock/unlock.js"></script>
+    <script src="static/js/utils/encryption.js"></script>
+    <script src="static/js/utils/cookie.js"></script>
+    <script src="static/js/login.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+
+<style type="text/css" media="all">
+#easyFormPrintArea .celltitle{
+padding-left:10px;
+}
+</style>
+<div  >
+	
+	<div class="form"  id="easyFormPrintArea">
+		<h2 class="title" style="text-align:center; font-size:x-large;">{{title}}</h2>
+		<h5  style=" font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;流程编号:{{processInstanceId}}</h5>
+		<div class="form-column" ng-repeat="columnWrap in columnWrapArray" style='padding-left:40px'>
+			
+			<div ng-bind-html="columnWrap.html">
+				
+			</div>
+		</div>
+	</div>
+	<div class="text-center page-btn">
+		<button class="btn btn-danger" ng-click="print()">打印</button>
+		<button class="btn btn-cancel" ng-click="back()">关闭</button>
+	</div>
+</div>
+	

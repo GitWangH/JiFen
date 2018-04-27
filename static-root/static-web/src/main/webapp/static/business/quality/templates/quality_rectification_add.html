@@ -1,0 +1,26 @@
+<!-- 标题栏结束 -->
+<div class="form">
+    <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+        <div class="n-form">
+            <p class="results-title  n-result"><i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span></p>
+        </div>
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+                            <div ng-include="'static/templates/form/inner_template_add.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()" ng-if="closeId==undefined || closeId ==null || closeId<0">取消</button>
+        <button class="btn btn-cancel" ng-click="back()" ng-if="closeId>=0">关闭</button>
+        <button class="btn btn-save" ng-click="save();waitForDbCommint();" ng-disabled="btnDisabledStatus">保存</button>
+        <!-- <button class="btn btn-save" ng-click="update();waitForDbCommint();" ng-disabled="btnDisabledStatus" ng-if="editId==undefined || editId<0">更新</button> -->
+    </div>
+</div>
+<!-- 加载内容结束-->

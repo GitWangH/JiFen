@@ -1,0 +1,45 @@
+<!-- 加载内容开始 -->
+<!-- 提示内容开始 -->
+<alert></alert>
+<!-- 提示内容结束 -->
+<!-- 标题栏开始  -->
+<!-- <div class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="#"><span ng-bind="moduleName"></span></a></li>
+            <li class="active"><span ng-bind="subModuleName"></span></li>
+        </ol>
+    </div> -->
+<!-- 标题栏结束 -->
+<div class="table-cont">
+	<div class="row">
+		<div class="col-xs-12">
+			<p class="results-title"><i></i><span>{{subModuleName}}列表</span></p>
+		</div>
+	</div>
+	<div class="result-list">
+		<div ui-grid="tableGrid" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize ui-grid-exporter></div>
+	</div>
+</div>
+<!-- 标题栏结束 -->
+<div class="form">
+    <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+        <div class="n-form">
+            <p class="results-title  n-result"><i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span></p>
+        </div>
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+                            <div ng-include="'static/templates/form/inner_template_add.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()" ng-if="closeId==undefined || closeId ==null || closeId<0">关闭</button>
+    </div>
+</div>
+<!-- 加载内容结束-->

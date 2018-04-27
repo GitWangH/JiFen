@@ -1,0 +1,36 @@
+<section>
+    <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+        <div class="n-form">
+            <p class="results-title  n-result"><i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span></p>
+        </div>
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+                           <div ng-include="'static/templates/form/inner_template_add.html'"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="content no-tree">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <p class="results-title"><i></i><span>证书支付项</span></p>
+                </div>
+               
+            </div>
+            <div class="result-list">                 
+                <div ui-grid="tableGrid" class="grid" ui-grid-edit ui-grid-pinning ui-grid-selection ui-grid-resize-columns></div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()" >关闭</button>
+    </div>
+</section>

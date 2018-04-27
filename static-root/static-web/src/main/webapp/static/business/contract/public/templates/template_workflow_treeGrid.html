@@ -1,0 +1,28 @@
+<div>
+    <div class="form">
+        <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+            <h3>{{columnWrap.wrapTitle}}</h3>
+            <div class="column-group">
+                <form class="form-horizontal">
+                    <div class="container-fluid">
+                        <div class="row" ng-if="$index == 0">
+                            <div class="col-xs-12">
+                                <div ng-include="'static/templates/treeGrid/huatek_edit_tree_grid_inner.html'" class="ce-tree-table"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+	                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+	                            <div ng-include="'static/templates/form/inner_template_add.html'"></div>
+	                         </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-clear" ng-if="onlyView" ng-click="back()">关闭</button>
+        <button class="btn btn-clear" ng-if="!onlyView" ng-click="back()">取消</button>
+        <button class="btn btn-danger" ng-if="!onlyView" ng-click="submit();disableBtnForSecond($event)">提交</button>
+    </div>
+</div>

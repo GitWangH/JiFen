@@ -1,0 +1,44 @@
+<section>
+    <!-- 输出内容开始 -->
+    <p class="results-title no-margin"><i></i><span class="ng-binding">查询</span></p>
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <div class="results">
+        <div class="content no-tree  n-search-area ">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <p class="results-title">
+                        <i></i><span>{{subModuleName}}列表</span>
+                        <span class="sp-state">审批状态:<span>{{approvalStatusName}}</span></span>
+                    </p>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <!-- 页面按钮开始 -->
+                    <btn></btn>
+                    <!-- 页面按钮结束 -->
+                </div>
+            </div>
+            <div class="result-list">
+                <!-- 左侧结构 -->
+                <!-- <div class="zTreeDemoBackground left-tree left-type2"> -->
+                <!-- <div ui-grid="tableGrid_left" class="grid" ui-grid-selection ui-grid-tree-view></div> -->
+                <div ng-include="'static/templates/treeGrid/huatek_edit_tree_grid_inner.html'" class="ce-tree-table top-tree-cont"></div>
+                <!-- </div> -->
+                <!-- 右侧结构 -->
+            </div>
+            <div class="result-list" ng-if="approvalStatusFlag != undefined">
+                <div ui-grid="tableGrid_right" class="grid" ui-grid-selection ui-grid-edit></div>
+            </div>
+        </div>
+    </div>
+</section>

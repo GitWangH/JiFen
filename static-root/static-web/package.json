@@ -1,0 +1,21 @@
+{
+  "name": "cnex4-web",
+  "version": "0.0.1",
+  "description": "jiaji",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp-rename": "^1.2.2",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify-css": "^1.2.4",
+    "jshint": "^2.9.4",
+    "gulp-jshint": "^2.0.4",
+    "gulp-uglify": "^2.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jiaji"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Upload an image</title>
+</head>
+<body>
+
+	<form id="upl" name="upl"
+		action="upload.do?actionMethod=process" method="post"
+		enctype="multipart/form-data" >
+
+			<input id="uploader" name="userfile" type="file"
+				onChange="document.upl.submit(); ">
+
+
+	</form>
+
+</body>
+</html>

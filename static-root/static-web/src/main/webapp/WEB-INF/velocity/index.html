@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="zh_cn" ng-app="huatekApp">
+	<head>
+		<title>CNEX4系统</title>
+
+		<!-- BEGIN META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="your,keywords">
+		<meta name="description" content="Short explanation about this website">
+		<!-- END META -->
+		
+		<link rel="stylesheet" href="static/js/angularJsTree/js/samples.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.checkbox.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.treeview.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/theme-flat-blue.css" />
+		<link rel="stylesheet" href="static/js/demo.css" type="text/css">
+		<link rel="stylesheet" href="static/js/zTreeStyle.css" type="text/css">
+		
+		<!-- BEGIN DATE -->
+		<!-- <link href="static/calendar/images/all.css" rel="stylesheet" type="text/css"/>
+    	<link href="static/calendar/images/skin.css" rel="stylesheet" type="text/css"/>
+    	<link href="static/calendar/images/fontSize12.css" rel="stylesheet" type="text/css"/>
+    	<link href="static/calendar/images/calendar.css" rel="stylesheet" type="text/css"/> -->
+		
+
+		<!-- BEGIN STYLESHEETS -->
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/materialadmin.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/font-awesome.min.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/material-design-iconic-font.min.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/select2/select2.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/ui-grid/ui-grid.min.css" />
+		<link rel="stylesheet" href="static/assets/css/theme-default/mod.main.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/angular-busy.css" />
+		<link type="text/css" rel="stylesheet" href="static/resource/css/common.css" />
+		<style type="text/css">
+			.editable {
+				color: green;
+				}
+		</style>
+		<!-- END STYLESHEETS -->
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="../../assets/js/libs/utils/html5shiv.js"></script>
+		<script type="text/javascript" src="../../assets/js/libs/utils/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<!-- ng-init="login()" -->
+	<body class="menubar-hoverable header-fixed menubar-visible" ng-controller="MainController" >
+		<section class="section-account" ng-show="!authenticated" >
+			<div class="img-backdrop" style="background-image: url('static/assets/img/img16.jpg')"></div>
+			<div class="spacer"></div>
+			<div class="card contain-sm style-transparent">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-xs-12">
+							<h1 class="text-primary text-center">登录</h1>
+							<form class="form floating-label" ngform>
+								<div class="form-group">
+									<input type="text" class="form-control" id="username" name="username" ng-model="username" ng-init="username='admin'">
+									<label for="username">用户名</label>
+								</div>
+								<div class="form-group">
+									<input type="password" class="form-control" id="password" name="password" ng-model="password" ng-init="password='111111'">
+									<label for="password">密码</label>
+								</div>
+								<div class="row">
+									<div class="col-xs-6 text-left">
+										<div class="checkbox checkbox-inline checkbox-styled">
+											<label>
+												<input type="checkbox"> <span>记住我</span>
+											</label>
+										</div>
+									</div><!--end .col -->
+									<div class="col-xs-6 text-right">
+										<a href="#">忘记密码？</a>
+									</div><!--end .col -->
+								</div><!--end .row -->
+								<div class="row">
+									<div class="col-xs-12 text-center login-btn">
+										<button class="btn btn-primary ink-reaction btn-lg btn-raised" type="button" ng-click="login()">登录</button>
+									</div><!--end .col -->
+								</div>
+							</form>
+						</div><!--end .col -->
+					</div><!--end .row -->
+				</div><!--end .card-body -->
+			</div><!--end .card -->
+		</section>
+		<!-- BEGIN HEADER-->
+		<header id="header" ng-show="authenticated" style="display:none">
+			<div class="headerbar">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="headerbar-left">
+					<ul class="header-nav header-nav-options">
+						<li class="header-nav-brand" >
+							<div class="brand-holder">
+								<a href="#/home">
+									<span class="text-lg text-bold text-primary">CNEX4 1.0</span>
+								</a>
+							</div>
+						</li>
+						<li>
+							<a class="btn btn-icon-toggle menubar-toggle" data-toggle="menubar" href="javascript:void(0);">
+								<i class="fa fa-bars"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="headerbar-right">
+					<a href="#/content" id="contentBtn">首页</a> 您好，<span class="text-primary">{{name}}</span>&nbsp;&nbsp;<a href="javascript:return false;" ng-click="logout()">[&nbsp;退出&nbsp;]</a>
+				</div><!--end #header-navbar-collapse -->
+			</div>
+		</header>
+		<!-- END HEADER-->
+
+		<!-- BEGIN BASE-->
+		<div id="base" ng-show="authenticated">
+
+			<!-- BEGIN OFFCANVAS LEFT -->
+			<div class="offcanvas">
+			</div><!--end .offcanvas-->
+			<!-- END OFFCANVAS LEFT -->
+			
+			<!-- BEGIN CONTENT-->
+			<div ng-view="" id="content"  cg-busy="{promise:promise,delay:100,templateUrl:'',message:'处理中，请稍候...'}">
+			</div><!--end #content-->
+			<!-- END CONTENT -->
+
+			<!-- BEGIN MENUBAR-->
+			<div id="menubar" class="menubar-inverse"  style="display:none" ng-show="authenticated" >
+				<div class="menubar-scroll-panel">
+
+					<!-- BEGIN MAIN MENU -->
+					<ul id="main-menu" class="gui-controls">
+
+					</ul><!--end .main-menu -->
+					<!-- END MAIN MENU -->
+					
+				</div><!--end .menubar-scroll-panel-->
+			</div><!--end #menubar-->
+			<!-- END MENUBAR -->
+
+		</div><!--end #base-->
+		<!-- END BASE -->
+
+		<!-- BEGIN JAVASCRIPT -->
+		<script src="static/assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+		<script src="static/assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+		<script src="static/assets/js/libs/bootstrap/bootstrap.min.js"></script>
+		<script src="static/assets/js/libs/spin.js/spin.min.js"></script>
+		
+		<script src="static/calendar/js/calendar.js"></script>
+		<!-- <script src="static/calendar/js/jquery.js"></script> -->
+		
+		<script src="static/assets/js/libs/autosize/jquery.autosize.min.js"></script>
+		<script src="static/assets/js/libs/select2/select2.min.js"></script>
+		<script src="static/assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+		<script src="static/assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+		<script src="static/assets/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+		<script src="static/assets/js/libs/bootstrap-dateTimePicker/bootstrap-datetimepicker.js"></script>
+		<script src="static/assets/js/libs/bootbox/bootbox.js"></script>
+		<script src="static/assets/js/libs/slider/scroll.js"></script>
+		
+		<!-- END JAVASCRIPT -->
+		<script>
+			var data=[];
+			<!-- 导入模版下载 -->
+			var fileServerPath = '${fileServerIp}';
+		</script>
+		<script src="static/js/map.js"></script>
+		<script src="static/js/nav.js"></script>
+		<script src="static/js/page_elements.js"></script>
+		<script src="static/assets/js/core/source/App.js"></script>
+		<script src="static/assets/js/core/source/AppNavigation.js"></script>
+		<script src="static/assets/js/core/source/AppForm.js"></script>
+		<script src="static/assets/js/core/source/AppVendor.js"></script>
+		<script src="static/angular/angular.js"></script>
+    	<script src="static/angular/angular-route.js"></script>
+    	<script src="static/angular/angular-resource.js"></script>
+		<script src="static/angular/angular-cookies.js"></script>
+		<script src="static/angular/angular-messages.js"></script>
+		<script src="static/angular/angular-animate.js"></script>
+		<script src="static/angular/angular-aria.js"></script>
+		<script src="static/angular/angular-touch.js"></script>
+		<script src="static/angular/angular-busy.js"></script>
+		<script src="static/assets/js/libs/ui-grid/ui-grid.min.js"></script>
+        <script src="static/js/controller.js"></script>
+		<script src="static/js/test_ctrl.js"></script>
+        <script src="static/js/filter.js"></script>
+        <script src="static/js/i18n.js"></script>
+        <script src="static/js/base64.js"></script>
+        <script src="static/js/init.js"></script>
+        <script src="static/js/hisence_directive.js"></script>
+        <script src="static/js/hisence_toolsService.js"></script>  
+        <!-- menu controller -->
+        <script src="static/views/public/commonService.js"></script>
+        <script src="static/views/system/menu/MenuController.js"></script>
+        <script src="static/views/system/user/UserController.js"></script>
+
+        <script src="static/views/dataBase/areasController.js"></script>
+        <script src="static/views/dataBase/categoryController.js"></script>
+        <script src="static/views/dataBase/propertyController.js"></script>
+        <script src="static/views/dataBase/baseStockDayController.js"></script>
+        <script src="static/views/dataBase/baseSafeDayController.js"></script>
+        <script src="static/views/dataBase/baseProductForecastRangeContoller.js"></script>
+        <script src="static/views/dataBase/baseWarehouseInfoHContoller.js"></script>
+        <script src="static/views/dataBase/baseCalendarContrastControll.js"></script>
+        <script src="static/views/dataBase/baseHolidayInfoController.js"></script>
+
+        <script src="static/views/system/org/OrgController.js"></script>
+        <script src="static/views/system/user/BaseUserController.js"></script>
+        <script src="static/views/system/role/RoleController.js"></script>
+        
+        <script src="static/views/system/exception/ExceptionController.js"></script>
+        <script src="static/views/system/content/ContentController.js"></script>
+        
+        <script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.min.js"></script>
+		<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.lists.min.js"></script>
+		<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.checkbox.min.js"></script>
+		<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.treeview.min.js"></script>
+		<script type="text/javascript" src="static/assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.ztree.core-3.5.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery.ztree.excheck-3.5.min.js"></script>
+		
+		<script type="text/javascript" src="static/resource/js/main.js"></script>
+	</body>
+</html>

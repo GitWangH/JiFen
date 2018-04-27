@@ -1,0 +1,73 @@
+<div class="bs-example" data-example-id="thumbnails-with-custom-content">
+    <div class="pgwSlideshow-container">
+        <div class="htmleaf-content bgcolor-3">
+            <div class="pgwSlideshow wide">
+                <div class="img-operate">
+                    <ul>
+                        <li>
+                            <i class="icon turnLeft" ng-click="turnLeft()"></i>
+                        </li>
+                        <li>
+                            <i class="icon turnRight" ng-click="turnRight()"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="ps-current">
+                    <div class="ps-arrow ps-prev" ng-click="clickNextForChange(showImage,'up')">
+                        <span class="ps-prevIcon"></span>
+                    </div>
+                    <ul>
+                        <li class="elt_1">
+                            <div class="img-content">
+                                <img ng-if="showImage.viewUrl" data-ng-src="/{{showImage.viewUrl}}" style="transform:rotate({{rotate}}deg);">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="ps-arrow ps-next" ng-click="clickNextForChange(showImage,'down')">
+                        <span class="ps-nextIcon"></span>
+                    </div>
+                </div>
+                <!-- <div class="ps-list">
+                    <ul>
+                        <li data-ng-repeat="file in queue" class="elt_1" ng-click="clickImageForChange(file)">
+                            <span class="{{file.css || 'ps-item'}}">
+                        <img data-ng-src="/{{file.viewUrl}}">
+                      </span>
+                        </li>
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <div style="margin-top:5px;">
+        <div class="" style="" data-ng-class="{'processing': file.$processing()}">
+            <div class="panel-heading" style="padding:0;">
+                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}" ng-show="addFileBtnIsShow">
+                         <i class="glyphicon glyphicon-plus"></i>
+                         <span>上传文件...</span>
+                <input type="file" multiple ng-disabled="disabled" />
+                </span>
+            </div>
+        </div>
+    </div>
+    <div style="border:1px solid #ccc;border-radius: 4px;">
+        <div style="display: flex; align-items: center;margin-top: 6px;height:123px;overflow-y: hidden;overflow-x: auto;">
+            <div class="" style="padding: 0 4px;text-align: center;" data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+                <div class="caption">
+                    <h6 style="width:100px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{file.name}}</h6>
+                </div>
+                <div class="{{file.css || 'ps-item'}}" ng-click="clickImageForChange(file)">
+                    <a ng-if="!getImageIcon(file.name) && file.preViewUrl != null" title="{{file.name}}"><img width="80" height="60" ng-src="{{file.preViewUrl}}"/></a>
+                    <a ng-if="!getImageIcon(file.name) && file.preViewUrl == null" title="{{file.name}}"><img width="80" height="60" ng-src="{{file.viewUrl}}"/></a>
+                    <img ng-if="getImageIcon(file.name)" width="80" height="60" alt="{{file.size*1 | cexn4FormatFileSize}}" ng-src="{{getImageIcon(file.name)}}"/>
+                </div>
+                <div class="caption">
+                    <p>
+                        <a data-ng-href="/{{file.downloadUrl}}" title="请点击下载！" download="{{file.name}}" target="_blank" download="{{file.name}}">下载</a>
+                        <a href="#" data-ng-click="deleteFile(file.id)" data-ng-hide="file.onlyAdd || showDelete">删除</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

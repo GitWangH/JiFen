@@ -1,0 +1,31 @@
+<div class="modal-body new-modal-body">
+    <!-- 标题栏结束 -->
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
+                <p class="results-title">
+                    <i></i><span>人员列表</span>
+                </p>
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9"></div>
+        </div>
+        <div class="result-list">
+            <div ui-grid="tableGrid" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pagination ></div>
+        </div>
+    </div>
+
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()">关闭</button>
+        <button class="btn btn-save" ng-click="save();disableBtnForSecond($event)">确定</button>
+    </div>
+</div>

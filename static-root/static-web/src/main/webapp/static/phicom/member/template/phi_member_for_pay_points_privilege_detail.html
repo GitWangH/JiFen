@@ -1,0 +1,157 @@
+<style>
+.small-input {
+	width: 70px;
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.form-group .col-xs-2 {
+	text-align: right;
+}
+
+.form-group .col-xs-2.align-left {
+	text-align: left;
+}
+
+.n-check {
+	margin-right: 20px !important;
+}
+
+.radio-inline {
+	width: 150px;
+}
+
+.row {
+	margin: 6px 0;
+}
+</style>
+
+<div class="form">
+	<!-- <div class="form-column" ng-repeat="columnWrap in columnWrapArray "> -->
+	<div class="n-form">
+		<p class="results-title  n-result">
+			<i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span>
+		</p>
+	</div>
+	<div class="column-group">
+		<div class="form-horizontal">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-xs-2">权限名称</div>
+							<div class="col-xs-10">{{rightName.value}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-xs-2">等级名称</div>
+							<div class="col-xs-10">{{memberGradeName.value}}</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-xs-2">权限配置</div>
+							<div class="row">
+								<div class="col-xs-2">消费返积分倍数</div>
+								<input class="form-control small-input" ng-model="payScoreMultiple.value" />倍
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<div class="form-group">
+						<div class="col-xs-2">权限时间</div>
+						<div class="col-xs-10">
+							<div class="row">
+								<div class="col-xs-12 item"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 item"
+									ng-repeat="item in rightDeadline.items">
+									<label class="radio-inline"> <input type="radio"
+										ng-model="rightDeadline.value" name="{{rightDeadline.name}}"
+										value="{{item.code}}" ng-change="changeRadio(item.code)" />{{item.name}}
+									</label>
+								</div>
+								<div class="col-xs-4 item">
+									<div class="form-group">
+										<label class="col-xs-4 item">{{startTime.title}}<span
+											class="require"
+											ng-if="startTime.require == '1' || startTime.require=='true' || startTime.require=='require'">*</span></label>
+										<div class="col-xs-6 item">
+											<input type="text" class="form-control"
+												ng-model="startTime.value" data-min-date=""
+												data-date-format="{{startTime.dateFormat}}"
+												data-autoclose="{{startTime.autoclose}}" data-date-type=""
+												placeholder="开始时间" ng-class="startTime.maxCss"
+												bs-tooltip="startTime.maxErrorMsg"
+												ng-readOnly="lookModel || formField.readonly" bs-datepicker>
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-4 item">
+									<div class="form-group">
+										<label class="col-xs-4 item">{{endTime.title}}<span
+											class="require"
+											ng-if="endTime.require == '1' || endTime.require=='true' || endTime.require=='require'">*</span></label>
+										<div class="col-xs-6 item">
+											<input type="text" class="form-control"
+												ng-model="endTime.value" data-min-date=""
+												data-date-format="{{endTime.dateFormat}}"
+												data-autoclose="{{endTime.autoclose}}" data-date-type=""
+												placeholder="结束时间" ng-class="endTime.maxCss"
+												bs-tooltip="endTime.maxErrorMsg"
+												ng-readOnly="lookModel || formField.readonly" bs-datepicker>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row"></div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-xs-2">{{state.title}}</div>
+							<div class="col-xs-10">
+								<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item"
+									ng-repeat="item in state.items">
+									<span class="n-check"> <input type="radio"
+										ng-model="state.value" name="{{state.name}}"
+										value="{{item.code}}"
+										ng-disabled="lookModel || state.readonly" />{{item.name}}
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="form-group">
+							<div class="col-xs-2">权限说明</div>
+							<div class="col-xs-10">
+								<textarea name="" id="" style="width: 100%"
+									ng-model="rightExplain.value"> {{rightExplain.value}}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 	</div> -->
+	</div>
+	<div class="text-center page-btn">
+		<button class="btn btn-save" ng-click="update();waitForDbCommint();"
+			ng-disabled="btnDisabledStatus">保存</button>
+		<button class="btn btn-cancel" ng-click="back()">取消</button>
+	</div>
+</div>

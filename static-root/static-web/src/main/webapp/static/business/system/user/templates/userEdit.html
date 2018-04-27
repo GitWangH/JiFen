@@ -1,0 +1,86 @@
+<!-- 加载内容开始 -->
+<section>
+	<!-- 提示内容开始 -->
+	<alert></alert>
+	<!-- 提示内容结束 -->
+	<!-- 标题栏开始  -->
+	<div class="page-breadcrumb">
+		<ol class="breadcrumb">
+			<li>{{moduleName}}</li>
+			<li class="active">{{subModuleName}}</li>
+		</ol>
+	</div>
+	<!-- 标题栏结束 -->
+	<div class="form">
+		<div class="form-column">
+			<div class="column-group">
+				<form class="form-horizontal">
+					<div class="container-fluid">
+						<div class="row" ng-repeat="formField in formFieldArrayList ">
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+								<div class="form-group">
+									<label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}</label>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model==null || formField.model==''">
+										<input type="text" ng-model="formField.value" uib-typeahead="address for address in getLocation($viewValue)" class="form-control">
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model=='autocomplete'">
+										<angucomplete pause="200" selectedobject="formField.value"  defaultvalue="{{formField.showText}}" resultfield="code" searchfields="name" titlefield="name" 
+													url="{{formField.dropDataUrl}}" minlength="1" inputclass="form-control" matchclass="angucomplete-highlight" />
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model=='radio'">
+										<input type="radio" ng-model="formField.value" name="{{formField.name}}" value="{{item.code}}"><span>{{item.name}}</span>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model=='checkbox'">
+										<label class="checkbox-inline" ng-repeat="item in formField.items">
+											<input type="checkbox" ng-model="item.value" name="{{formField.name}}" value="{{item.code}}"><span>{{item.name}}</span>
+										</label>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model=='select'">
+										<div class="col-xs-9 col-sm-9 col-md-9 col-lg-9 item">
+												<div class="row">
+													<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+														<select class="form-control" ng-model="formField.value" name="{{formField.name}}"  ng-options="item.code as item.name for item in formField.items">
+															<option value="">&nbsp;</option>
+															<option value="{{item.code}}">{{item.name}}</option>
+														</select>
+													</div>
+												</div>
+										</div>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item"  ng-if="formField.model=='date'">
+										<p class="input-group">
+								          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="formField.value" name="{{formField.name}}" is-open="popup.opened" datepicker-options="dateOptions" datepicker-append-to-body="true" show-button-bar="false" />
+								          <span class="input-group-btn">
+								            <button type="button" class="btn btn-default" ng-click="open()"><i class="icon-date"></i></button>
+								          </span>
+								        </p>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item"  ng-if="formField.model=='datetime'">
+										<p class="input-group">
+								          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="formField.value" name="{{formField.name}}" is-open="popup.opened" datepicker-options="dateOptions" datepicker-append-to-body="true" show-button-bar="false" />
+								          <span class="input-group-btn">
+								            <button type="button" class="btn btn-default" ng-click="open()"><i class="icon-date"></i></button>
+								          </span>
+								        </p>
+									</div>
+									<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="formField.model=='textarea'">
+										<textarea ng-model="formField.value" name="{{formField.name}}" class="form-control" rows="3" placeholder=""></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="text-center page-btn">
+			<button class="btn btn-clear" ng-click="back()">取消</button> 
+			<button class="btn btn-danger" ng-click="save();disableBtnForSecond($event)" ng-show="editId<0">保存</button>
+			<button class="btn btn-danger" ng-click="update();disableBtnForSecond($event)" ng-show="editId>=0">更新</button>
+		</div>
+	</div>
+</section>
+<!-- 加载内容结束-->
+<!-- 加载底部开始 -->
+<footer></footer>
+<!-- 加载底部结束 -->

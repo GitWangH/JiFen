@@ -1,0 +1,27 @@
+<div class="form-horizontal">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 列表查询 -->
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-show="queryField.isShow" ng-repeat="queryField in queryFieldList">
+                <div class="form-group">
+                    <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{queryField.title}}</label>
+                    <!-- 单选下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='string' && queryField.componentType=='select'">
+                        <ol class="nya-bs-select" ng-model="queryField.value" data-live-search="true">
+                            <li nya-bs-option="option in queryField.items" data-value="option._returnField">
+                                <a>
+                                {{ option._showField }}
+                                <span class="fa fa-check check-mark"></span>
+                              </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 下拉树-单选 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='selectTreeSingle'">
+                        <multi-select-tree data-input-model="reportUserOrg" data-input-arr="$currentOrg" multi-select="false" ng-model="queryField.value" data-output-model="queryField.returnArr" data-default-label="请选择机构" data-map-field="queryField.mapField" data-callback="queryField.selectCallBack(item)"></multi-select-tree>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

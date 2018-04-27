@@ -1,0 +1,1 @@
+var customDirective = angular.module('huatek.directives', []);

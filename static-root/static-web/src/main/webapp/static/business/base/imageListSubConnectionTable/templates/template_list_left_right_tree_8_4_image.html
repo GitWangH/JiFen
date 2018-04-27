@@ -1,0 +1,26 @@
+<section>
+    <!-- 提示内容开始 -->
+    <alert></alert>
+    <!-- 提示内容结束 -->
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-9">
+                <!-- 页面按钮开始 -->
+                <btn></btn>
+                <!-- 页面按钮结束 -->
+            </div>
+        </div>
+        <!-- 左侧结构 -->
+        <div class="zTreeDemoBackground left-tree left-type2">
+            <!-- <div ui-grid="treeGrid" class="grid" ui-grid-selection ui-grid-tree-view></div> -->
+            <div ng-include="'static/templates/treeGrid/huatek_edit_tree_grid_inner.html'" class="ce-tree-table new-treecont"></div>
+        </div>
+        <!-- 右侧结构 -->
+        <div class="l-content right-type2">
+            <div ui-grid="tableGrid" class="grid" ui-grid-selection></div>
+        </div>
+    </div>
+</section>

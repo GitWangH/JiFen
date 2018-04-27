@@ -1,0 +1,87 @@
+<!-- 标题栏开始  -->
+<style>
+div.Canvas {
+	background-color: #ECECEC;
+	color: #000000;
+	border: solid 1px #CECECE;
+}
+
+.ObjectBrace {
+	color: #00AA00;
+	font-weight: bold;
+}
+
+.ArrayBrace {
+	color: #0033FF;
+	font-weight: bold;
+}
+
+.PropertyName {
+	color: #CC0000;
+	font-weight: bold;
+}
+
+.String {
+	color: #007777;
+}
+
+.Number {
+	color: #AA00AA;
+}
+
+.Boolean {
+	color: #0000FF;
+}
+
+.Function {
+	color: #AA6633;
+	text-decoration: italic;
+}
+
+.Null {
+	color: #0000FF;
+}
+
+.Comma {
+	color: #000000;
+	font-weight: bold;
+}
+
+PRE.CodeContainer {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	height: 200px;
+}
+
+</style>
+<div class="form">
+    <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+        <div class="n-form">
+            <p class="results-title  n-result"><i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span></p>
+        </div>
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+                            <!-- 文本框 -->
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item" ng-if="formField.model==null || formField.model=='json'" ng-show="formField.isShow">
+                                <div class="form-group">
+                                    <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">{{formField.title}}</label>
+                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 item">
+                                        <div id="result_json" class="Canvas"  ng-bind-html="formField.value"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn type1">
+        <button class="btn btn-cancel" ng-click="back()" >关闭</button>
+    </div>
+</div>
+<!-- 加载内容结束-->

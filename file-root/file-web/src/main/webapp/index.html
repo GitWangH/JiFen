@@ -1,0 +1,37 @@
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="js/uploadify.css" />
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/jquery.uploadify.min.js"></script>
+<input type="file" name="file_upload" id="file_upload" />
+<input type="text"name="fileName" id="showFileName" value="" readonly="readonly"/>
+<input type="text"name="filePath" id="showFilePath" value="" readonly="readonly"/>
+<script type="text/javascript">
+<!--
+//注意不要使用127.0.0.1测试，而应使用本地IP测试否则报-220 IO错误.
+//-->
+$(function() {
+    $('#file_upload').uploadify({
+        'swf'      : 'js/uploadify.swf',
+        'uploader' : 'upload.do?actionMethod=process',
+        'buttonText' : '上传',
+        'fileTypeExts' : '*.png;*.gif;*.jpg;*.JPG',
+       // 'uploadLimit' : 1,
+        'onUploadSuccess' : function(file, data, response) {
+        	$('#showFileName').val(file.name);
+        	//var jsonobj=eval('('+data+')');
+        	//$('#showFilePath').val(jsonobj.fileId);
+        	//$("#imgshow").append("<img src=\"${uploadUrl }/download.do?actionMethod=download&tokenId=${SSO_TOKEN}&docType=1&fileId="+jsonobj.fileId+"&${ssoURL}\"/>");
+            //$('#uploadResult').html('The file ' + file.name + ' was successfully uploaded with a response of ' + response + ':' + data);
+        	//$("#imgshow").append("<img src=\"${imgUrl}/"+jsonobj.filePath+"\"/>");
+
+        }//,
+       // 'onSelectError': function(file, errorCode, errorMsg) { alert("选择文件有误触发事件"); }, //选择文件有误触发事件
+       // 'onUploadComplete': function(file) { alert("上传成功触发事件"); }, //上传成功触发事件
+       // 'onUploadError': function(file, errorCode, errorMsg) { alert(errorMsg); }, //上传失败触发事件
+      //  'onUploadProgress': function(file, fileBytesLoaded, fileTotalBytes) { alert("上传中触发事件"); }, //上传中触发事件
+      //   'onUploadStart': function(file) { alert("上传开始触发事件"); } //上传开始触发事件
+       
+    });
+});
+
+</script>

@@ -1,0 +1,133 @@
+<section>
+    <!-- 标题栏结束 -->
+    <div class="section-body">
+        <!-- 主要内容开始 -->
+        <div class="main-body">
+            <div class="pull-right search-btn-group">
+                <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+                <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+                <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+                <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+            </div>
+            <div class="column-group search-box">
+                <search></search>
+            </div>
+            <div class="items general">
+                <div class="content-title">
+                    <div class="row">
+                        <btn></btn>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="bs-example table-top" data-example-id="table-within-panel">
+                            <div class="panel panel-default ce-panel">
+                                <div class="parent-add">
+                                    <span ng-click="huatekTree.addTopNode()" ng-show="!huatekTree.addtop.isShow" class="tree-add"></span>
+                                    <div ng-show="huatekTree.addtop.isShow" class="item-group">
+                                        <div ng-repeat="row in huatekTree.columns" class="item" a="{{huatekTree.columns[$index].width}}" style="width:{{huatekTree.columns[$index].width}}">
+                                            <input ng-model="huatekTree.addtop.row[row.field]">
+                                        </div>
+                                        <div class="item" style="width:20%">
+                                            <span ng-click="huatekTree.saveTopNode()" class="tree-btn save"></span>
+                                            <span ng-click="huatekTree.cacelTopNode()" class="tree-btn cancle"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table class="table tree-table">
+                                    <thead>
+                                        <tr>
+                                            <th width="32px">
+                                                <input value="{{huatekTree.all.checked}}" type="checkbox" ng-click="huatekTree.allChecked();">
+                                                <label for="" class="icon-check"></label>
+                                            </th>
+                                            <th width="32px">
+                                                <span class="{{(huatekTree.all.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.allLaunch();"></span>
+                                            </th>
+                                            <th ng-repeat="column in huatekTree.columns" width="{{column.width}}">{{column.name}}</th>
+                                            <th width="20%">操作</th>
+                                        </tr>
+                                    </thead>
+                                    <!--  <thead>
+                                        <tr>
+                                            <th width="30px"></th>
+                                            <th width="30px"></th>
+                                            <th ng-repeat="column in huatekTree.columns">{{column.name}}</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead> -->
+                                    <tbody>
+                                        <tr ng-show="row.isShow" ng-mouseover="row.btnShow = true" ng-mouseleave="row.btnShow = false" ng-repeat="row in huatekTree.rows">
+                                            <td>
+                                                <input ng-model="row.checked" type="checkbox" />
+                                                <label for="" class="icon-check"></label>
+                                            </td>
+                                            <td>
+                                                <span ng-if="row.isLeaf == 0" class="{{(row.isLeaf == 0 && row.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.lookChild($index,row);"></span>
+                                            </td>
+                                            <td style="{{$index == 0?'text-align: left;':''}}" ng-repeat="column in huatekTree.columns">
+                                                <span style={{huatekTree.getTreeShape($index,row.groupLevel)}}>
+                                                    {{row[column.field]}}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="edit-btn" ng-show="row.btnShow">
+                                                    <i class="icon-treeedit" ng-click="huatekTree.editNode($event,$index,row)"></i>
+                                                    <i class="icon-treedelet" ng-click="huatekTree.editNode($event,$index,row)"></i>
+                                                    <i class="icon-treeadd" ng-click="huatekTree.addChild($event,$index,row)"></i>
+                                                    <i class="icon-treeup" ng-click="huatekTree.moveNode($index,row,'up')"></i>
+                                                    <i class="icon-treedown" ng-click="huatekTree.moveNode($index,row,'dn')"></i>
+                                                </div>
+                                            </td>
+                                            <!-- <th><input aria-label="Checkbox for following text input" type="checkbox"></th>
+                                            <th><span class="{{row.isLeaf == 0?'glyphicon glyphicon-plus':'glyphicon glyphicon-minus'}}" aria-hidden="true" ng-click="huatekTree.lookChild($index,row);"></span></th>
+                                            <th ng-repeat="column in huatekTree.columns">{{row[column.field]}}</th> -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div ng-show="huatekTree.modify.panelShow" class="table-alert" style="top:{{huatekTree.modify.offTop}}px;">
+                                    <div class="panel panel-default">
+                                        <div class="table clearfix">
+                                            <div ng-repeat="column in huatekTree.columns" class="item" style="width:{{column.width}}">
+                                                <input ng-model="huatekTree.modify.row[column.field]" placeholder="请输入上次菜单" />
+                                            </div>
+                                            <!--  <div class="item" style="width:25%">
+                                                <input value="222" />
+                                            </div> -->
+                                            <div class="item" style="width:20%">
+                                                <div class="edit-btn">
+                                                    <span ng-click="huatekTree.saveNode()" class="tree-btn save"></span>
+                                                    <span ng-click="huatekTree.cancelNode()" class="tree-btn cancle"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="huatekTree.child.isShow" class="table-alert">
+                                    <div class="panel panel-default">
+                                        <div class="table clearfix">
+                                            <div ng-repeat="column in huatekTree.columns" class="item" style="width:{{column.width}}">
+                                                <input ng-model="huatekTree.child.row[column.field]" placeholder="请输入上次菜单" />
+                                            </div>
+                                            <!--  <div class="item" style="width:25%">
+                                                <input value="222" />
+                                            </div> -->
+                                            <div class="item" style="width:20%">
+                                                <div class="edit-btn">
+                                                    <span ng-click="huatekTree.saveChild()" class="tree-btn save"></span>
+                                                    <span ng-click="huatekTree.cancelChild()" class="tree-btn cancle"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 输出内容结束-->
+            </div>
+            <!-- 主要内容结束 -->
+        </div>
+</section>
+<!-- 加载内容结束 -->

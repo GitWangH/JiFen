@@ -1,0 +1,40 @@
+.tree-widget{
+  min-height: 500px;
+  overflow-y:auto;
+  border: #ddd solid 1px;
+  padding: 5px;
+  position: relative;
+}
+.treeview-block {
+  left: 2px;
+  margin: 0;
+  overflow: hidden;
+  padding: 1px;
+  position: absolute;
+  top: 1px;
+}
+.treeview-block > li > ul{padding-left:20px;}
+.treeview-block > li > ul > li{margin:5px 0;}
+.treeview-block > li > ul > li > ul {padding-left:40px;}
+.treeview-block > li > ul > li > ul > li {margin:5px 0;}
+.treeview-block > li > ul > li > .toggle{display:inline-block;width:20px;text-align:center;}
+.scrollbar-vertical {
+  background-color: #f5f5f5;
+  border-left: thin solid #f5f5f5;
+  margin: 0;
+  padding: 2px;
+  position: absolute;
+  top: 0;
+  width: 11px;
+  z-index: 99;
+}
+
+.scroll-button-thumb-vertical {
+  background-color: #d5d5d5;
+  border: thin solid #c5c5c5;
+  border-radius: 2px;
+  position: absolute;
+  top: 2px;
+  width: 9px;
+  z-index: 99;
+}

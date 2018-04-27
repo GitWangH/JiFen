@@ -1,0 +1,44 @@
+<!-- 导入返回页面 -->
+<script type="text/javascript" src="${fileserver_path}/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${fileserver_path}/js/ht_frame.js"></script>
+<script type="text/javascript" src="${fileserver_path}/js/jquery.uploadify.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${fileserver_path}/js/uploadify.css" />
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+<script>
+$(function() {
+    $('#file_upload').uploadify({
+        'swf'      : '${fileserver_path}/js/uploadify.swf',
+        'uploader' : '${fileserver_path}/upload.do?actionMethod=uploadFile',
+        'buttonText' : '上传文件',
+        'button_image_url': '${fileserver_path}/js/imageUploadNoUse.png',
+        'fileTypeExts' : '*.*',
+        'onUploadStart': function (file) {
+            $("#file_upload").uploadify("settings", "formData", {'docType':'${docType}','importServiceImpl':'${importServiceImplName}'});
+            },
+        'onUploadSuccess' : function(file, data, response) {
+        	$("#fileName").val(data);
+        	var _data = JSON.parse(data);
+        	parent.document.getElementById("nameInfo").value = _data.excelImport;
+        	parent.document.getElementById("ifSuccess").value = _data.ifSuccess;
+        	parent.document.getElementById("attachmentName").value = _data.fileName;
+        	parent.document.getElementById("attachmentFormat").value = _data.extFileName;
+        	parent.document.getElementById("attachmentPath").value = _data.filePath;
+        }
+        
+    });
+});
+</script>
+	<input type="hidden" name="fileName" id="fileName" value="">
+	<legend></legend>
+    <div style=" height:45px; width:100%;">
+		<table class="formInfo">
+			<tbody>
+			<tr>
+				<td>
+					<input type="file" class="buttonCls" name="file_upload" id="file_upload" />
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+

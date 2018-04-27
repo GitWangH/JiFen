@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <title>
+        培训视频下载说明
+    </title>
+    <link href="static/css/theme-default/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/theme-default/mod.main.css">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="icon" href="/favicon.ico">
+    <script src="static/js/coreJs/jquery/3.2.1/jquery-3.2.1.min.js"></script>
+    <style>
+        html,
+        body {
+            height: auto
+        }
+        
+        body {
+            background: #fff
+        }
+    </style>
+    <script>
+        var _hmt = _hmt || [];
+    </script>
+</head>
+
+<body>
+    <div class="ce-vedio">
+        <p class="results-title"><i></i><span class="ng-binding">培训视屏下载</span></p>
+        <div class="bs-docs-section">
+            <div class="bs-callout bs-callout-warning" id="callout-navbar-overflow">
+                <div class="vedio-item">
+                    <p>01项目管理-标段用户 <i class="icon-zhankai"></i></p>
+                    <ol class="vedio">
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1c2AlYr2" target="_blank">https://pan.baidu.com/s/1c2AlYr2</a>）到浏览器地址栏打开，下载密码 : k6e4</li>
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1c2AlYr2" target="_blank">https://pan.baidu.com/s/1c2AlYr2</a>）到浏览器地址栏打开，下载密码 : k6e4</li>
+                    </ol>
+                </div>
+                <div class="vedio-item">
+                    <p>02合同管理-标段用户 <i class="icon-zhankai"></i></p>
+                    <ol class="vedio">
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1kUE1qa7" target="_blank">https://pan.baidu.com/s/1kUE1qa7</a>）到浏览器地址栏打开，下载密码 : t12v</li>
+                    </ol>
+                </div>
+                <div class="vedio-item">
+
+                    <p>03质量管理-标段用户 <i class="icon-zhankai"></i></p>
+                    <ol class="vedio">
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1kVf59qv" target="_blank">https://pan.baidu.com/s/1kVf59qv</a>）到浏览器地址栏打开，下载密码 : 523a</li>
+                    </ol>
+                </div>
+                <div class="vedio-item">
+
+                    <p>04质量管理-监理用户 <i class="icon-zhankai"></i></p>
+                    <ol class="vedio">
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1dEV8y9j" target="_blank">https://pan.baidu.com/s/1dEV8y9j</a>）到浏览器地址栏打开，下载密码 : mpin</li>
+                    </ol>
+                </div>
+                <div class="vedio-item">
+
+                    <p>05整改单办理-标段用户 <i class="icon-zhankai"></i></p>
+                    <ol class="vedio">
+                        <li>点击或复制地址 <a href="https://pan.baidu.com/s/1jHE3qmy" target="_blank">https://pan.baidu.com/s/1jHE3qmy</a>）到浏览器地址栏打开，下载密码 : kmw2</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(".bs-docs-section").on("click", ".vedio-item p", function() {
+        console.log($(this).next("ol"))
+        if ($(this).next("ol").is(":hidden")) {
+            $(this).next("ol").slideDown();
+        } else {
+            $(this).next("ol").slideUp();
+
+        }
+    })
+</script>
+
+</html>

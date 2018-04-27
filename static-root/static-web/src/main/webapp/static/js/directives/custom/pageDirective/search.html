@@ -1,0 +1,265 @@
+<div class="form-horizontal">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- 列表查询 -->
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-show="queryField.isShow" ng-repeat="queryField in queryFieldList">
+                <div ng-if="queryField.isShowSelect" class="form-group">
+                    <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{queryField.title}}</label>
+                    <!-- 文本框 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='string' && !queryField.dropDataUrl && queryField.logic.indexOf('like')>=0">
+                        <input type="text" class="form-control" ng-readOnly="queryField.readonly" ng-change='queryField.event(queryField.value)' ng-model="queryField.value" placeholder="{{queryField.logic=='like'?'左匹配':'全模糊'}}" />
+                    </div>
+                    <!-- 多选下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='multipleSelect'">
+                        <ol class="nya-bs-select" ng-model="queryField.params" actions-box="true" ng-disabled="queryField.readonly" ng-change="queryField.event(queryField.params)" multiple>
+                            <li nya-bs-option="option in queryField.items" data-value="option._returnField">
+                                <a href="javascript:;">
+                                {{ option._showField }}
+                                <span class="fa fa-check check-mark"></span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 长整型 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='long'">
+                        <input type="text" class="form-control" ng-model="queryField.value" ng-readonly="formField.readonly">
+                    </div>
+                    <!-- 数字框带操作符-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='number' && queryField.componentType=='operatorNumber'">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 item">
+                            <select placeholder="请选择" class="form-control" ng-model="queryField.operator" ng-options="option.id as option.name for option in operatorItems">
+                                <option value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                            <input numeric min="-999999999" max="999999999" decimals="2" ng-model="queryField.value" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='double'" >
+                         <input numeric min="-999999999" max="999999999" decimals="2" ng-model="queryField.value" class="form-control" />
+                    </div>
+                    <!-- 数字框不带操作符-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='number' && queryField.componentType!='operatorNumber'">
+                        <input type="text" onkeyup="value=value.replace(/[^\d{1,}\.\d{1,}|\d{1,}]/g,'')" class="form-control" ng-model="queryField.value" placeholder="" ng-readonly="formField.readonly">
+                    </div>
+                    <!-- 单选下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='string' && queryField.componentType=='select'">
+                        <!--  <select placeholder="请选择" ng-change="queryField.event(queryField.value)" class="form-control" ng-model="queryField.value" name="{{queryField.name}}" ng-change="queryField.event(queryField.value);" ng-disabled="formField.readonly=='readonly' || formField.readonly"
+                            ng-readonly="formField.readonly=='readonly' || formField.readonly" ng-options="option._returnField as option._showField for option in queryField.items">
+                            <option value="">&nbsp;</option>
+                            <option value="{{option._returnField}}">{{option._showField}}</option>
+                        </select> -->
+                        <!-- <oi-select placeholder="请选择" ng-change="queryField.event(queryField.value)" oi-options="option._returnField as option._showField for option in queryField.items" ng-model="queryField.value" placeholder="请输入搜索或者选择" name="{{queryField.name}}"></oi-select> -->
+                        <ol class="nya-bs-select" ng-model="queryField.value" data-live-search="true">
+                            <li nya-bs-option="option in queryField.items" data-value="option._returnField">
+                                <a>
+                                {{ option._showField }}
+                                <span class="fa fa-check check-mark"></span>
+                              </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 单选下拉 ,不带空白选项-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='string' && queryField.componentType=='selectNew'">
+                        <!-- <select placeholder="请选择" ng-change="queryField.event(queryField.value)" class="form-control" ng-model="queryField.value" name="{{queryField.name}}" ng-change="queryField.event(queryField.value);" ng-disabled="formField.readonly" ng-options="option._returnField as option._showField for option in queryField.items">
+                            <option value="{{option._returnField}}">{{option._showField}}</option>
+                        </select> -->
+                        <ol class="nya-bs-select" ng-model="queryField.value" data-live-search="true">
+                            <li nya-bs-option="option in queryField.items" data-value="option._returnField">
+                                <a>
+                                {{ option._showField }}
+                                <span class="fa fa-check check-mark"></span>
+                              </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 单选带搜索 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='select-autocomplete'">
+                        <oi-select ng-change="queryField.event(queryField.value)" oi-options="item._returnField as item._showField for item in queryField.items | limitTo: cnex4_limit_quantity" ng-model="queryField.value" placeholder="请输入搜索或者选择" oi-select-options="{cleanModel: true}"
+                            name="{{queryField.name}}"></oi-select>
+                    </div>
+                    <!-- checkbox -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='checkbox' || queryField.model=='checkbox'">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" ng-model="queryField.value" name="{{queryField.name}}" value="{{queryField.value}}">{{queryField.content}}</label>
+                    </div>
+                    <!-- 日期类型 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='date'">
+                        <input type="text" class="form-control" ng-model="queryField.value" name="{{queryField.name}}" data-date-format="{{queryField.dateFormat}}" data-autoclose="1" data-date-type="string" bs-datepicker>
+                    </div>
+                    <!-- 时间类型-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='time'">
+                        <input type="text" class="form-control" ng-model="queryField.value" name="{{queryField.name}}" data-time-format="HH:mm:ss" data-autoclose="1" data-time-type="string" bs-timepicker>
+                    </div>
+                    <!-- 日期时间类型-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='dateTime'">
+                        <div class="row">
+                            <div class="col-xs-8 item">
+                                <input type="text" class="form-control" ng-model="queryField.minValue" data-date-format="yyyy-MM-dd" data-autoclose="1" ng-disabled="queryField.readonly" data-date-type="string" bs-datepicker>
+                            </div>
+                            <div class="col-xs-4 item">
+                                <input type="text" class="form-control" ng-model="queryField.maxValue" data-time-format="HH:mm:ss" data-autoclose="1" ng-disabled="queryField.readonly" data-time-type="string" bs-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 日期类型:yyyy-MM -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='dateMonth'">
+                        <input type="text" class="form-control" ng-model="queryField.value" name="{{queryField.name}}" data-date-format="yyyy-MM" data-autoclose="1" data-date-type="string" bs-datepicker>
+                    </div>
+                    <!-- 模糊检索 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='string' && queryField.dropDataUrl &&queryField.dropDataUrl.indexOf('dic.')!=0">
+                        <input type="text" ng-model="queryField.value" typeahead-append-to-body="true" name="{{queryField.field}}" uib-typeahead="item._returnField as item._showField for item in getLocationExtend($viewValue,queryField)" typeahead-wait-ms="300" ng-readOnly="queryField.readonly=='readonly' || queryField.readonly"
+                            class="form-control" />
+                    </div>
+                    <!-- 标段下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='tenderSelect'">
+                        <!-- <oi-select ng-change="queryField.event(queryField.value)" oi-options="item.code as item.name group by item.category for item in userTenders | limitTo: cnex4_limit_quantity" ng-model="queryField.value" placeholder="请输入搜索或者选择" name="{{queryField.name}}"></oi-select> -->
+                        <ol id="object-collection" class="nya-bs-select" ng-model="queryField.value" data-live-search="true">
+                            <li nya-bs-option="item in userTenders group by item.category" data-value="item.code">
+                                <span class="dropdown-header">{{item.category}}</span>
+                                <a>
+                                    <span>{{ item.name }}</span>
+                                    <span class="small">{{ item.item }}</span>
+                                    <span class="fa fa-check check-mark"></span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 标段下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='tenderMultipleSelect'">
+                        <!-- <oi-select ng-change="queryField.event(queryField.value)" multiple oi-options="item.code as item.name group by item.category for item in userTenders | limitTo: cnex4_limit_quantity" ng-model="queryField.params" placeholder="请输入搜索或者选择" name="{{queryField.name}}"></oi-select> -->
+                       <!--  <ol id="object-collection" class="nya-bs-select" ng-model="queryField.value" data-live-search="true">
+                            <li nya-bs-option="item in userTenders group by item.category" data-value="item.code">
+                                <span class="dropdown-header">{{item.category}}</span>
+                                <a>
+                                    <span>{{ item.name }}</span>
+                                    <span class="small">{{ item.item }}</span>
+                                    <span class="fa fa-check check-mark"></span>
+                                </a>
+                            </li>
+                        </ol> -->
+                        <ol class="nya-bs-select"  ng-model="queryField.params" actions-box="true" multiple>
+                            <li nya-bs-option="item in userTenders" data-value="item.code">
+                              <a>
+                                {{ item.name }}
+                                <span class="fa fa-check check-mark"></span>
+                              </a>
+                            </li>
+                          </ol>
+                    </div>
+                    <!-- 集团下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='groupSelect'">
+                    	<ol class="nya-bs-select"  ng-model="queryField.value" actions-box="true" >
+                            <li nya-bs-option="item in userCompList" data-value="item.code">
+                              <a>
+                                {{ item.name }}
+                                <span class="fa fa-check check-mark"></span>
+                              </a>
+                            </li>
+                          </ol>
+                    </div>
+                    <!-- 下拉树-单选 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='selectTreeSingle'">
+                        <multi-select-tree data-input-model="reportUserOrg" data-input-arr="$currentOrg" multi-select="false" ng-model="queryField.value" data-output-model="queryField.returnArr" data-default-label="请选择机构" data-map-field="queryField.mapField" data-callback="queryField.selectCallBack(item)"></multi-select-tree>
+                    </div>
+                    <!-- 下拉树-多选 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.componentType=='selectTreeMutiple'">
+                        <oi-select ng-change="queryField.event(queryField.value)" oi-options="item.code as item.name for item in userCompList | limitTo: cnex4_limit_quantity" ng-model="queryField.params" placeholder="请输入搜索或者选择" name="{{queryField.name}}"></oi-select>
+                    </div>
+                </div>
+            </div>
+            <!-- 报表查询 一行一列-->
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item" ng-repeat="queryField in reportQueryFieldListForOne">
+                <div class="form-group">
+                    <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label">{{queryField.title}}
+                        <span class="require" ng-if="queryField.isRquire=='report_isMust_yeas'">*</span>
+                    </label>
+                    <!-- 选核算加独立（过权限） -->
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item" ng-if="queryField.type=='reportCompany'">
+                        <oi-select oi-options="item.id as item.orgName for item in companyList | limitTo: cnex4_limit_quantity" ng-model="queryField.value" ng-change="getOffice(queryField)" ng-disabled="queryField.readonly" multiple placeholder="Select"></oi-select>
+                    </div>
+                    <!-- 办事处（过权限） -->
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item" ng-if="queryField.type=='reportOffice'">
+                        <oi-select oi-options="item.id as item.orgName for item in queryField.items | limitTo: cnex4_limit_quantity" ng-model="queryField.value" ng-disabled="queryField.readonly" multiple placeholder="Select"></oi-select>
+                    </div>
+                    <!-- 选核算加独立（不过权限） -->
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item" ng-if="queryField.type=='reportCompanyForNoAuthority'">
+                        <oi-select oi-options="item.id as item.orgName for item in companyListForNoAuthority | limitTo: cnex4_limit_quantity" ng-model="queryField.value" ng-change="getOfficeForNoAuthority(queryField)" ng-disabled="queryField.readonly" multiple placeholder="Select"></oi-select>
+                    </div>
+                    <!-- 办事处（不过权限） -->
+                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item" ng-if="queryField.type=='reportOfficeForNoAuthority'">
+                        <oi-select oi-options="item.id as item.orgName for item in queryField.items | limitTo: cnex4_limit_quantity" ng-model="queryField.value" ng-disabled="queryField.readonly" multiple placeholder="Select"></oi-select>
+                    </div>
+                </div>
+            </div>
+            <!-- 报表查询 一行四列-->
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-repeat="queryField in reportQueryFieldListForFour">
+                <div class="form-group">
+                    <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{queryField.title}}
+                        <span class="require" ng-if="queryField.isRquire=='report_isMust_yeas'">*</span>
+                    </label>
+                    <!-- 文本框 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportText'">
+                        <input type="text" class="form-control" ng-model="queryField.value" />
+                    </div>
+                    <!-- 数字框 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportNumber'">
+                        <input numeric min="-999999999" max="999999999" decimals="2" ng-model="queryField.value" class="form-control" />
+                    </div>
+                    <!-- 数字框带操作符-->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportOperatorNumber'">
+                        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 item">
+                            <select placeholder="请选择" class="form-control" ng-model="queryField.operator" ng-options="option.id as option.name for option in queryField.operatorItems">
+                                <option value="">&nbsp;</option>
+                                <option value="{{option.id}}">{{option.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                            <input numeric min="-999999999" max="999999999" decimals="2" ng-model="queryField.value" class="form-control" />
+                        </div>
+                    </div>
+                    <!-- 单选下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportSelect'">
+                        <select placeholder="请选择" class="form-control" ng-model="queryField.value" ng-options="option.id as option.name for option in queryField.items">
+                            <option value="">&nbsp;</option>
+                            <option value="{{option.id}}">{{option.name}}</option>
+                        </select>
+                    </div>
+                    <!-- 报表切换下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportChangeSelect'">
+                        <select placeholder="请选择" class="form-control" ng-model="queryField.value" ng-options="option.id as option.name for option in queryField.items">
+                            <option value="">&nbsp;</option>
+                            <option value="{{option.id}}">{{option.name}}</option>
+                        </select>
+                    </div>
+                    <!-- 多选下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportMultipleSelect'">
+                        <ol class="nya-bs-select" ng-model="queryField.params" actions-box="true" multiple>
+                            <li nya-bs-option="option in queryField.items" data-value="option.id">
+                                <a href="javascript:;">
+                                {{ option.name }}
+                                <span class="fa fa-check check-mark"></span>
+                                </a>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- 动态下拉 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportDynamicSelect'">
+                        <oi-select oi-options="item.id as item.name group by item.category for (key, item) in queryField.items" ng-model="queryField.value" placeholder="Select"></oi-select>
+                    </div>
+                    <!-- 日期时间 -->
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-if="queryField.type=='reportDateTime'">
+                        <div class="row">
+                            <div class="col-xs-6 item">
+                                <input type="text" class="form-control" ng-model="queryField.minValue" data-date-format="yyyy-MM-dd" data-autoclose="1" data-date-type="string" bs-datepicker>
+                            </div>
+                            <div class="col-xs-6 item">
+                                <input type="text" class="form-control" ng-model="queryField.maxValue" data-time-format="HH:mm:ss" data-autoclose="1" data-time-type="string" bs-timepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

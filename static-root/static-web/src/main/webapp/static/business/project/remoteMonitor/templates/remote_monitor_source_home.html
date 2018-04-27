@@ -1,0 +1,52 @@
+<section>
+    <!-- 标题栏结束 -->
+    <div class="search-area clearfix">
+
+    </div>
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="content no-tree">
+            <div class="result-list">
+                <p class="results-title"><i></i><span>{{subModuleName}}列表</span></p>
+                <!-- <table class="table table-striped table-hover table-type2">
+                    <thead>
+                        <tr>
+                            <th class="center" width="80px">
+                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" ng-click="selectAll()"/>
+                                                    <span class="lbl"></span>
+                                                </label>
+                            </th>
+                            <th>标段</th>
+                            <th>远程地址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="remoteMonitor in remoteMonitorList">
+                            <td>
+                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" value="{{remoteMonitor.id}}" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                            </td>
+                            <td>{{remoteMonitor.tendersName}}</td>
+                            <td ng-click="viewRemoteMonitor(remoteMonitor.remoteAddress)">{{remoteMonitor.remoteAddress}}</td>
+                        </tr>
+                                                                                                            
+                    </tbody>
+                </table> -->
+                <div class="monitor-group clearfix">
+                    <div class=" mo-item" ng-repeat="remoteMonitor in remoteMonitorList">
+                        <a class="monitor-item" href="#" ng-click="viewRemoteMonitor(remoteMonitor.remoteAddress)">
+                            <div class="item-title">
+                                <p><span class="ce-code">{{remoteMonitor.tendersCode}}</span><span class="ce-title">{{remoteMonitor.tendersName}}</span></p>
+                            </div>
+                            <img src="static/images/video_.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

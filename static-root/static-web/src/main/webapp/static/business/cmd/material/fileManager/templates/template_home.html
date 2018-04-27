@@ -1,0 +1,50 @@
+
+<section>
+    <!-- 提示内容开始 -->
+    <alert></alert>
+    <!-- 提示内容结束 -->
+    <!-- 标题栏开始  -->
+    <!-- <div class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="#">{{moduleName}}</a></li>
+            <li class="active">{{subModuleName}}</li>
+        </ol>
+    </div> -->
+    <!-- 标题栏结束 -->
+    <p class="results-title no-margin"><i></i><span class="ng-binding">查询</span></p>
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="zTreeDemoBackground left-tree">
+            <!-- 角色树上方按钮 -->
+            <p class="results-title"><i></i><span class="ng-binding">选择</span></p>
+            <ul id="{{treeId}}" class="ztree">
+            </ul>
+        </div>
+        <div class="l-content">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <p class="results-title"><i></i><span>{{subModuleName}}列表</span></p>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <!-- 页面按钮开始 -->
+                    <btn></btn>
+                    <!-- 页面按钮结束 -->
+                </div>
+            </div>
+            <div class="result-list">
+                <div ui-grid="tableGrid" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pagination ui-grid-auto-resize ui-grid-exporter></div>
+            </div>
+        </div>
+    </div>
+</section>

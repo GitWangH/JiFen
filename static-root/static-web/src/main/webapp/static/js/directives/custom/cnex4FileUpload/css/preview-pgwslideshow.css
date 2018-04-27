@@ -1,0 +1,217 @@
+/**
+ * PgwSlideshow - Version 2.0
+ *
+ * Copyright 2014, Jonathan M. Piat
+ * http://pgwjs.com - http://pagawa.com
+ *
+ * Released under the GNU GPLv3 license - http://opensource.org/licenses/gpl-3.0
+ */
+.pgwSlideshow {
+    width: 100%;
+    background: #edebef;
+    padding-top: 10px;
+}
+
+.pgwSlideshow a{
+    color: #fff;
+}
+
+.pgwSlideshow .ps-current {
+    text-align: center;
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.pgwSlideshow .ps-current > ul  > li {
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    display: block;
+    height: 500px;
+    line-height: 500px;
+}
+
+.pgwSlideshow .ps-current > ul  > li img {
+    /*max-width: 100%;
+    max-height: 100%;
+    height: auto;*/
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.pgwSlideshow .ps-caption {
+    background: rgba(0, 0, 0, 0.5);
+    filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000')";
+    text-align: left;
+    font-size: 1rem;
+    color: #fff;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding: 10px;
+    display: none;
+}
+
+.pgwSlideshow .ps-caption span {
+    padding: 7px;
+    display: inline-block;
+}
+
+.pgwSlideshow .ps-list {
+    overflow: hidden;
+    position: relative;
+}
+
+.pgwSlideshow .ps-list ul {
+    text-align:center;
+}
+
+.pgwSlideshow .ps-list li {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.pgwSlideshow .ps-list li .ps-item {
+    display: inline-block;
+    width:84px;
+    height:84px;
+    margin: 15px 8px;
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    border:#555 solid 4px;
+    overflow:hidden;
+    cursor: pointer;
+}
+
+.pgwSlideshow .ps-list li .ps-item-list {
+    display: inline-block;
+    width:84px;
+    height:84px;
+    margin: 15px 8px;
+    opacity: 1;
+    filter: alpha(opacity=60);
+    border:#fff solid 4px;
+    overflow:hidden;
+}
+
+.pgwSlideshow .ps-list li img {
+    display:  inline-block;
+    width: 80px;
+    height: 80px;
+}
+
+.pgwSlideshow .ps-list li .ps-item.ps-selected {
+    opacity: 1;
+    border: #ea3838 solid 4px;
+}
+
+.ps-list ul li{
+	display:inline;
+	padding:0;
+}
+
+.pgwSlideshow .ps-prevIcon {
+    border-color:transparent #fff transparent;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+    display: block;
+}
+
+.pgwSlideshow .ps-nextIcon {
+    border-color:transparent #fff transparent;
+    border-style: solid;
+    border-width: 10px 0 10px 10px;
+    display: block;
+}
+.pgwSlideshow .ps-current .ps-arrow{background: rgba(0, 0, 0, .3);filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000');-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#99000000', endColorstr='#99000000')";position: absolute;top: 45%;cursor: pointer;}
+.pgwSlideshow .ps-current .ps-prev {border-radius: 0 4px 4px 0;padding: 20px 20px 20px 15px;left: 0;}
+.pgwSlideshow .ps-current .ps-next {border-radius: 4px 0 0 4px;padding: 20px 15px 20px 20px;right: 0;}
+.pgwSlideshow .ps-list .ps-arrow{background: rgba(0, 0, 0, .3);filter:  progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#bb000000', endColorstr='#bb000000');-ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#bb000000', endColorstr='#bb000000')";cursor: pointer;position: absolute;z-index: 1000;display: none;top: 25px;}
+.pgwSlideshow .ps-list .ps-prev {border-radius: 0 4px 4px 0;padding: 20px 15px 20px 12px;left: 0;}
+.pgwSlideshow .ps-list .ps-next {border-radius: 4px 0 0 4px;padding: 20px 12px 20px 15px;right: 0;}
+
+/*
+ * The media-queries are not used because IE8 doesn't support them.
+ */
+.pgwSlideshow.narrow .ps-list li img {
+    width: 60px;
+    height: 60px;
+}
+
+.pgwSlideshow.narrow .ps-current .ps-prev {
+    padding: 15px 15px 15px 12px;
+    top: 40%;
+}
+
+.pgwSlideshow.narrow .ps-current .ps-next {
+    padding: 15px 12px 15px 15px;
+    top: 40%;
+}
+
+.pgwSlideshow.narrow .ps-list .ps-prev {
+    padding: 15px 12px 15px 10px;
+    top: 20px;
+}
+
+.pgwSlideshow.narrow .ps-list .ps-next {
+    padding: 15px 10px 15px 12px;
+    top: 20px;
+}
+
+.pgwSlideshow.narrow .ps-caption {
+    font-size: 0.8rem;
+    padding: 8px;
+}
+.img-operate{
+   height: 50px;
+}
+.img-operate ul{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+} 
+.img-operate ul li{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 30px;
+    color: #fff;
+}
+.img-content{
+    width: 600px;
+    height: 600px;
+    margin: 0 auto;
+}
+.turnLeft{
+    background-image: url(../images/turnLeft.png);
+    display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+
+}
+.turnRight{
+     background-image: url(../images/turnRight.png);
+     display: flex;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,85 @@
+<style>
+.form-control {
+    width: 10%;
+    display: inline-block;
+}
+</style>
+<div class="column-group">
+    <input type="hidden" name="tasktype" ng-model="tasktype.value" ng-change="tasktype.event(firstExclusive)" />
+    <div class="form-horizontal">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="col-xs-2">权限名称</div>
+                        <div class="col-xs-10">{{rightName.value}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="col-xs-2">发放时机</div>
+                        <div class="col-xs-10">{{startTip.value}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="col-xs-2">礼包配置</div>
+                        <div class="col-xs-10">
+                            总金额 &nbsp
+                            <input class="form-control small-input" ng-model="award.value" ng-disabled="mutiplyRead" />&nbsp&nbsp 元
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-xs-2">{{isValidate.title}}</div>
+                    <div class="col-xs-10">
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item" ng-repeat="item in isValidate.items">
+                            <span class="n-check">
+                                      <input type="radio" ng-model="isValidate.value" name="{{isValidate.name}}" value="{{item.code}}" ng-disabled="lookModel || isValidate.readonly" />{{item.name}}
+                                   </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-xs-2">任务说明</div>
+                    <div class="col-xs-10">
+                        <textarea name="" id="" style="width:100%" ng-model="remark.value"> {{remark.value}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                        <input type="button" class="form-control" Style=" width: 18%;" ng-click="addRow();" value="+优惠券面值" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="text-center page-btn">
+    <button class="btn btn-save" ng-click="update();waitForDbCommint();" ng-disabled="btnDisabledStatus">保存</button>
+    <input type="button" ng-readonly="lookModel || formField.readonly" value="重置" class="btn btn-default" ng-click="chongzhi.clickEvent();" ng-class="formField.css" bs-tooltip="formField.errorMsg" />
+    <!-- <button class="btn btn-save" ng-click="update();waitForDbCommint();back()" ng-disabled="btnDisabledStatus">更新</button> -->
+</div>
+<!-- 可编辑表格 -->
+<div class="result-list">
+    <div ui-grid="tableGridCoup" class="grid" ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize ui-grid-edit></div>
+</div>
+<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+</div>
+<!-- 加载内容结束-->

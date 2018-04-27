@@ -1,0 +1,40 @@
+<!-- 加载内容开始 -->
+<section>
+	<!-- 提示内容开始 -->
+	<alert></alert>
+	<!-- 提示内容结束 -->
+	<!-- 标题栏开始  -->
+	<div class="section-header general">
+		<ol class="breadcrumb">
+			<li ng-bind-template="{{moduleName}}"></li>
+			<li class="active" ng-bind-template="{{subModuleName}}"></li>
+		</ol>
+	</div>
+	<!-- 标题栏结束 -->
+	<div class="section-body">
+		<!-- 主要内容开始 -->
+		<div class="main-body">
+			<!-- 输出内容开始 -->
+			<div class="items general">
+				<div class="content-title">
+					<div class="row">
+						<div class="col-xs-4"><h4><span>{{subModuleName}}列表</span></h4></div>
+						<div class="col-xs-8">
+							<!-- 页面按钮开始 -->
+							<btn></btn>
+							<!-- 页面按钮结束 -->
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<div ui-grid="tableGrid" class="grid" ui-grid-edit ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-pagination></div>
+					</div>
+				</div>
+			</div>
+			<!-- 输出内容结束-->
+		</div>
+		<!-- 主要内容结束 -->
+	</div>
+</section>
+<!-- 加载内容结束-->

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+	<html lang="zh_cn" ng-app="huatekApp">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>佳吉快运</title>
+		<!-- BEGIN META -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="keywords" content="your,keywords">
+		<meta name="description" content="Short explanation about this website">
+		<!-- END META -->
+		<!-- BEGIN 佳吉UI页面  css-->
+		<link rel="stylesheet" href="static/resource/css/bootstrap.css" />
+		<link rel="stylesheet" href="static/resource/css/common.css" />
+		<!-- END 佳吉UI页面  css-->
+		
+		<!-- <link rel="stylesheet" href="static/js/angularJsTree/js/samples.css" /> -->
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.checkbox.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/integralui.treeview.css" />
+		<link rel="stylesheet" href="static/js/angularJsTree/js/theme-flat-blue.css" />
+		<!-- <link rel="stylesheet" href="static/js/demo.css" type="text/css"> -->
+		<link rel="stylesheet" href="static/js/zTreeStyle.css" type="text/css">
+		
+		<!-- BEGIN DATE -->
+		<link href="static/calendar/images/all.css" rel="stylesheet" type="text/css"/>
+    	<link href="static/calendar/images/skin.css" rel="stylesheet" type="text/css"/>
+    	<link href="static/calendar/images/calendar.css" rel="stylesheet" type="text/css"/>
+
+		<!-- BEGIN STYLESHEETS -->
+		<!-- <link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/bootstrap.css" /> -->
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/materialadmin.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/font-awesome.min.css" />
+	<!-- 	<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/material-design-iconic-font.min.css" /> -->
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/bootstrap-datepicker/datepicker3.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/select2/select2.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/libs/ui-grid/ui-grid.min.css" />
+		<link rel="stylesheet" href="static/assets/css/theme-default/mod.main.css" />
+		<link type="text/css" rel="stylesheet" href="static/assets/css/theme-default/angular-busy.css" />
+		<!-- END STYLESHEETS -->
+
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script type="text/javascript" src="../../assets/js/libs/utils/html5shiv.js"></script>
+		<script type="text/javascript" src="../../assets/js/libs/utils/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+<body class="menubar-hoverable header-fixed menubar-visible"
+	ng-controller="MainController" style="background-color: #E8ECF5;">
+
+<!-- 	01 login section begin -->
+	<section class="section-account" ng-show="!authenticated">
+		<div class="clearfix layout-container">
+			<div class="login-head">
+				<div class="container">
+					<img src="static/resource/img/login_03.jpg" alt="">
+				</div>
+			</div>
+			<div class="login-cont clearfix">
+				<div class="container">
+					<form class="form floating-label" ngform>
+					<div class="login-box">
+						<h3>账户登录</h3>
+						<ul>
+							<li><i class="iconfont icon-ad76"></i> <input type="text"
+								id="username" name="username" ng-model="username"
+								ng-init="username='admin'"></li>
+							<li><i class="iconfont icon-mima"></i> <input
+								type="password" id="password" name="password"
+								ng-model="password" ng-init="password='111111'"></li>
+							<li><input type="button" value="登   录" ng-click="login()"></li>
+						</ul>
+					</div>
+					</form>
+				</div>
+			</div>
+			<!--	<div class="login-footer">Copy right © 2016 佳吉快运</div> -->
+		
+			<!-- 加载底部开始 -->
+			<footer></footer>	
+			<!-- 加载底部结束 -->
+		</div>
+	</section>
+<!-- 	01 login section end -->
+
+<!-- 02 BEGIN HEADER-->
+	<header id="header" ng-show="authenticated" style="display: none">
+	<div class="header clearfix">
+			<div class="logo left">
+				<img alt="" src="static/resource/img/logo.png" class="logo-pic" >
+			</div>
+			<div class="top-search left clearfix">
+				<span class="left iconfont icon-sousuo"></span>
+				<input type="text" class="left" value="">
+				<input type="button" class="right" value="搜索">
+			</div>
+			<div class="header-user right">
+				<a class="message-icon" href="javascript:msgShow();">
+					<i class="iconfont icon-xiaoxi"></i>
+					<em>1</em>					
+				</a>
+				<a href="">
+					<i class="iconfont icon-mianxingtubiaofanyi"></i>
+				</a>
+				<a class="skin-icon" href="javascript:;">
+					<i class="iconfont icon-jinlingyingcaiwangtubiao85 icon-skin"></i>
+					<div class="skin-box">
+						<span class="skin-box-icon"></span>
+						<div class="skin-box-cont">
+							<ul class="clearfix">
+								<li class="skin-red"></li>
+								<li class="skin-yellow"></li>
+								<li class="skin-blue"></li>
+							</ul>
+						</div>
+					</div>
+				</a>
+				<span>
+				<div class="header-user-pic">
+						<img src="static/resource/img/icon_03.png" alt="">
+						<div class="user-info">
+							<div class="ui-cont clearfix">
+								<ul>
+									<li>职务：收款员</li>
+									<li>职员代码：501243</li>
+									<li>机构：上海（徐泾办）</li>
+									<li>身份证号：2308**********0116</li>
+								</ul>
+							</div>
+							<div class="ui-btn">
+								<ul>
+									<li>
+										<a href=""><i class="iconfont icon-xiugaimima"></i>修改口令</a>
+									</li>
+									<li>
+										<a href="javascript:return false;" ng-click="logout()"></i>注销</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<i>张三</i>
+					<em>上海徐泾办</em>
+				</span>
+				<a href="">帮助</a>
+			</div>
+		</div>
+		<!--  顶部二层 BEGIN  -->
+		<div class="nav clearfix">
+			<div class="nav-left left">
+				<i class="iconfont icon-caidan"></i>
+				<span>
+					我的工作台
+					<div class="work-desk" style="display: none;">
+						<div class="wd-cont clearfix">
+							<ul>
+								<li><a href="">业务受理</a></li>
+								<li><a href="">办理托运</a></li>
+								<li><a href="">笼包管理</a></li>
+								<li><a href="">发车管理</a></li>
+							</ul>
+						</div>
+						<div class="wd-btn">
+							<ul>
+								<li>
+									<a href=""><i class="iconfont icon-zengjia"></i>增加</a>
+								</li>
+								<li>
+									<a href=""><i class="iconfont icon-shanchu"></i>删除</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</span>
+			</div>
+			<div class="nav-cont right clearfix" >
+				<ul id="lv1Nav">
+					<li class="active"><a  href="#/content" id="contentBtn">首页</a></li>
+					<li ng-repeat="x in systemdatas"  id="nav{{x.id}}" style="cursor: pointer;">
+						<a ng-click="load2Menu({{x.id}})"> {{x.name}}</a>
+					</li>
+				</ul>
+				 
+			</div>
+		</div>
+		
+		<!-- 顶部二层 END -->
+		
+	</header>
+	<!-- 02 END HEADER-->
+
+		
+		<!--end #menubar-->
+		<!-- END MENUBAR -->
+		
+		<!-- navigate 000000 -->
+		<div class="left-nav left"  ng-show="authenticated" >
+			<div class="nav-list">
+				<ul id="lv2Nav">
+				</ul>
+			</div>
+		</div>
+			<!-- 左侧导航 END -->
+			
+		<!-- content 000000 -->
+	<div class="right-box" ng-view="" id="content" cg-busy="{promise:promise,delay:100,templateUrl:'',message:'处理中，请稍候...'}" ng-hide="contentHide">
+	</div>		
+	<!--end #base-->
+	<!-- 03 END BASE -->
+
+
+
+<!-- BEGIN 佳吉UI页面 JS-->
+<script src="static/resource/js/jquery-1.9.1.min.js"></script>
+<script src="static/resource/js/bootstrap.min.js"></script>
+<script src="static/resource/js/main.js"></script>
+<!-- END 佳吉UI页面 JS-->
+
+<!-- 迁移的脚本代码 BEGIN -->
+<!-- BEGIN JAVASCRIPT -->
+<!-- <script src="static/assets/js/libs/jquery/jquery-1.11.2.min.js"></script> -->
+<script src="static/assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+<!-- <script src="static/assets/js/libs/bootstrap/bootstrap.min.js"></script> -->
+<script src="static/assets/js/libs/spin.js/spin.min.js"></script>
+
+<script src="static/calendar/js/calendar.js"></script>
+<!-- <script src="static/calendar/js/jquery.js"></script> -->
+
+<script src="static/assets/js/libs/autosize/jquery.autosize.min.js"></script>
+<script src="static/assets/js/libs/select2/select2.min.js"></script>
+<script src="static/assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+<script src="static/assets/js/libs/bootstrap-datepicker/bootstrap-datepicker.js"></script>
+<script src="static/assets/js/libs/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+<script src="static/assets/js/libs/bootstrap-dateTimePicker/bootstrap-datetimepicker.js"></script>
+<script src="static/assets/js/libs/bootbox/bootbox.js"></script>
+<script src="static/assets/js/libs/slider/scroll.js"></script>
+
+<!-- END JAVASCRIPT -->
+<script>
+var data=[];
+<!-- 导入模版下载 -->
+var fileServerPath = '${fileServerIp}';
+</script>
+<script src="static/js/map.js"></script>
+<script src="static/js/nav.js"></script>
+<script src="static/js/page_elements.js"></script>
+<script src="static/assets/js/core/source/App.js"></script>
+<script src="static/assets/js/core/source/AppNavigation.js"></script>
+<script src="static/assets/js/core/source/AppForm.js"></script>
+<script src="static/assets/js/core/source/AppVendor.js"></script>
+<script src="static/angular/angular.js"></script>
+<script src="static/angular/angular-route.js"></script>
+<script src="static/angular/angular-resource.js"></script>
+<script src="static/angular/angular-cookies.js"></script>
+<script src="static/angular/angular-messages.js"></script>
+<script src="static/angular/angular-animate.js"></script>
+<script src="static/angular/angular-aria.js"></script>
+<script src="static/angular/angular-touch.js"></script>
+<script src="static/angular/angular-busy.js"></script>
+<script src="static/assets/js/libs/ui-grid/ui-grid.min.js"></script>
+<script src="static/js/controller.js"></script>
+<script src="static/js/test_ctrl.js"></script>
+<script src="static/js/filter.js"></script>
+<script src="static/js/i18n.js"></script>
+<script src="static/js/base64.js"></script>
+<script src="static/js/init.js"></script>
+<script src="static/js/hisence_directive.js"></script>
+<script src="static/js/hisence_toolsService.js"></script>  
+<!-- menu controller -->
+<script src="static/views/public/commonService.js"></script>
+<script src="static/views/system/menu/MenuController.js"></script>
+<script src="static/views/system/user/UserController.js"></script>
+<script src="static/views/system/system/SystemController.js"></script>
+
+<script src="static/views/dataBase/areasController.js"></script>
+<script src="static/views/dataBase/categoryController.js"></script>
+<script src="static/views/dataBase/propertyController.js"></script>
+<script src="static/views/dataBase/baseStockDayController.js"></script>
+<script src="static/views/dataBase/baseSafeDayController.js"></script>
+<script src="static/views/dataBase/baseProductForecastRangeContoller.js"></script>
+<script src="static/views/dataBase/baseWarehouseInfoHContoller.js"></script>
+<script src="static/views/dataBase/baseCalendarContrastControll.js"></script>
+<script src="static/views/dataBase/baseHolidayInfoController.js"></script>
+<script src="static/views/dataBase/configController.js"></script>
+
+<script src="static/views/system/org/OrgController.js"></script>
+<script src="static/views/system/user/BaseUserController.js"></script>
+<script src="static/views/system/role/RoleController.js"></script>
+<script src="static/views/system/content/ContentController.js"></script>
+<script src="static/resource/js/search-angular.js"></script>
+
+<script src="static/views/system/exception/ExceptionController.js"></script>
+<!--snaker表单管理  -->
+<script src="static/views/system/snakerflow/snakerFormController.js"></script>
+
+<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.min.js"></script>
+<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.lists.min.js"></script>
+<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.checkbox.min.js"></script>
+<script type="text/javascript" src="static/js/angularJsTree/js/angular.integralui.treeview.min.js"></script>
+<script type="text/javascript" src="static/assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="static/js/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript"  src="static/resource/js/search-angular.js"></script>
+<!-- 迁移的脚本代码 END -->
+</body>
+</html>

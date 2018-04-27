@@ -1,0 +1,94 @@
+<section>
+	<div class="content no-tree">
+		<table border="0" cellspacing="0" cellpadding="" class="table-type1">
+      <tr>
+        <td>
+          <div>
+           <div class="n-form">
+               <p class="results-title"><i></i><span class="ng-binding">报检内容</span></p>
+           </div>
+           <div class="column-group">
+           <div class="form-horizontal">
+               <div class="container-fluid">
+                   <div class="row">
+                       <div ng-repeat="formField in formFieldArrayList ">
+                         <div ng-include="'static/templates/form/inner_template_add.html'"></div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           </div>
+         </div>
+        </td>
+      </tr>
+      <tr ng-repeat="detail in constructionDetailList">
+        <td>
+          <div class="list-in clearfix">
+             <div class="n-form">
+	           <p class="results-title"><i></i>
+	            <span class="ng-binding">{{detail.flowStepName}}</span>
+	           </p>
+      		</div>
+       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" >
+             <div class="form-group clearfix">	
+                 <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">审批时间</label>
+                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                     <input type="text" ng-readonly="true" ng-model="detail.approverTime" class="form-control" ng-class="formField.css" />
+                 </div>
+             </div>
+         </div>
+       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" >
+             <div class="form-group clearfix">
+                 <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">审批人员</label>
+                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                     <input type="text" ng-readonly="true" ng-model="detail.approverName" class="form-control" ng-class="formField.css" />
+                 </div>
+             </div>
+         </div>
+       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" >
+             <div class="form-group clearfix">
+                 <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">备注</label>
+                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                     <input type="text" ng-readonly="true" ng-model="detail.flowMessage" class="form-control" ng-class="formField.css" />
+                 </div>
+             </div>
+         </div>
+       <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+             <div class="form-group clearfix" >
+                 <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label" >审批结果</label>
+                 <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                     <input type="text" ng-readonly="true" ng-model="detail.flowResult" class="form-control" ng-class="formField.css" />
+                 </div>
+             </div>
+         </div>
+         <!-- 文件上传 --多附件 -->
+         <div class="col-xs-12 item" >
+             <div class="form-group">
+                 <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label">附件</label>
+                 <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+                     <cenx4-file-upload ng-model="detail.fileId" cnex4-multiple="true" files-count="detail.filesCount" max-files-count="detail.maxFilesCount" min-files-count="detail.minFilesCount" system-header="detail.systemHeader" cnex4-show-btn="true"
+                         cnex4-only-add="detail.onlyAdd"></cenx4-file-upload>
+                 </div>
+             </div>
+         </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+      	
+      
+      </tr>
+      
+      
+		</table>	
+	</div>	
+	<div class="text-center page-btn type1">
+       <button class="btn btn-cancel" ng-click="back()">取消</button>
+   </div>
+<!-- 	
+	 <div ng-repeat="detail in rectificationDetailList" class="list-in clearfix">
+		
+	 </div> -->
+		
+	
+</section>

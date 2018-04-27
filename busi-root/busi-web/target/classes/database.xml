@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation=" 
+		http://www.springframework.org/schema/beans      
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+		
+	<!-- mdm 数据源配置 -->
+     <bean id ="mdm_master" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">   
+         <property name="uniqueResourceName">   
+            <value>mdm_master</value>  
+        </property> 
+    	<property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />  
+	    <property name="xaProperties">  
+	        <props>  
+	            <prop key="user">root</prop>  
+	            <prop key="password">huatek123</prop>  
+	            <prop key="URL">jdbc:mysql://112.124.0.187:3306/cnex4_mdm</prop>  
+	        </props>  
+	    </property>   
+	    <property name="poolSize" value="5" />  
+	    <property name="reapTimeout"><value>20000</value></property>  
+    </bean>
+ 
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="mdm_master"/>
+        <property name="packagesToScan">
+        	<list> 
+        		<value>com.huatek.mdm.model.*</value>
+        		<value>com.huatek.esb.dao.model</value>
+        		<value>com.huatek.frame.dao.model</value>
+        		<value>com.huatek.frame.authority.model</value>
+        	</list> 
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.cache.region.factory_class">com.googlecode.hibernate.memcached.MemcachedRegionFactory</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.memcached.servers">localhost:11211</prop>
+				<prop key="hibernate.cache.region_prefix">quality.cache.ehcache</prop>
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+				<prop key="hibernate.memcached.operationTimeout">300000</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">300</prop>
+				<prop key="hibernate.current_session_context_class">jta</prop>  
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+            </props>
+        </property>
+    </bean>
+ 
+    
+    <bean id ="busi_wh_master" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">
+    	<property name="uniqueResourceName">   
+            <value>busi_wh_master</value>  
+        </property>  
+        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />  
+	    <property name="xaProperties">  
+	        <props>  
+	            <prop key="user">root</prop>  
+	            <prop key="password">huatek123</prop>  
+	            <prop key="URL">jdbc:mysql://112.124.0.187:3306/cnex4_busi_wh</prop>  
+	        </props>  
+	    </property>   
+	    <property name="poolSize" value="5" />  
+	    <property name="reapTimeout"><value>20000</value></property>
+	   
+    </bean>
+ 
+ 
+    <bean id="busi_wh_sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="busi_wh_master"/>
+        <property name="packagesToScan">
+        	<list> 
+        		<value>com.huatek.busi.*</value>
+        		<value>com.huatek.wh.*</value>
+        		<value>com.huatek.frame.authority.model</value>
+        	</list> 
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.cache.region.factory_class">com.googlecode.hibernate.memcached.MemcachedRegionFactory</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.memcached.servers">localhost:11211</prop>
+				<prop key="hibernate.cache.region_prefix">quality.cache.ehcache</prop>
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+				<prop key="hibernate.memcached.operationTimeout">300000</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">300</prop>
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>  
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>  
+				<prop key="hibernate.transaction.factory_class">org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory</prop>  
+				<prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup</prop>
+            </props>
+        </property>
+    </bean>
+   
+    
+    
+    <bean id ="fim_master" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">   
+    	<property name="uniqueResourceName">   
+            <value>fim_master</value>  
+        </property>
+        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />  
+	    <property name="xaProperties">  
+	        <props>  
+	            <prop key="user">root</prop>  
+	            <prop key="password">huatek123</prop>  
+	            <prop key="URL">jdbc:mysql://112.124.0.187:3306/cnex4_fim</prop>  
+	        </props>  
+	    </property>   
+	    <property name="poolSize" value="5" />  
+	    <property name="reapTimeout"><value>20000</value></property>
+	   
+    </bean>
+ 
+    <bean id="fim_sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="fim_master"/>
+        <property name="packagesToScan">
+        	<list> 
+        		<value>com.huatek.fim.*</value>
+        		<value>com.huatek.frame.authority.model</value>
+        	</list> 
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.cache.region.factory_class">com.googlecode.hibernate.memcached.MemcachedRegionFactory</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.memcached.servers">localhost:11211</prop>
+				<prop key="hibernate.cache.region_prefix">quality.cache.ehcache</prop>
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+				<prop key="hibernate.memcached.operationTimeout">300000</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">300</prop>
+
+                <prop key="hibernate.connection.release_mode">after_transaction</prop>  
+				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>  
+				<prop key="hibernate.transaction.factory_class">org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory</prop>  
+				<prop key="hibernate.transaction.manager_lookup_class">com.atomikos.icatch.jta.hibernate3.TransactionManagerLookup</prop>
+			</props>  
+        </property>
+    </bean>
+    
+	<bean id ="cmd_master" class="com.atomikos.jdbc.AtomikosDataSourceBean" init-method="init" destroy-method="close">   
+    	<property name="uniqueResourceName">   
+            <value>cmd_master</value>  
+        </property>
+        <property name="xaDataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlXADataSource" />  
+	    <property name="xaProperties">  
+	        <props>  
+	            <prop key="user">root</prop>  
+	            <prop key="password">huatek123</prop>  
+	            <prop key="URL">jdbc:mysql://112.124.0.187:3306/cnex4_cmd</prop>  
+	        </props>  
+	    </property>   
+	    <property name="poolSize" value="5" />  
+	    <property name="reapTimeout"><value>20000</value></property>
+	   
+    </bean>
+ 
+    <bean id="cmd_sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="cmd_master"/>
+        <property name="packagesToScan">
+        	<list> 
+        		<value>com.huatek.cmd.*</value>
+        		<value>com.huatek.frame.authority.model</value>
+        	</list> 
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.cache.region.factory_class">com.googlecode.hibernate.memcached.MemcachedRegionFactory</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.memcached.servers">localhost:11211</prop>
+				<prop key="hibernate.cache.region_prefix">quality.cache.ehcache</prop>
+				<prop key="hibernate.cache.use_structured_entries">true</prop>
+				<prop key="hibernate.memcached.operationTimeout">300000</prop>
+				<prop key="hibernate.memcached.cacheTimeSeconds">300</prop>
+				<prop key="hibernate.current_session_context_class">jta</prop>  
+                <prop key="hibernate.transaction.factory_class">org.hibernate.transaction.JTATransactionFactory</prop>
+            </props>
+        </property>
+    </bean>
+	
+    
+    <bean id="sessionFactoryMap" class="java.util.HashMap">
+    	<constructor-arg>
+   			<map key-type="java.lang.String">
+    			<entry key="com.huatek.busi" value-ref="busi_wh_sessionFactory"></entry>
+    			<entry key="com.huatek.fim" value-ref="fim_sessionFactory"></entry>
+    			<entry key="com.huatek.wh" value-ref="busi_wh_sessionFactory"></entry>
+   			</map>
+  		</constructor-arg>
+    </bean>
+    <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager"   
+        init-method="init" destroy-method="close">  
+        <description>UserTransactionManager</description>    
+        <property name="forceShutdown">  
+            <value>true</value>  
+        </property>  
+    </bean> 
+    <bean id="atomikosUserTransaction" class="com.atomikos.icatch.jta.UserTransactionImp">  
+        <property name="transactionTimeout" value="300" />  
+    </bean>
+    <bean id="transactionManager"  
+        class="org.springframework.transaction.jta.JtaTransactionManager">  
+        <property name="transactionManager" ref="atomikosTransactionManager"/>  
+        <property name="userTransaction" ref="atomikosUserTransaction" />  
+        <property name="allowCustomIsolationLevels" value="true"/>   
+    </bean> 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+    <tx:jta-transaction-manager />
+</beans>

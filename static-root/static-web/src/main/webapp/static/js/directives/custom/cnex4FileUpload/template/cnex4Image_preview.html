@@ -1,0 +1,40 @@
+<div class="pgwSlideshow-container asdfsdf">
+    <div class="htmleaf-content bgcolor-3">
+        <div class="pgwSlideshow wide">
+            <div class="img-operate">
+                <ul>
+                    <li>
+                        <i class="icon turnLeft" ng-click="turnLeft()"></i>
+                    </li>
+                    <li>
+                        <i class="icon turnRight" ng-click="turnRight()"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="ps-current">
+                <span class="ps-arrow ps-prev" ng-click="clickNextForChange(showImage.index,'up')">
+            <span class="ps-prevIcon"></span>
+                </span>
+                <ul>
+                    <li class="elt_1">
+                        <div class="img-content">
+                            <img ng-if="showImage.viewUrl" data-ng-src="/{{showImage.viewUrl}}" style="transform:rotate({{rotate}}deg);">
+                        </div>
+                    </li>
+                </ul>
+                <span class="ps-arrow ps-next" ng-click="clickNextForChange(showImage.index,'down')">
+            <span class="ps-nextIcon"></span>
+                </span>
+            </div>
+            <div class="ps-list">
+                <ul>
+                    <li data-ng-repeat="file in queue" class="elt_1" ng-click="clickImageForChange(file)">
+                      <span class="{{file.css || 'ps-item'}}">
+                        <img data-ng-src="/{{file.viewUrl}}">
+                      </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

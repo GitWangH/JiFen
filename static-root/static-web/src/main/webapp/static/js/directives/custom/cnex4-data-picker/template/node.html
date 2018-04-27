@@ -1,0 +1,9 @@
+<li>
+	<!-- <span aria-hidden="true" class="glyphicon glyphicon-triangle-right"></span>
+	<span aria-hidden="true" class="glyphicon glyphicon-triangle-bottom"></span> -->
+    <span ng-click="toggleVisibility(node)" class="{{ ( node.childrenVisibility && node.children.length ) ? 'glyphicon glyphicon-triangle-right' : 'glyphicon glyphicon-triangle-bottom' }}" style="cursor:pointer"></span>
+    <input ng-click="checkNode(node)" type="checkbox" ng-checked="node.checked">
+    <span>
+        {{ $index + 1 }}. {{ node.name }}
+    </span>
+</li>

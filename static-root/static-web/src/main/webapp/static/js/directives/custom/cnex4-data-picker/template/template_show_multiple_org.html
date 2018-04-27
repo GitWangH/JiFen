@@ -1,0 +1,119 @@
+<style type="text/css">
+	    .directive
+	    {
+	    	height: 460px;
+	    }
+        .feature-content
+        {
+	        width: 800px;
+        }
+		.feature-list li a
+		{
+        	padding: 3px 5px;
+			text-decoration: none;
+		}
+		.feature-list
+		{
+			color: black;
+			line-height: 1.2em;
+			list-style-type: none;
+			margin: 0;
+			padding: 5px 0;
+			width: 350px;
+		}
+		.feature-list li
+		{
+			display: inline;
+			float: left;
+			padding: 3px 0;
+			width: 50%;
+		}
+       .feature-list li a:hover
+        {
+        	background: #9F0B0B;
+        	border: thin solid #3E0404;
+        	color: white;
+        	padding: 3px 5px;
+        	text-decoration: none;
+        }
+        .control-panel
+        {
+	        width: 250px;
+        }
+		.iui-treeview-item
+		{
+			margin: 3px 0;
+		}
+	    .iui-checkbox-box
+	    {
+	        border: 0;
+	        width: 16px;
+	        height: 16px;
+	    }
+	    .iui-checkbox-checked
+	    {
+	        background-image: url("static/directives/integralUI/resources/checkbox/checkbox-checked.png");
+	    }
+	    .iui-checkbox-unchecked
+	    {
+	        background-image: url("static/directives/integralUI/resources/checkbox/checkbox-unchecked.png");
+	    }
+	    .iui-checkbox-indeterminate
+	    {
+	        background-image: url("static/directives/integralUI/resources/checkbox/checkbox-indeterminate.png");
+	    }
+		.iui-treeview-expand-box-open:hover
+		{
+			background: url(static/directives/integralUI/resources/expandbox/expand-blue.png) no-repeat 0 0;
+		}
+		.iui-treeview-expand-box-close:hover
+		{
+			background: url(static/directives/integralUI/resources/expandbox/collapse-blue.png) no-repeat 0 0;
+		}
+    </style>
+<div class="aside" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div class="aside-header" ng-show="aside.title">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="aside-title" ng-bind-html="aside.title"></h4>
+      </div>
+      <div class="aside-body" ng-show="aside.content">
+        <iui-treeview name="{{treeName}}" class="directive" items="data" show-check-boxes="true" checkbox-settings="checkBoxSettings" ></iui-treeview>
+      </div>
+      <div class="aside-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="$hide()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title" ng-bind-html="title">
+	        {{moduleName}}/{{subModuleName}}
+			</ol>
+        </h4>
+      </div>
+      <div class="modal-body">
+		 <div class="content">
+	        <div class="feature">
+		        <div class="feature-content">
+	                <iui-treeview name="{{treeName}}" class="directive" items="data" show-check-boxes="true" checkbox-settings="checkBoxSettings" ></iui-treeview>
+	            </div>
+	        </div>
+	    </div>
+      </div>
+      <div class="modal-footer">
+      		<button class="btn btn-danger" ng-click="choose()">确定</button> 
+        	<button class="btn btn-clear" ng-click="$hide()">关闭</button> 
+      </div>
+    </div>
+  </div>
+</div>
+ -->

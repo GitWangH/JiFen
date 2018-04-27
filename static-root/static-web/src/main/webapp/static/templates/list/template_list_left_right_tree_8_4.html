@@ -1,0 +1,39 @@
+<section>
+    <!-- 提示内容开始 -->
+    <alert></alert>
+    <!-- 提示内容结束 -->
+    <!-- 输出内容开始 -->
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <div class="results">
+        <div class="content no-tree">
+            <div class="content-title">
+                <div class="row">
+                    <btn></btn>
+                </div>
+            </div>
+            <div class="">
+                <!-- 左侧结构 -->
+                <div class="zTreeDemoBackground left-tree left-type2">
+                    <!-- <div ui-grid="tableGrid_left" class="grid" ui-grid-selection ui-grid-tree-view></div> -->
+                    <div class="col-xs-12">
+                        <div ng-include="'static/templates/treeGrid/huatek_edit_tree_grid_inner.html'" class="ce-tree-table"></div>
+                    </div>
+                </div>
+                <!-- 右侧结构 -->
+                <div class="l-content right-type2">
+                    <div ui-grid="tableGrid_right" class="grid" ui-grid-selection></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

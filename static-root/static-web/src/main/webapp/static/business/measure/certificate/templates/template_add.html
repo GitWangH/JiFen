@@ -1,0 +1,449 @@
+<!-- 加载内容开始 -->
+<!-- 提示内容开始 -->
+<alert></alert>
+<!-- 提示内容结束 -->
+<!-- 标题栏开始  -->
+<!-- <div class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="#"><span ng-bind="moduleName"></span></a></li>
+            <li class="active"><span ng-bind="subModuleName"></span></li>
+        </ol>
+    </div> -->
+<!-- 标题栏结束 -->
+<div class="form">
+    <div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+        <div class="n-form">
+            <p class="results-title  n-result"><i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span></p>
+        </div>
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div ng-if="formField.column == columnWrap.id" ng-repeat="formField in formFieldArrayList ">
+                           <!-- 下拉树-单选 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='selectTreeSingle'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <multi-select-tree ng-if="!lookModel && !formField.readonly" data-input-model="reportUserOrg" data-input-arr="$currentOrg" multi-select="false" ng-model="formField.value" data-output-model="formField.returnArr" data-default-label="请选择机构" data-map-field="formField.mapField"
+							                data-callback="formField.selectCallBack(item)"></multi-select-tree>
+							            <input type="text" class="form-control" ng-if="lookModel || formField.readonly" ng-model="formField.lookValue" ng-disabled="true" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 下拉树-多选 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='selectTreeMutiple'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <multi-select-tree data-input-model="reportUserOrg" data-input-arr="$currentOrg" multi-select="true" ng-model="formField.value" data-default-label="请选择机构" data-callback="queryField.selectCallBack(item)"></multi-select-tree>
+							            }
+							        </div>
+							    </div>
+							</div>
+							<!-- 标段 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='tenderSelect'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <oi-select ng-if="!formField.lookValue || (!lookModel && !formField.readonly)" ng-change="formField.event(formField.value)" oi-options="item.code as item.name group by item.category for item in userTenders | limitTo: cnex4_limit_quantity" ng-model="formField.value"
+							                placeholder="请输入搜索或者选择" name="{{formField.name}}"></oi-select>
+							            <input type="text" class="form-control" ng-if="formField.lookValue && (lookModel || formField.readonly) " ng-model="formField.lookValue" ng-disabled="true" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 文本框 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model==null || formField.model==''" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="text" ng-readonly="lookModel || formField.readonly" ng-model="formField.value" class="form-control" ng-click="formField.clickEvent();" ng-blur="checkData($index);formField.event(formField.value);" ng-class="formField.css" bs-tooltip="formField.errorMsg"
+							            />
+							        </div>
+							    </div>
+							</div>
+							<!-- 长文本框 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='longInput'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <input type="text" ng-readonly="lookModel || formField.readonly" ng-model="formField.value" class="form-control" ng-click="formField.clickEvent();" ng-blur="checkData($index);formField.event(formField.value);" ng-class="formField.css" bs-tooltip="formField.errorMsg"
+							            />
+							        </div>
+							    </div>
+							</div>
+							<!-- 数字输入框 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='number'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input numeric min="formField.minValue" max="formField.maxValue" decimals="formField.decimals" ng-readonly="lookModel || formField.readonly" ng-model="formField.value" class="form-control" ng-blur="checkData($index);formField.event(formField.value);"
+							                ng-class="formField.css" bs-tooltip="formField.errorMsg" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 密码框 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='password'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="password" ng-readonly="lookModel || formField.readonly" ng-model="formField.value" class="form-control" ng-blur="checkData($index);formField.event(formField.value);" ng-class="formField.css" bs-tooltip="formField.errorMsg" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 模糊检索 (只能选)-->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='autocomplete'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="text" ng-model="formField.value" typeahead-append-to-body="true" name="{{formField.name}}" typeahead-wait-ms="autocomplete_wait_time" uib-typeahead="item._returnField as item._showField for item in getLocationExtend($viewValue,formField)"
+							                ng-readOnly="lookModel || formField.readonly" ng-blur="checkData($index);checkAutoCompleteEvent(formField);formField.event(formField.value);" typeahead-on-select="chooseSelect(formField);" class="form-control" ng-class="formField.css" bs-tooltip="formField.errorMsg"
+							            />
+							        </div>
+							    </div>
+							</div>
+							<!-- 模糊检索 （可填可选）-->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='autocomplete-fill-or-select'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="text" ng-model="formField.value" typeahead-append-to-body="true" name="{{formField.name}}" typeahead-wait-ms="autocomplete_wait_time" uib-typeahead="item._returnField as item._showField for item in getLocationExtend($viewValue,formField)"
+							                ng-readOnly="lookModel || formField.readonly" ng-blur="checkData($index);formField.event(formField.value);" class="form-control" ng-class="formField.css" bs-tooltip="formField.errorMsg" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 用于查询选择 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='querySelect'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="text" ng-model="formField.displayValue" name="{{formField.name}}" uib-typeahead="item as item.name for item in getSearchItems($viewValue,formField)" typeahead-wait-ms="300" typeahead-on-select="onSelectQueryItem($item, formField)" ng-readOnly="lookModel || formField.readonly"
+							                class="form-control" ng-blur="checkData($index);formField.event(formField.value)" ng-class="formField.css" bs-tooltip="formField.errorMsg" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 带定位 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='location'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <p class="input-group">
+							                <input type="text" ng-readonly="lookModel || formField.readonly" ng-model="formField.value" class="form-control" ng-blur="checkData($index);angular.isFunction(formField.event)?formField.event(formField.value):null;" ng-class="formField.css" bs-tooltip="formField.errorMsg"
+							                />
+							                <span class="input-group-btn">
+							                                                    <button type="button" class="btn btn-default"
+							                                                        ng-click="locationInfo();" >定位</button>
+							                                                </span>
+							            </p>
+							        </div>
+							    </div>
+							</div>
+							<!-- radio -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='radio'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item" ng-repeat="item in formField.items">
+							            <label class="radio-inline">
+							                <input type="radio" ng-model="formField.value" name="{{formField.name}}" value="{{item.code}}" ng-disabled="lookModel || formField.readonly" />{{item.name}}
+							            </label>
+							        </div>
+							    </div>
+							</div>
+							<!-- checkbox -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='checkbox'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <!-- checkBox不需要必填属性 -->
+							            <!-- <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span> -->
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <label class="checkbox-inline">
+							                <input type="checkbox" ng-model="formField.value" ng-change="formField.event(formField.value)" name="{{formField.name}}" ng-disabled="lookModel || formField.readonly">{{formField.content}}</label>
+							        </div>
+							    </div>
+							</div>
+							<!-- 单选下拉 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='select'&&formField.name!='resultMessageTemplate'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-show="formField.isShow">
+							            <ol ng-if="lookModel != true && formField.readonly != true" bs-tooltip="formField.errorMsg" ng-class="formField.css" ng-blur="checkData($index)" class="nya-bs-select" ng-model="formField.value" data-live-search="true">
+							                <li nya-bs-option="option in formField.items" data-value="option._returnField">
+							                    <a>
+							                        {{ option._showField }}
+							                        <span class="fa fa-check check-mark"></span>
+							                      </a>
+							                </li>
+							            </ol>
+							            <oi-select ng-if="lookModel == true || formField.readonly == true" placeholder="请选择" oi-options="item._returnField as item._showField for item in formField.items" ng-disabled="true" ng-model="formField.value" ng-class="formField.css">
+							            </oi-select>
+							            <!-- </a> -->
+							        </div>
+							    </div>
+							</div>
+							<!-- 下拉多选 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='selectMultiple'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" ng-show="formField.isShow">
+							            <ol class="nya-bs-select" ng-model="formField.params" actions-box="true" multiple placeholder="请选择！" ng-disabled="formField.readonly=='readonly' || formField.readonly">
+							                <li nya-bs-option="option in formField.items" data-value="option._returnField">
+							                    <a>
+							                    {{option._showField }}
+							                    <span class="fa fa-check check-mark"></span>
+							                    </a>
+							                </li>
+							            </ol>
+							        </div>
+							    </div>
+							</div>
+							<!-- 单选下拉带搜索-->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='select-autocomplete'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <oi-select ng-change="cnex_type_of(formField.event) == 'string'?{{formField.event}}(formField.value):formField.event(formField.value);" oi-options="item._returnField as item._showField for item in formField.items | limitTo: cnex4_limit_quantity" ng-model="formField.value"
+							                placeholder="请输入搜索或者选择" list-placeholder="没有符合条件的数据" oi-select-options="{cleanModel: true}" name="{{formField.name}}"></oi-select>
+							        </div>
+							    </div>
+							</div>
+							<!-- 可下拉选择可添加 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='selectOrAdd'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <oi-select oi-options="item._showField as item._showField for item in formField.items" ng-change="cnex_type_of(formField.event) == 'string'?{{formField.event}}(formField.value):formField.event(formField.value);" ng-model="formField.value" oi-select-options="{
+							                                                        newItem: true,
+							                                                        newItemModel: {_returnField: null, _showField: $query}
+							                                                    }" placeholder="Select"></oi-select>
+							        </div>
+							    </div>
+							</div>
+							<!-- 地址选择器 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='select-address'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input select-address p="p" c="c" a="a" address-code="formField.addressCode" ng-model="formField.value" placeholder="请选择所在地" type="text" class="form-control" />
+							        </div>
+							    </div>
+							</div>
+							<!-- 文本域 -->
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item ce-layout" ng-if="formField.model=='textarea'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <textarea ng-model="formField.value" name="{{formField.name}}" class="form-control" rows="2" ng-disabled="lookModel || formField.readonly" placeholder="" ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)"></textarea>
+							        </div>
+							    </div>
+							</div>
+							<!-- 日期选择器 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='date'" ng-show="formField.isShow">
+							    <!-- 日期选择器 -->
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <!-- 日期控件  -->
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input ng-if="(($index+1) % cutType) == 0" type="text" class="form-control" ng-model="formField.value" name="{{formField.name}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-date-type="{{formField.dateType}}"
+							                data-min-date="{{formField.minDate}}" data-max-date="{{formField.maxDate}}" ng-readOnly="lookModel || formField.readonly" ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)" placement="bottom-right" bs-datepicker>
+							            <input ng-if="(($index+1) % cutType) != 0" type="text" class="form-control" ng-model="formField.value" name="{{formField.name}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-date-type="{{formField.dateType}}"
+							                data-min-date="{{formField.minDate}}" data-max-date="{{formField.maxDate}}" ng-readOnly="lookModel || formField.readonly" ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)" placement="bottom-left" bs-datepicker>
+							        </div>
+							    </div>
+							</div>
+							<!-- 时间选择器 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='time'" ng-show="formField.isShow">
+							    <!-- 时间选择器 -->
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							            <input type="text" class="form-control" ng-model="formField.value" name="{{formField.name}}" data-time-format="{{formField.timeFormat}}" data-autoclose="0" data-time-type="{{formField.timeType}}" ng-readOnly="lookModel || formField.readonly" ng-class="formField.css"
+							                bs-tooltip="formField.errorMsg" ng-blur="checkData($index)" bs-timepicker>
+							        </div>
+							    </div>
+							</div>
+							<!-- 日期区间 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='date-section' || formField.model=='dateSection'" ng-show="formField.isShow">
+							    <!-- 日期区间 -->
+							    <div class="row">
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							                    <input type="text" class="form-control" ng-model="formField.minValue" data-max-date="{{formField.maxValue}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-date-type="{{formField.dateType}}" ng-readOnly="lookModel || formField.readonly"
+							                        placeholder="From" ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+							                </div>
+							            </div>
+							        </div>
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							                    <input type="text" class="form-control" ng-model="formField.maxValue" data-min-date="{{formField.minValue}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-date-type="{{formField.dateType}}" placeholder="Until"
+							                        ng-readOnly="lookModel || formField.readonly" ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							<!-- 时间区间 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='time-section' || formField.model=='timeSection'" ng-show="formField.isShow">
+							    <!-- 时间区间 -->
+							    <div class="row">
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							                    <input type="text" class="form-control" ng-model="formField.minValue" name="{{formField.name}}" data-max-time="{{formField.maxValue}}" data-time-format="{{formField.timeFormat}}" data-autoclose="0" data-time-type="{{formField.timeType}}" placeholder="From"
+							                        ng-readOnly="lookModel || formField.readonly" ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+							                </div>
+							            </div>
+							        </div>
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+							                    <input type="text" class="form-control" ng-model="formField.maxValue" name="{{formField.name}}" data-min-time="{{formField.minValue}}" data-time-format="{{formField.timeFormat}}" data-autoclose="0" data-time-type="{{formField.timeType}}" placeholder="Until"
+							                        ng-readOnly="lookModel || formField.readonly" ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							<!-- 时间日期区间 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='dateTime-section' || formField.model=='dateTimeSection'" ng-show="formField.isShow">
+							    <!-- 时间区间 -->
+							    <div class="row">
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+							                    <input type="text" class="form-control" ng-model="formField.minValue" data-max-date="{{formField.maxValue}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-date-type="{{formField.dateType}}" ng-readOnly="lookModel || formField.readonly"
+							                        placeholder="From" ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="checkData($index);" bs-datepicker>
+							                </div>
+							                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-5 item">
+							                    <input type="text" class="form-control" ng-model="formField.minTimeValue" data-time-format="{{formField.timeFormat}}" data-autoclose="0" data-time-type="{{formField.timeType}}" ng-readOnly="lookModel || formField.readonly" ng-class="formField.minTimeCss"
+							                        bs-tooltip="formField.minTimeErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+							                </div>
+							            </div>
+							        </div>
+							        <div class="col-xs-6 item">
+							            <div class="form-group">
+							                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.endTitle}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+							                    <input type="text" class="form-control" ng-model="formField.maxValue" data-min-date="{{getOneDayBefore(formField.minValue)}}" data-max-date="{{formField.endMaxDate}}" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}"
+							                        data-date-type="{{formField.dateType}}" placeholder="Until" ng-readOnly="lookModel || formField.readonly" ng-class="formField.maxCss" bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+							                </div>
+							                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-5 item">
+							                    <input type="text" class="form-control" ng-model="formField.maxTimeValue" data-time-format="{{formField.timeFormat}}" data-autoclose="1" ng-readOnly="lookModel || formField.readonly" data-time-type="{{formField.timeType}}" ng-class="formField.maxTimeCss"
+							                        bs-tooltip="formField.maxTimeErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+							<!-- 时间日期 -->
+							<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" ng-if="formField.model=='date-time' || formField.model=='dateTime'" ng-show="formField.isShow">
+							    <!-- 时间区间 -->
+							    <div class="form-group">
+							        <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{formField.title}}<span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+							            <input type="text" class="form-control" ng-model="formField.minValue" data-date-format="{{formField.dateFormat}}" data-autoclose="{{formField.autoclose}}" data-max-date="{{formField.maxDate}}" data-date-type="{{formField.dateType}}" ng-readOnly="lookModel || formField.readonly"
+							                ng-class="formField.minCss" bs-tooltip="formField.minErrorMsg" ng-blur="formField.event(formField.minValue);checkData($index);" bs-datepicker>
+							        </div>
+							        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-5 item">
+							            <input type="text" class="form-control" ng-model="formField.maxValue" data-time-format="{{formField.timeFormat}}" data-autoclose="{{formField.autoclose}}" data-time-type="{{formField.timeType}}" ng-readOnly="lookModel || formField.readonly" ng-class="formField.maxCss"
+							                bs-tooltip="formField.maxErrorMsg" ng-blur="checkData($index)" bs-timepicker>
+							        </div>
+							    </div>
+							</div>
+							<!-- 文件上传 --单附件 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='file' || formField.model=='fileSingle'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <cenx4-file-upload ng-model="formField.value" cnex4-multiple="false" files-count="formField.filesCount" system-header="formField.systemHeader" cnex4-show-btn="formField.readonly || lookModel"></cenx4-file-upload>
+							        </div>
+							    </div>
+							</div>
+							<!-- 文件上传 --多附件 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='fileMultiple'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <cenx4-file-upload ng-model="formField.value" cnex4-multiple="true" files-count="formField.filesCount" max-files-count="formField.maxFilesCount" min-files-count="formField.minFilesCount" system-header="formField.systemHeader" cnex4-show-btn="formField.readonly || lookModel"
+							                cnex4-only-add="formField.onlyAdd"></cenx4-file-upload>
+							        </div>
+							    </div>
+							</div>
+							<!-- 图片预览 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='imagePreview'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <cenx4-image-preview ng-model="formField.value"></cenx4-image-preview>
+							        </div>
+							    </div>
+							</div>
+							<!-- 图片预览 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='imagePreviewList'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <cenx4-image-preview-list ng-model="formField.value"></cenx4-image-preview-list>
+							        </div>
+							    </div>
+							</div>
+							<!-- 图片扫描 -->
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='imageScan'" ng-show="formField.isShow">
+							    <div class="form-group">
+							        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+							        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+							            <cenx4-image-scan ng-model="formField.value" files-count="formField.filesCount" system-header="formField.systemHeader"></cenx4-image-scan>
+							        </div>
+							    </div>
+							</div>
+							<div class="col-xs-12 item ce-layout" ng-if="formField.model=='select'&&formField.name=='resultMessageTemplate'" ng-show="formField.isShow">
+							    <div class="form-group" ng-controller='ApproveMessageTemplateController'>
+							        <label class="col-xs-1 control-label">{{formField.title}}
+							            <span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span>
+							        </label>
+							        <div class="col-xs-5 item" ng-show="formField.isShow">
+							            <select class="form-control" ng-model="formField.value" name="{{formField.name}}" ng-options="item._returnField as item._showField for item in formField.items" ng-disabled="formField.readonly=='readonly' || formField.readonly" ng-change="templateChange(formField.value)"
+							                ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)">
+							                <option value="">&nbsp;</option>
+							                <option value="{{item._returnField}}">{{item._showField}}</option>
+							            </select>
+							        </div>
+							        <div class="col-xs-5">
+							            <div class="add-del-temp">
+							                <span class="ui-grid-icon-minus-squared dele" title="删除模版" style="cursor: pointer;" ng-click="removeTemplate()"></span>
+							                <span class="ui-grid-icon-plus-squared" title="保存模版" style="cursor: pointer;" ng-click="addTemplate()"></span>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()" ng-if="(closeId==undefined || closeId ==null || closeId<0)&&!lookModel">取消</button>
+        <button class="btn btn-cancel" ng-click="back()" ng-if="closeId>=0 || lookModel">关闭</button>
+        <button class="btn btn-save" ng-click="save();waitForDbCommint();" ng-disabled="btnDisabledStatus" ng-if="(editId==undefined || editId<0)&&!lookModel">保存</button>
+        <button class="btn btn-save" ng-click="update();waitForDbCommint();" ng-disabled="btnDisabledStatus" ng-if="editId>=0 && !lookModel">更新</button>
+    </div>
+</div>
+<!-- 加载内容结束-->

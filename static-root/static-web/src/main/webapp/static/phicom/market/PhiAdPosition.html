@@ -1,0 +1,22 @@
+<section>
+    <!-- 标题栏结束 -->
+    <!-- <p class="results-title no-margin"><i></i><span class="ng-binding">查询</span></p> -->
+    <!-- 输出内容开始 -->
+    <div class="results">
+        <div class="content no-tree">
+            <div class="row">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                    <p class="results-title"><i></i><span>{{subModuleName}}列表</span></p>
+                </div>
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <!-- 页面按钮开始 -->
+                    <btn></btn>
+                    <!-- 页面按钮结束 -->
+                </div>
+            </div>
+            <div class="result-list">
+                <div ui-grid="tableGrid" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pagination ui-grid-auto-resize></div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,33 @@
+
+<section class="style-default-bright">
+    <!-- 提示内容开始 -->
+    <div class="section-header general">
+        <ol class="breadcrumb">
+            <li>{{moduleName}}</li>
+            <li class="active">{{subModuleName}}</li>
+        </ol>
+    </div>
+    <div class="section-body">
+        <div class="main-body general">
+            <div class="menu-add mt20 contain-lg">
+                <form class="form-horizontal" role="form">
+					<iframe height='160px;' width='100%' name="uploadInfoPage" src={{importServiceImplName}}  frameborder="0" ></iframe>
+					<div class="row">
+						<div class="form-group">
+							<label class="col-xs-4 ng-binding">返回导入后的结果:</label>
+							<div class="col-xs-11 ng-scope">
+								<input class="form-control ng-pristine ng-valid ng-not-empty ng-touched" type="text" name="nameInfo" id="nameInfo" value=""  disabled="disabled">
+								<div class="form-control-line"></div>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="text-center mt20 page-bottom-btn">
+							<button class="btn btn-primary ink-reaction btn-raised btn-sm ng-binding ng-scope" ng-click="backToRole()" type="button">返回</button>
+						</div>
+					</div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

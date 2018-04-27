@@ -1,0 +1,41 @@
+<div id="HomePanel" ng-show="tabMap.get('home').panelShow" class="panel-body">
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <div class="bs-example" data-example-id="contextual-panels">
+        <div class="panel">
+            <p class="results-title"><i></i><span class="ng-binding">问题更改</span></p>
+            <div class="panel-body">
+                <div class="col-md-4" ng-controller="ChartMixingStationController">
+                    <div id="chartMixingStation" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartRawMaterialController">
+                    <div id="chartRawMaterial" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartLaboratoryController">
+                    <div id="chartLaboratory" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartPavementPressureController">
+                    <div id="chartPavementPressure" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartTensionGroutingController">
+                    <div id="chartTensionGrouting" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartQualityInspectionController">
+                    <div id="chartQualityInspection" style="width: 600px;height:400px;"></div>
+                </div>
+                <div class="col-md-4" ng-controller="ChartConstructionInspectionController">
+                    <div id="chartConstructionInspection" style="width: 600px;height:400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

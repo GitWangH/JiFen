@@ -1,0 +1,23 @@
+<div>
+<div class="result-handle text-right">
+	<button class="btn btn-default" type="button"  ng-click="upload()" data-toggle="modal">上传</button>
+	<a href="/ScanOcx.zip" >控件下载</a>
+</div>
+<div ng-if="isIE()">
+	<object id="scanControl"
+                    name="scanControl"
+                    classid="clsid:24912356-E1AA-44EB-B0BF-170F0BFCFDEE"
+                    width="100%"
+                    height="450px"/>
+</div>
+<div ng-if="!isIE()">
+    <object
+                id="scanControl"
+                TYPE="application/x-itst-activex"
+                ALIGN="baseline" BORDER="0"
+                WIDTH="100%" HEIGHT="450"
+                clsid="{24912356-E1AA-44EB-B0BF-170F0BFCFDEE}"
+                >
+        </object>
+</div>
+</div>

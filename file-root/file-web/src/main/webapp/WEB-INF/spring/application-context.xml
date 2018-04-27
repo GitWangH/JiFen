@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+    http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/cache   
+    http://www.springframework.org/schema/cache/spring-cache.xsd">
+		
+	<context:property-placeholder
+		location="classpath:/database.properties" />
+	<context:component-scan base-package="com.huatek.file.imp.dao.*" />
+	<context:component-scan base-package="com.huatek.file.imp.service.*" />
+	<context:component-scan base-package="com.huatek.file.imp.web.*" />
+	<context:component-scan base-package="com.huatek.esb.msg.*" />
+	<context:component-scan base-package="com.huatek.esb.*" />
+	<context:component-scan base-package="com.huatek.file.excel.service.impl.*" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<value>209715200</value>
+		</property>
+	</bean>
+	
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@172.16.34.88:1521:ecpts" />
+		<property name="username" value="cis_dev" />
+		<property name="password" value="cis_dev" />
+	</bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"></property>
+       <property name="hibernateProperties">
+          <props>
+             <prop 
+             key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+             <prop key="hibernate.show_sql">true</prop>
+          </props>
+       </property>
+         <property name="packagesToScan">
+         <list>
+         <value>com.hisense.cis.model.*</value>
+         <value>com.hisense.cis.frame.model</value>
+         </list>
+         </property>
+    </bean>  -->
+<!--     <context:property-placeholder
+		location="classpath:/database.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>  
+
+ 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	<bean id="sessionFactory" 	class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.huatek.task.model" /> 
+	</bean>  -->
+
+	
+	<!-- <bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager" 
+		p:sessionFactory-ref="sessionFactory">
+	</bean> -->
+	<!-- 缓存配置开始 -->
+	 <!--  缓存  属性-->  
+    <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">    
+        <property name="configLocation"  value="classpath:ehcache.xml"/>   
+    </bean>   
+    <!-- 支持缓存注解 -->  
+    <cache:annotation-driven cache-manager="cacheManager" />   
+    <!-- 默认是cacheManager -->  
+    <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">    
+        <property name="cacheManager"  ref="cacheManagerFactory"/>    
+    </bean> 
+	<!-- 缓存配置结束 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+       	<property name="maxIdle" value="${jdbc.maxIdle}" />
+       	<!-- <property name="maxWait" value="${jdbc.maxWait}" />
+       	<property name="removeAbandoned" value="${jdbc.removeAbandoned}"/>
+       	<property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+       	<property name="logAbandoned" value="${jdbc.logAbandoned}"/>
+       	
+       	<property name="validationQuery" value="${jdbc.validationQuery}" />
+       	<property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+       	<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+       	<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/> -->
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.huatek.file.modal" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory">
+	</bean>
+	<tx:annotation-driven   transaction-manager="transactionManager" proxy-target-class="true"/>
+</beans>

@@ -1,0 +1,257 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <META HTTP-EQUIV="pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache, must-revalidate">
+    <META HTTP-EQUIV="expires" CONTENT="0">
+    <title>斐讯积分商城管理平台</title>
+    <link rel="stylesheet" type="text/css" href="static/compress/css/min.css">
+</head>
+
+<body ng-app="HuatekApp" ng-controller="MainController" ng-mousemove="onMouseMove()" class="no-skin">
+    <div class="wrap-content" id="loginIndex" cg-busy="{promise:promise,templateUrl:'static/templates/busy_template.html',message:'请稍候.....',backdrop:true,delay:0,minDuration:700,wrapperClass:'cg-busy'}">
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-7">
+                        <div class="header-left">
+                            <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+                                <img src="static/images/icon-unfold.png" />
+                            </button>
+                            <div class="navbar-header pull-left">
+                                <a href="index.html" class="logo-title">
+                                    <img src="static/images/logo@2x.png" alt=""> 斐讯积分商城后台管理系统
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="row">
+                            <div class="">
+                                <div class="navbar-buttons navbar-header pull-right">
+                                    <ul class="nav ace-nav">
+                                        <li class="grey dropdown-modal">
+                                            <a data-toggle="dropdown" class="dropdown-toggle news" ng-click="showMessage();">
+                                                <i class="icon-news"></i>
+                                                <!-- {{messageCount}} -->
+                                                <i class="icon-ncircle" ng-show="messageCount>0">{{messageCount}}</i>
+                                            </a>
+                                        </li>
+                                        <li class="grey dropdown-modal">
+                                            <a data-toggle="dropdown" class="dropdown-toggle psw" ng-click="changePassWord($event)">
+                                                <i class="icon-psw"></i>
+                                            </a>
+                                        </li>
+                                        <li class="grey dropdown-modal left-border">
+                                            <a data-toggle="dropdown" class="dropdown-toggle userhead" data-hover="dropdown">
+                                                <img class="nav-user-photo" src="static/images/head-img.png" alt="Jason's Photo" />
+                                                <span class="user-info">{{userName}}</span>
+                                                <span class="user-info" ng-show="{{userName.length<=0}}">用户名</span>
+                                                <i class="arrow fa fa-angle-down"></i>
+                                            </a>
+                                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                                <li>账户：{{acctName}}</li>
+                                                <li>所属机构：{{orgShortName}}</li>
+                                            </ul>
+                                        </li>
+                                        <li class="grey dropdown-modal right-border">
+                                            <a data-toggle="dropdown" class="dropdown-toggle logout" ng-click="logout()">
+                                                <i class="icon-logout"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="left-menu pull-left">
+            <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+                <script type="text/javascript">
+                    try {
+                        ace.settings.loadState('sidebar')
+                    } catch (e) {}
+                </script>
+                <!-- /.sidebar-shortcuts -->
+                <ul class="nav nav-list">
+                    <li class="" ng-repeat="menu in userMenus " ng-if="menu.isShow>0">
+                        <a class="dropdown-toggle">
+                            <i ng-class="menu.icon"></i>
+                            <span class="menu-text">
+                                {{menu.title}}
+                            </span>
+                            <b class="arrow fa fa-angle-right"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li ng-repeat="item in menu.items" id="{{item.url}}" ng-click="createTab(item,$event)" ng-if="item.isShow>0" class="{{item.cssClass}}">
+                                <a ng-if="!item.items || item.items.length <= 0">
+                                    <i class="menu-icon fa fa-circle"></i> {{item.title}}
+                                </a>
+                                <a ng-if="item.items && item.items.length > 0" class="dropdown-toggle">
+                                    <i class="menu-icon fa fa-circle"></i> {{item.title}}
+                                    <b class="arrow fa fa-angle-right"></b>
+                                </a>
+                                <b class="arrow"></b>
+                                <ul class="submenu">
+                                    <li class="" id="{{subitem.url}}" ng-repeat="subitem in item.items" ng-click="createTab(subitem,$event)" ng-if="subitem.isShow>0">
+                                        <a title="{{item.title}}">
+                                            <i class="menu-icon fa fa-circle"></i> {{subitem.title}}
+                                        </a>
+                                        <b class="arrow"></b>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- /.nav-list -->
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+            </div>
+            <div class="menu-change-width">
+                <i class="icon-drag"></i>
+            </div>
+        </div>
+        <div class="content clearfix n-cont">
+            <div class="bs-example" data-example-id="simple-nav-tabs">
+                <ul id="headerDiv" class="nav nav-tabs">
+                    <li role="presentation" class="{{tabMap.get('home').active}}" ng-click="selectTab(tabMap.get('home'))"><a>首页</a></li>
+                </ul>
+            </div>
+            <div class="main-content clearfix">
+                <!-- panel渲染区 -->
+                <div id="panelDiv" class="panel-default main-wrap">
+                    <div id="HomePanel" cg-busy="{promise:promise,templateUrl:'static/templates/busy_template.html',message:'请稍候.....',backdrop:true,delay:0,minDuration:700,wrapperClass:'cg-busy'}" ng-show="tabMap.get('home').panelShow" class="panel-body">
+                        <div class="bs-example" data-example-id="contextual-panels">
+                            <div class="panel">
+                                <!--  <p class="results-title"><i></i><span class="ng-binding">问题更改</span></p> -->
+                                <div class="panel-body">
+                                
+                                    <div class="chart-body"　style="display:none">
+                                        <!-- <div class="col-md-12  chart-item" ng-controller="ChartQualityDistributionChart">
+                                            <p class="results-title home-title"><i></i><span class="ng-binding">查询</span></p>
+                                            <div class="search-area clearfix">
+                                                <div class="pull-right search-btn-group">
+                                                    <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+                                                    <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+                                                </div>
+                                                <div class="column-group search-box">
+                                                    <report-search-one></report-search-one>
+                                                </div>
+                                            </div>
+                                            <div class="chart-bg">
+                                                <div id="qualityDistributionChart" class="item" style="width: 1166px;height:400px;"></div>
+                                            </div> 
+                                        </div>-->
+                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bs-example" data-example-id="contextual-panels">
+                            <div class="panel">
+                                <div class="panel-body">
+                                    <div class="chart-body">
+                                        <!-- <div class="col-md-6 chart-item" ng-controller="ChartQualityProblemController">
+                                            <p class="results-title home-title"><i></i><span class="ng-binding">查询</span></p>
+                                            <div class="search-area clearfix">
+                                                <div class="pull-right search-btn-group">
+                                                    <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+                                                    <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+                                                </div>
+                                                <div class="column-group search-box">
+                                                    <report-search-two></report-search-two>
+                                                </div>
+                                            </div>
+                                            <div class="chart-bg">
+                                                <div id="qualityProblem" class="item" style="width: 580px;height:400px;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 chart-item" ng-controller="ChartQualityTrendsController">
+                                            <p class="results-title home-title"><i></i><span class="ng-binding">查询</span></p>
+                                            <div class="search-area clearfix">
+                                                <div class="pull-right search-btn-group">
+                                                    <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+                                                    <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+                                                </div>
+                                                <div class="column-group search-box">
+                                                    <report-search-two></report-search-two>
+                                                </div>
+                                            </div>
+                                            <div class="chart-bg">
+                                                <div id="qualityTrends" class="item" style="width: 580px;height:400px;"></div>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 加载底部开始 -->
+            <!-- <footer></footer> -->
+            <!-- 加载底部结束 -->
+            <!-- 右下角提示消息 -->
+            <div id="popMessageTip" style="display:none;">
+                <div id="popHead">
+                    <a id="popClose" title="关闭">关闭</a>
+                    <h2>提示</h2>
+                </div>
+                <div id="popContent">
+                    <dl>
+                        <dt id="popTitle"><a>标题</a></dt>
+                        <dd id="popIntro">内容</dd>
+                    </dl>
+                    <p id="popMore"><a id="show">查看 »</a>&nbsp;&nbsp;<a id="deal">处理 »</a></p>
+                </div>
+                <div id="popAudio" style="display:none"></div>
+            </div>
+            <a id="cnex4DownLoadFiles" class="ng-binding" download="" target="_blank"><span id="cnex4DownLoad" ></span></a>
+            <!-- 添加这一段结束 -->
+            <!-- <footer></footer> -->
+            <!-- 加载底部开始 -->
+            <!-- 加载底部结束 -->
+            <!-- 右下角提示消息 -->
+            <div id="popMessageTip" style="display:none;">
+                <div id="popHead">
+                    <a id="popClose" title="关闭">关闭</a>
+                    <h2>提示</h2>
+                </div>
+                <div id="popContent">
+                    <dl>
+                        <dt id="popTitle"><a>标题</a></dt>
+                        <dd id="popIntro">内容</dd>
+                    </dl>
+                    <p id="popMore"><a id="show">查看 »</a>&nbsp;&nbsp;<a id="deal">处理 »</a></p>
+                </div>
+                <div id="popAudio" style="display:none"></div>
+            </div>
+            <a id="cnex4DownLoadFiles" class="ng-binding" download="" target="_blank"><span id="cnex4DownLoad" ></span></a>
+        </div>
+        <script>
+            var data = [];
+            var huatek = {
+                "version": new Date().getTime()
+                    /*"version": 0.1*/
+            };
+
+            document.write("<script type='text/javascript' src='static/compress/js/core.js?version=" + huatek.version + "'><\/script>");
+            document.write("<script type='text/javascript' src='static/compress/js/directive.js?version=" + huatek.version + "'><\/script>");
+            document.write("<script type='text/javascript' src='static/compress/js/service.js?version=" + huatek.version + "'><\/script>");
+            document.write("<script type='text/javascript' src='static/compress/js/home.js?version=" + huatek.version + "'><\/script>");
+        </script>
+    </div>
+    <div id="notify"></div>
+</body>
+
+</html>

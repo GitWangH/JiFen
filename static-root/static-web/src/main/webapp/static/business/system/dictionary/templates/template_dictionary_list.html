@@ -1,0 +1,33 @@
+<section>
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <div class="results">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            </div>
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                <!-- 页面按钮开始 -->
+                <btn></btn>
+                <!-- 页面按钮结束 -->
+            </div>
+        </div>
+        <!-- 左侧结构 -->
+        <div class="left-tree n-left-tree dictionary">
+            <div ui-grid="tableGrid_category" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-pagination ui-grid-auto-resize ui-grid-exporter></div>
+
+        </div>
+        <!-- 右侧结构 -->
+        <div class="l-content n-right-content dictionary">
+            <div ui-grid="tableGrid_property" class="grid" ui-grid-pinning ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize ui-grid-edit></div>
+        </div>
+    </div>
+</section>

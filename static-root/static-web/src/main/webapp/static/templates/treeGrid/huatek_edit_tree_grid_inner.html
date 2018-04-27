@@ -1,0 +1,157 @@
+<div class="bs-example no-marginb table-top" data-example-id="table-within-panel">
+    <div class="panel panel-default ce-panel">
+        <div ng-show="huatekTree.otherConfig.showTopAdd == false?false:huatekTree.editable" class="parent-add">
+            <span ng-click="huatekTree.addTopNode()" ng-show="!huatekTree.addtop.isShow" class="tree-add"></span>
+            <div ng-show="huatekTree.addtop.isShow" class="item-group">
+                <div class="edit-items clearfix">
+                    <div ng-repeat="column in huatekTree.columns" class="item" a="{{huatekTree.columns[$index].width}}" style="width:{{huatekTree.columns[$index].width}}">
+                        <input ng-if="!huatekTree.addtop.row.uneditMap.get(column.field) && !column.otherConfig" ng-model="huatekTree.addtop.row[column.field]" placeholder="请输入{{column.name}}" maxlength={{column.max}}>
+                        <input ng-if="!huatekTree.addtop.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'number'"
+                            numeric min="column.otherConfig.minValue" max="column.otherConfig.maxValue" decimals="column.otherConfig.decimals" ng-model="huatekTree.addtop.row[column.field]" class="form-control" />
+                        <select ng-if="!huatekTree.addtop.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'select'" class="form-control" ng-model="huatekTree.addtop.row[column.field]" ng-options="item.code as item.name for item in column.otherConfig.items">
+                        <option value="">&nbsp;</option>
+                        <option value="{{item.code}}">{{item.name}}</option>
+                    </select>
+                        <span ng-if="huatekTree.addtop.row.uneditMap.get(column.field)">{{huatekTree.modify.row[column.field]}}</span>
+                    </div>
+                </div>
+                <div class="item position-item" style="width:200px">
+                    <span ng-click="huatekTree.saveTopNode()" class="tree-btn save"></span>
+                    <span ng-click="huatekTree.cacelTopNode()" class="tree-btn cancle"></span>
+                </div>
+            </div>
+        </div>
+        <table class="table tree-table">
+            <thead class="{{(huatekTree.editable==true)?'th-edit':'th-nedit'}}">
+                <tr compile="huatekTree.header">
+                    <!-- <th width="35px" id="firstColumn">
+                        <input value="{{huatekTree.all.checked}}" type="checkbox" ng-click="huatekTree.allChecked();">
+                        <label for="" class="icon-check"></label>
+                    </th> -->
+                    <!-- <th width="35px"> 
+                        <span class="{{(huatekTree.all.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.allLaunch();"></span>
+                    </th> -->
+                    <!-- <th ng-repeat="column in huatekTree.columns" width="{{column.width}}" title="{{column.name}}">
+                        {{column.name}}
+                    </th> -->
+                    <!-- <p ng-bind-html="huatekTree.header"></p> -->
+                    <!-- <th width="200px" ng-show="huatekTree.editable">操作</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-show="row.isShow" ng-class="{{row.css}}" style="{{row.checked == true?'background: rgba(240, 149, 0, 0.3);':row.css;}}" ng-mouseover="row.btnShow = true" ng-mouseleave="row.btnShow = false" ng-repeat="row in huatekTree.rows" ng-init="row.$index = $index">
+                    <td>
+                       <!--  <input ng-model="row.checked" ng-click="huatekTree.childChecked($index,row)" type="checkbox" /> -->
+                        <input ng-model="row.checked" ng-disabled="true" type="checkbox" />
+                        <label for="" class="icon-check"></label>
+                    </td>
+                    <!-- <td>
+                        <span ng-if="row.isLeaf == 0" class="{{(row.isLeaf == 0 && row.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.lookChild($index,row);"></span>
+                    </td> -->
+                    <!-- <span ng-model="row.$index1" value="{{$index}}"></span> -->
+                    <td style="text-align: left;">
+                        <span ng-if="!huatekTree.columns[0].otherConfig" style="{{huatekTree.getTreeShape(0,row.groupLevel)}}">
+                            <span ng-if="row.isLeaf == 0" class="{{(row.isLeaf == 0 && row.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.lookChild($index,row);"></span>
+                        <span ng-if="row.isLeaf != 0" class="icon-child-leaf"></span> {{row[huatekTree.columns[0].field]}}
+                        </span>
+                        <span ng-if="huatekTree.columns[0].otherConfig && huatekTree.columns[0].otherConfig.tag == 'select'" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            {{huatekTree.getItemName(row[huatekTree.columns[0].field],huatekTree.columns[0].otherConfig)}}
+                        </span>
+                        <a ng-if="huatekTree.columns[0].otherConfig && huatekTree.columns[0].otherConfig.tag == 'button'" ng-click="huatekTree.columns[0].otherConfig.eventFn(row)">{{column.name}}</a>
+                    </td>
+                    <td style="" ng-repeat="column in huatekTree.columns" ng-click="huatekTree.rowClick(row.$index,row)" ng-if="$index > 0">
+                        <span ng-if="!column.otherConfig" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            <span ng-if="row.isLeaf == 0 && $index == 0" class="{{(row.isLeaf == 0 && row.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.lookChild(row._index,row);"></span> 
+                            {{row[column.field]}}
+                        </span>
+                        <span ng-if="column.otherConfig && column.otherConfig.tag == 'select'" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            {{huatekTree.getItemName(row[column.field],column.otherConfig)}}
+                        </span>
+                        <span ng-if="column.otherConfig && column.otherConfig.tag == 'number'" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            {{row[column.field]}}
+                        </span>
+                        <a ng-if="column.otherConfig && column.otherConfig.tag == 'button'" ng-show="column.otherConfig.showFn(row)" ng-click="column.otherConfig.eventFn(row)">{{column.name}}</a>
+                    </td>
+                    <td ng-show="huatekTree.editable">
+                        <div class="edit-btn" ng-show="huatekTree.editable">
+                            <i class="icon-treeedit" ng-show="huatekTree.otherConfig.showModifyBtn == false?false:true" ng-click="huatekTree.editNode($event,$index,row)">修改</i>
+                            <i class="icon-treedelet" ng-show="huatekTree.otherConfig.showDeleteBtn == false?false:true" ng-click="huatekTree.deleteNode($index,row)">删除</i>
+                            <i class="icon-treeadd" ng-show="huatekTree.otherConfig.showAddBtn == false?false:true" ng-click="huatekTree.addChild($event,$index,row)">添加</i>
+                            <i class="icon-treeup" ng-show="huatekTree.otherConfig.showUpBtn == false?false:true" ng-click="huatekTree.moveNode($index,row,'up')">上移</i>
+                            <i class="icon-treedown" ng-show="huatekTree.otherConfig.showDownBtn == false?false:true" ng-click="huatekTree.moveNode($index,row,'dn')">下移</i>
+                        </div>
+                    </td>
+                    <!-- <td>
+                        <span ng-if="row.isLeaf == 0" class="{{(row.isLeaf == 0 && row.launch == false)?'icon-child-show':'icon-child-hide'}}" aria-hidden="true" ng-click="huatekTree.lookChild($index,row);"></span>
+                    </td>
+                    <td style="{{$index == 0?'text-align: left;':''}}" ng-repeat="column in huatekTree.columns">
+                        <span ng-if="!column.otherConfig" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            {{row[column.field]}}
+                        </span>
+                        <span ng-if="column.otherConfig && column.otherConfig.tag == 'select'" style="{{huatekTree.getTreeShape($index,row.groupLevel)}}">
+                            {{huatekTree.getItemName(row[column.field],column.otherConfig)}}
+                        </span>
+                        <a ng-if=" column.otherConfig && column.otherConfig.tag == 'button'" ng-click="column.otherConfig.eventFn(row)">{{column.name}}</a>
+                    </td>
+                    <td ng-show="huatekTree.editable">
+                        <div class="edit-btn" ng-show="huatekTree.editable && row.btnShow">
+                            <i class="icon-treeedit" ng-click="huatekTree.editNode($event,$index,row)"></i>
+                            <i class="icon-treedelet" ng-click="huatekTree.deleteNode($index,row)"></i>
+                            <i class="icon-treeadd" ng-click="huatekTree.addChild($event,$index,row)"></i>
+                            <i class="icon-treeup" ng-click="huatekTree.moveNode($index,row,'up')"></i>
+                            <i class="icon-treedown" ng-click="huatekTree.moveNode($index,row,'dn')"></i>
+                        </div>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+        <div ng-show="huatekTree.modify.panelShow" class="table-alert" style="top:{{huatekTree.modify.offTop}}px;">
+            <div class="panel panel-default">
+                <div class="table clearfix">
+                    <div class="edit-items clearfix">
+                        <div ng-repeat="column in huatekTree.columns" class="item" style="width:{{column.width}}">
+                            <input ng-if="!huatekTree.modify.row.uneditMap.get(column.field) &&!column.otherConfig" ng-model="huatekTree.modify.row[column.field]" placeholder="请输入{{column.name}}" maxlength={{column.max}}>
+                            <select ng-if="!huatekTree.modify.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'select'" class="form-control" ng-model="huatekTree.modify.row[column.field]" ng-options="item.code as item.name for item in column.otherConfig.items">
+                                <option value="">&nbsp;</option>
+                                <option value="{{item.code}}">{{item.name}}</option>
+                            </select>
+                            <input ng-if="!huatekTree.modify.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'number'" numeric min="column.otherConfig.minValue" max="column.otherConfig.maxValue" decimals="column.otherConfig.decimals" ng-model="huatekTree.modify.row[column.field]" class="form-control" />
+                            <span ng-if="huatekTree.modify.row.uneditMap.get(column.field)">{{huatekTree.modify.row[column.field]}}</span>
+                        </div>
+                    </div>
+                    <div class="item position-item" style="width:200px">
+                        <div class="edit-btn">
+                            <span ng-click="huatekTree.saveNode()" class="tree-btn save"></span>
+                            <span ng-click="huatekTree.cancelNode()" class="tree-btn cancle"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="huatekTree.child.isShow" class="table-alert" style="top:{{huatekTree.child.offTop}}px;">
+            <div class="panel panel-default">
+                <div class="table clearfix">
+                    <div class="edit-items clearfix">
+                        <div ng-repeat="column in huatekTree.columns" class="item" style="width:{{column.width}}">
+                            <input ng-if="!huatekTree.child.row.uneditMap.get(column.field) && !column.otherConfig" ng-model="huatekTree.child.row[column.field]" placeholder="请输入{{column.name}}" maxlength={{column.max}}>
+                            <select ng-if="!huatekTree.child.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'select'" class="form-control" ng-model="huatekTree.child.row[column.field]" ng-options="item.code as item.name for item in column.otherConfig.items">
+                                <option value="">&nbsp;</option>
+                                <option value="{{item.code}}">{{item.name}}</option>
+                            </select>
+                            <input ng-if="!huatekTree.child.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'number'"
+                            numeric min="column.otherConfig.minValue" max="column.otherConfig.maxValue" decimals="column.otherConfig.decimals" ng-model="huatekTree.child.row[column.field]" class="form-control" />
+                            <!-- <input ng-if="!huatekTree.child.row.uneditMap.get(column.field) && column.otherConfig && column.otherConfig.tag == 'number'" numeric min="0" max="99999999999999" decimals="4" ng-model="huatekTree.child.row[column.field]" class="form-control" ng-class="formField.css" bs-tooltip="formField.errorMsg" /> -->
+                            <span ng-if="huatekTree.child.row.uneditMap.get(column.field)">{{huatekTree.child.row[column.field]}}</span>
+                        </div>
+                    </div>
+                    <div class="item position-item" style="width:200px">
+                        <div class="edit-btn">
+                            <span ng-click="huatekTree.saveChild()" class="tree-btn save"></span>
+                            <span ng-click="huatekTree.cancelChild()" class="tree-btn cancle"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

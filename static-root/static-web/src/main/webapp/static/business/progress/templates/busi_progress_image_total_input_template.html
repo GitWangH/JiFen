@@ -1,0 +1,31 @@
+<section>
+    <!-- 标题栏结束 -->
+    <!-- 主要内容开始 -->
+    <p class="results-title no-margin"><i></i><span class="ng-binding">查询</span></p>
+    <div class="search-area clearfix">
+        <div class="pull-right search-btn-group">
+            <a href="javascript:;" class="more-btn showMore-btn" ng-if="showMoreBtn" ng-click="showMoreSearch()" title="显示更多筛选条件"><i class="animated infinite slideInDown"></i></a>
+            <a href="javascript:;" class="more-btn hideMore-btn" ng-if="hideMoreBtn" ng-click="hideMoreSearch()" title="隐藏更多筛选条件"><i class="animated infinite slideInUp"></i></a>
+            <button type="submit" class="btn btn-danger btn-search" ng-click="search();disableBtnForSecond($event)">查询</button>
+            <button type="button" class="btn btn-clear" ng-click="resetSearch()" onclick="cleanAll()">清空</button>
+        </div>
+        <div class="column-group search-box">
+            <search></search>
+        </div>
+    </div>
+    <div class="results">
+        <div class="content no-tree">
+            <div class="content-title">
+                <div class="row">
+                    <btn></btn>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                     <div ng-include="'static/templates/treeGrid/huatek_edit_tree_grid_inner.html'" class="ce-tree-table new-treecont"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 加载内容结束-->

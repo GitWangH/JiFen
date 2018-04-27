@@ -1,0 +1,60 @@
+<!-- 加载内容开始 -->
+<section>
+    <div class="page-breadcrumb">
+        <ol class="breadcrumb">
+            <li><a href="#">{{moduleName}}</a></li>
+            <li class="active">{{subModuleName}}</li>
+        </ol>
+    </div>
+    <!-- 标题栏结束 -->
+    <div class="form">
+        <div class="form-column">
+            <div class="column-group">
+                <div class="form-horizontal">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+                                <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label" style="margin-bottom: 5px;">位置</label>
+                                <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item" style="line-height: 32px;">
+                                    <span>{{configureaddr}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item">
+                                <div class="form-group">
+                                    <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label">更多链接</label>
+                                    <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+                                        <input type="text" ng-readonly="lookModel" ng-model="morelink" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 item" ng-repeat="field in phiPlusPagelaoutDetail" style="border-bottom: 1px solid #ccc;border-top: 1px solid #ccc;">
+                                <div class="form-group" style="margin-top: 5px;">
+                                    <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">广告{{$index+1}}</label>
+                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 item">
+                                        <cenx4-file-upload ng-model="field.rightPicture" cnex4-multiple="false" files-count="" max-files-count="1" system-header="uploadPath" cnex4-show-btn="lookModel"></cenx4-file-upload>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label">跳转链接</label>
+                                    <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 item">
+                                        <input type="text" ng-readonly="lookModel" ng-model="field.rightPholink" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-save" ng-click="reset(field.id)">重置</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 图片预览 -->
+    </div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel ng-scope" ng-click="back()">取消</button>
+        <button class="btn btn-save ng-scope" ng-click="save();" style="">保存</button>
+    </div>
+</section>

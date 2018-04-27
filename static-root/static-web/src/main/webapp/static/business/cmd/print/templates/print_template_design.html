@@ -1,0 +1,85 @@
+<!-- 加载内容开始 -->
+<section>
+	<!-- 提示内容开始 -->
+	<alert></alert>
+	<!-- 提示内容结束 -->
+	<!-- 标题栏开始  -->
+	<div class="page-breadcrumb">
+		<ol class="breadcrumb">
+			<li><a href="#">{{moduleName}}</a></li>
+			<li class="active">{{subModuleName}}</li>
+		</ol>
+	</div>
+	 
+	<div class="form">
+		<div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+			<h3>{{columnWrap.wrapTitle}}</h3>
+			<div class="column-group">							
+				<div>
+					<div id="lodop_div" style="width:65%;float:left;margin-right:30px;height:710px;">
+						<object  id="LODOP_OB" classid="clsid:2105C259-1E0C-4534-8141-A753534CB4CA" width=100% height=700px> 
+						   <embed id="LODOP_EM" type="application/x-print-lodop" width=100% height=700px></embed>
+						</object> 
+					</div>
+					<div style= "width=25%;height:710px;">
+						<label ng-repeat="checkPrint in printFieldArray">
+							<input type="checkbox" id="{{checkPrint.id}}"  name="{{checkPrint.fieldZhName}}"  value="{{checkPrint.id}}" onclick="Moditify(this)">{{checkPrint.fieldZhName}}
+							&nbsp;&nbsp;&nbsp;&nbsp;
+						</label>
+					</div>
+					<script language="javascript" type="text/javascript"> 
+					var LODOP;
+					LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM'));  
+					LODOP.SET_SHOW_MODE("DESIGN_IN_BROWSE",1);
+					LODOP.SET_SHOW_MODE("HIDE_ABUTTIN_SETUP",1);
+					/*隐藏暂存按钮*/
+					LODOP.SET_SHOW_MODE("SETUP_ENABLESS","11111111000000");
+					/*隐藏关闭(叉)按钮*/
+					LODOP.PRINT_DESIGN();
+					LODOP.SET_PRINT_MODE("PROGRAM_CONTENT_BYVAR", true);
+					var i=0;
+					var k=32;
+					function Moditify(item){
+						LODOP=getLodop(document.getElementById('LODOP_OB'),document.getElementById('LODOP_EM')); 
+						
+						/*解决多次选中取消选中位置偏移导致不在编辑区问题 by:leif_li*/
+						if(item.checked){
+							i+=20;
+							if(i>=600){
+								i=20;
+								k+=207;
+								if(k>=800){
+									k=32;
+								}
+							}
+						}else{
+							i-=20;
+							if(i<20){
+								i=20;
+								k-=207;
+								if(k<32){
+									k=32;
+								}
+							}
+						}
+						if ((!LODOP.GET_VALUE("ItemIsAdded",item.name))&&(item.checked)){
+							LODOP.ADD_PRINT_TEXTA(item.value,i,k,175,30,item.name);
+							LODOP.SET_PRINT_STYLEA(0,'Content',item.name);
+						} else {
+							LODOP.SET_PRINT_STYLEA(item.value,'Deleted',!item.checked);
+						}
+					}
+					</script> 
+				  </div>
+			</div>
+		</div>
+		
+		<div class="text-center page-btn">
+			<button class="btn btn-clear" ng-click="back()">取消</button>
+			<button class="btn btn-clear" ng-click="recovery()">复原</button>
+			<button class="btn btn-danger" ng-click="save();disableBtnForSecond($event)">保存</button>
+		</div>
+	</div>
+	 
+</section>
+<!-- 加载内容结束-->

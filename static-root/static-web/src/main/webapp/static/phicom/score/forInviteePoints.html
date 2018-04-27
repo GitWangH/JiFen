@@ -1,0 +1,192 @@
+<style>
+
+.small-input{
+width: 70px;
+display: inline-block;
+margin: 0 10px;
+}
+.form-group .col-xs-2{
+     text-align: right;
+}
+.form-group .col-xs-2.align-left{
+     text-align: left;
+}
+.n-check{
+     margin-right:20px !important;
+     
+}
+.radio-inline{
+	width:150px;
+}
+.row{
+	margin:6px 0;
+}
+</style>
+<div class="form">
+	<div class="form-column" ng-repeat="columnWrap in columnWrapArray ">
+		<div class="n-form">
+			<p class="results-title  n-result">
+				<i></i><span class="ng-binding">{{columnWrap.wrapTitle}}</span>
+			</p>
+		</div>
+		<div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                    	<div class="col-xs-12">
+                    	<div class="form-group">
+                    		<div class="col-xs-2">任务项</div>
+                    		<div class="col-xs-10">{{taskName.value}}</div>
+                    		</div>
+                    	</div>
+                    </div>
+                    <div class="row">
+                    	<div class="col-xs-12">
+                    	<div class="form-group">
+                    		<div class="col-xs-2">任务前台名称</div>
+                    		<div class="col-xs-8"><input class="form-control" ng-model="showName.value"/></div>
+                    		</div>
+                    	</div>
+                    </div>
+                     <div class="row" ng-repeat="configRule in scoreConfigRule ">
+                         <div class="col-xs-12" >
+                         <div class="form-group" >
+                              <div class="col-xs-2">积分配置</div>
+                                   <div class="col-xs-8" >邀请成功1位奖励<input class="form-control small-input" ng-model="configRule.scoreValue1"/>积分
+                                   </div>
+                         </div>
+                          <div class="form-group" >
+                              <div class="col-xs-2">单用户奖励上限</div>
+                                   <div class="col-xs-8" ><input class="form-control small-input" ng-model="configRule.maxScoreValue"/>积分
+                                   </div>
+                         </div>
+                              <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">任务时间</div>
+                                   <div class="col-xs-10">
+   										<div class="row">
+   										<div class="col-xs-12 item" >
+<!-- 										    <div class="form-group"> -->
+<!-- 										        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item" ng-repeat="item in ruleTimeType.items"> -->
+<!-- 										            <label class="radio-inline"> -->
+<!-- 										                <input type="radio" ng-model="configRule.ruleTimeType" name="{{ruleTimeType.name}}" value="{{item.code}}" ng-disabled="lookModel || ruleTimeType.readonly" ng-change="ruleTimeType.event(ruleTimeType.value)"/>{{item.name}} -->
+<!-- 										            </label> -->
+<!-- 										        </div> -->
+<!-- 										    </div> -->
+										</div>
+   										</div>
+   										<div class="row">
+											 <div class="col-xs-12 item" ng-repeat="item in ruleTimeType.items">
+												<label class="radio-inline">
+										                <input type="radio" ng-model="configRule.ruleTimeType" name="{{ruleTimeType.name}}" value="{{item.code}}" ng-disabled="lookModel || ruleTimeType.readonly" ng-change="fromtime.event(item.code)"/>{{item.name}}
+										        </label>
+											</div> 
+									        <div class="col-xs-4 item">
+									            <div class="form-group">
+									                <label class="col-xs-4 item">{{startTime.title}}<span class="require" ng-if="startTime.require == '1' || startTime.require=='true' || startTime.require=='require'">*</span></label>
+									                <div class="col-xs-6 item">
+									                    <input type="text" class="form-control" ng-model="configRule.startTime" data-max-date="" data-date-format="{{startTime.dateFormat}}" data-autoclose="{{startTime.autoclose}}" data-date-type="" ng-readOnly="lookModel || startTime.readonly"
+									                        placeholder="起始时间" ng-class="startTime.minCss" bs-tooltip="startTime.minErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+									                </div>
+									            </div>
+									        </div>
+									        <div class="col-xs-4 item">
+									            <div class="form-group">
+									                <label class="col-xs-4 item">{{endTime.title}}<span class="require" ng-if="endTime.require == '1' || endTime.require=='true' || endTime.require=='require'">*</span></label>
+									                <div class="col-xs-6 item">
+									                    <input type="text" class="form-control" ng-model="configRule.endTime" data-min-date="" data-date-format="{{endTime.dateFormat}}" data-autoclose="{{endTime.autoclose}}" data-date-type="" placeholder="结束时间"
+									                        ng-readOnly="lookModel || endTime.readonly" ng-class="endTime.maxCss" bs-tooltip="endTime.maxErrorMsg" ng-blur="checkData($index)" bs-datepicker>
+									                </div>
+									            </div>
+							
+									</div>
+									</div>
+                                   </div>
+                              </div>
+                         </div>
+                         </div>
+                    </div>
+                    
+                    <div class="row">
+                         
+                    </div>
+                    <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">{{taskSwitch.title}}</div>
+                              <div class="col-xs-10">
+                              	<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item" ng-repeat="item in taskSwitch.items">
+                                   <span class="n-check">
+                                   		<input type="radio" ng-model="taskSwitch.value" name="{{taskSwitch.name}}" value="{{item.code}}" ng-disabled="lookModel || taskSwitch.readonly" />{{item.name}}
+                                   </span>
+                                </div>   
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                     <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">任务说明</div>
+                              <div class="col-xs-10">
+                                   <textarea name="" id="" style="width:100%"  ng-model="taskRemark.value" > {{taskRemark.value}}</textarea>
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                    
+                    <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">app链接地址</div>
+                              <div class="col-xs-10">
+                                   <input  style="width:100%"  ng-model="src.value" ></input>
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">pc链接地址</div>
+                              <div class="col-xs-10">
+                                   <input  style="width:100%"  ng-model="pcsrc.value" ></input>
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                    <!-- 文件上传 --多附件 -->
+                    <div class="row">
+						<div class="col-xs-12 item ce-layout" >
+						    <div class="form-group">
+						        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="image.title"></span><span class="require" ng-if="image.require == '1' || image.require=='true' || image.require=='require'">*</span></label>
+						        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+						            <cenx4-file-upload ng-model="image.value" cnex4-multiple="true" files-count="image.filesCount" max-files-count="image.maxFilesCount" min-files-count="image.minFilesCount" system-header="image.systemHeader" cnex4-show-btn="image.readonly || lookModel"
+						                cnex4-only-add="image.onlyAdd"></cenx4-file-upload>
+						        </div>
+						    </div>
+						</div>
+						<!-- 图片预览 -->
+						<!-- <div class="col-xs-12 item ce-layout" ng-if="formField.model=='imagePreview'">
+						    <div class="form-group">
+						        <label class="col-xs-1 col-sm-1 col-md-1 col-lg-1 control-label"><span ng-bind="formField.title"></span><span class="require" ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+						        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11 item">
+						            <cenx4-image-preview ng-model="formField.value"></cenx4-image-preview>
+						        </div>
+						    </div>
+						</div> -->
+					</div>
+               </div>
+       </div>						
+	</div>
+     </div>
+	<div class="text-center page-btn">
+		<!-- <button class="btn btn-cancel" ng-click="back()"
+			ng-if="(closeId==undefined || closeId ==null || closeId<0)&&!lookModel">取消</button> -->
+		<button class="btn btn-cancel" ng-click="back()">取消</button>
+			<button class="btn btn-save" ng-click="update();waitForDbCommint();back()" ng-disabled="btnDisabledStatus">更新</button>
+		<!-- <button class="btn btn-save" ng-click="update()"
+			ng-disabled="btnDisabledStatus" ng-if="editId>=0 && !lookModel">更新</button> -->
+	</div>
+</div>
+</div>

@@ -1,0 +1,96 @@
+
+<style>
+.form-control{
+    width:10%;
+    display: inline-block;
+}
+</style>
+<div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="col-xs-2">游戏类型</div>
+                          <div class="col-xs-10">{{gameType.value}}</div>
+                        </div>
+                      </div>
+                    </div>
+                  <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="col-xs-2">游戏前台名称</div>
+                          <div class="col-xs-10"><input style="width:15%" class="form-control small-input" ng-model="gameName.value"  ng-disabled="mutiplyRead" /></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="col-xs-2">积分配置</div>
+                          <div class="col-xs-10">
+                          单次游戏消耗 &nbsp<input class="form-control small-input"  ng-model="oneTimeScore.value"  ng-disabled="mutiplyRead" />&nbsp&nbsp 积分
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                   <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="col-xs-2">单日免费次数</div>
+                          <div class="col-xs-10">
+                          <input class="form-control small-input" ng-model="freeTimesDay.value"  ng-disabled="mutiplyRead" />&nbsp&nbsp 次
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                   <div class="row">
+                      <div class="col-xs-12">
+                        <div class="form-group">
+                          <div class="col-xs-2">抽奖次数上限</div>
+                          <div class="col-xs-10">
+                         单日最多抽奖 &nbsp<input class="form-control small-input" ng-model="drawMax.value"  ng-disabled="mutiplyRead" />&nbsp&nbsp 次
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                    <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">{{taskSwitch.title}}</div>
+                              <div class="col-xs-10">
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item" ng-repeat="item in taskSwitch.items">
+                                   <span class="n-check">
+                                      <input type="radio" ng-model="taskSwitch.value" name="{{taskSwitch.name}}" value="{{item.code}}" ng-disabled="lookModel || taskSwitch.readonly" />{{item.name}}
+                                   </span>
+                                </div>   
+                              </div>
+                              </div>
+                         </div>
+                    </div>
+                     <div class="row">
+                         <div class="col-xs-12">
+                         <div class="form-group">
+                              <div class="col-xs-2">游戏规则</div>
+                              <div class="col-xs-10">
+                                   <textarea name="" id="" style="width:100%"  ng-model="remark.value" > {{remark.value}}</textarea>
+                              </div>
+                          </div>
+                         </div>
+                    </div>
+               </div>
+       </div>           
+  <div class="text-center page-btn">
+    <button class="btn btn-cancel ng-scope" ng-click="back()">取消</button>
+    <button class="btn btn-save" ng-click="update();waitForDbCommint();back()" ng-disabled="btnDisabledStatus">保存</button>
+  <!--   <input type="button" ng-readonly="lookModel || formField.readonly" value="重置" class="btn btn-default" ng-click="chongzhi.clickEvent();"  ng-class="formField.css" bs-tooltip="formField.errorMsg"/> -->
+  </div>
+  
+  <!-- 可编辑表格 -->
+    <div class="result-list">   
+      <div ui-grid="tableGridConfigCoup" class="grid" ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize></div>
+    </div>
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item" >
+</div>
+<!-- 加载内容结束-->

@@ -1,0 +1,23 @@
+<script>
+	function zTreeOnCheck(event, treeId, treeNode) {
+		$.each(function(treeNode,param){
+				this.checked=treeNode.checked;
+		});
+
+	}
+</script>
+	<div class="page-breadcrumb">
+	<ol class="breadcrumb">
+		<li><a href="#">数据角色管理</a></li>
+		<li class="active">分配数据权限</li>
+	</ol>
+</div>
+<div class="search-area">
+	<div class="content_wrap">
+		<ul id="treeDemo" class="ztree"></ul>
+	</div>
+</div>
+<div class="text-center page-btn">
+	<button class="btn btn-danger" ng-click="dataCheckNodeInfo()">保存</button>
+	<button class="btn btn-clear"  ng-click="backAction()">取消</button> 
+</div>

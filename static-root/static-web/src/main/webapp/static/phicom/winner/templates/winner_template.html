@@ -1,0 +1,139 @@
+<style>
+.form-control {
+    width: 89%;
+    display: inline-block;
+}
+</style>
+<div class="form">
+    <div class="form-column">
+       <!--  <div class="n-form">
+            <p class="results-title  n-result"><span class="ng-binding">基本信息</span></p>
+            <p class="results-title  n-result"><span class="ng-binding">基本信息</span></p>
+        </div> -->
+        <div class="column-group">
+            <div class="form-horizontal">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{productName.title}}:
+                                </label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" style="line-height: 27px;">
+                                    <!-- <input ng-model="productName.value" class="form-control" ng-readonly="true" /> -->
+                                    {{productName.value}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">
+                                    {{cashconunt.title}}:</label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" style="line-height: 27px;">
+                                    <!-- <input ng-model="cashconunt.value" class="form-control" ng-readonly="true" />人 (已添加
+                                    <span style="color: red;">{{tableGrid.data.length}}</span>人) -->
+                                     {{cashconunt.value}}(已添加{{tableGrid.data.length}}人)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   <!--  <div class="row">
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">
+                                    {{cashconunt.title}}:</label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item" style="line-height: 27px;">
+                                     {{cashconunt.value}}(已添加{{tableGrid.data.length}}人)
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="row" style="border: 1px solid #ccc;">
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{opencount.title}}</label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                                    <input numeric min="opencount.minValue" max="opencount.maxValue" decimals="0" ng-readonly="lookModel || opencount.readonly" ng-model="opencount.value" class="form-control" ng-blur="changeFinishBtnStatus()"/>人
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{Manual.title}}</label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                                    <input numeric min="Manual.minValue" max="Manual.maxValue" decimals="0" ng-readonly="true" ng-model="Manual.value" class="form-control" />人
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">
+                                </label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                                    <oi-select ng-change="selectMember.event(selectMember.value);" oi-options="item._returnField as item._showField for item in selectMember.items | limitTo: cnex4_limit_quantity" ng-model="selectMember.value" placeholder="请输入指定的中奖用户" list-placeholder="没有符合条件的数据" oi-select-options="{cleanModel: true}" name="{{selectMember.name}}"></oi-select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <div class="form-group">
+                                <button ng-disabled="lookModel || btnxuanze.readonly" class="btn btn-default" ng-click="btnxuanze.event();">加入中奖</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{random.title}}</label>
+                                <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 item">
+                                    <input numeric min="random.minValue" max="random.maxValue" decimals="0" ng-readonly="lookModel || random.readonly" ng-model="random.value" class="form-control" />人
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2">
+                            <button ng-disabled="lookModel || random.readonly" class="btn btn-default" ng-click="random.event();" >开奖</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="form-group">
+                                <label class="col-xs-5 col-sm-5 col-md-5 col-lg-5 control-label">{{fake.title}}</label>
+                                <div class=" col-xs-7 col-sm-7 col-md-7 col-lg-7 item ">
+                                    <input type="text " ng-readonly="lookModel || fake.readonly " ng-model="fake.value " class="form-control " />人
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 ">
+                            <button ng-disabled="lookModel || fake.readonly " class="btn btn-default " ng-click="fake.event(); ">开奖</button>
+                        </div>
+                    </div>
+                    <div class="row " style="margin-bottom: 10px;">
+                        <div class="col-xs-2 col-xs-offset-4 ">
+                            <div class="form-group ">
+                                <button class="btn btn-default " ng-click="kaijiangwancheng.event(); " ng-disabled="lookModel || kaijiangwancheng.readonly">开奖完成</button>
+                            </div>
+                        </div>
+                        <div class="col-xs-2 ">
+                            <div class="form-group ">
+                                <button ng-disabled="lookModel || chongzhi.readonly " class="btn btn-default " ng-click="chongzhi.event(); " >&nbsp;&nbsp;重&nbsp;&nbsp;&nbsp;&nbsp;置&nbsp;&nbsp;</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="border: 1px solid #ccc;">
+                    </div>
+                    <div class="row ">
+                        <div style="text-align: center;color: #808080;">
+                            仅当开奖总人数等于三种开奖人数之和，开奖完成才可点击；开奖完成后，信息将不可更改
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="result-list ">
+        <div ui-grid="tableGrid " class="grid " ui-grid-selection ui-grid-resize-columns ui-grid-move-columns ui-grid-auto-resize></div>
+    </div>
+</div>
+<!-- 加载内容结束-->

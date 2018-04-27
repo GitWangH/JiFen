@@ -1,0 +1,52 @@
+<div class="modal-body">
+	 <div class="form">
+		<div class="form-column" >
+			<div class="column-group">
+				<form class="form-horizontal">
+					<div class="container-fluid">
+							<div class="row">
+								<div 
+										ng-repeat="formField in formFieldArrayList ">
+									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+										ng-if="formField.name=='result'" ng-show="formField.isShow">
+										<div class="form-group">
+											<label
+												class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">{{formField.title}}<span
+												class="require"
+												ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+											<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 item">
+										            <label class="radio-inline" ng-repeat="item in formField.items track by $index">
+										                <input ng-if="(isShow1 && isShow2) || isShow1 == undefined || isShow2 == undefined" type="radio" ng-model="formField.value" name="{{formField.name}}" value="{{item.code}}" ng-disabled="formField.readonly=='readonly' || formField.readonly"/>{{item.name}}
+										            </label>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4 item"
+										ng-if="formField.name=='resultMessage'" ng-show="formField.isShow">
+										<div class="form-group">
+											<label
+												class="col-xs-4 col-sm-4 col-md-4 col-lg-4 control-label">{{formField.title}}<span
+												class="require"
+												ng-if="formField.require == '1' || formField.require=='true' || formField.require=='require'">*</span></label>
+											<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 item">
+												<textarea ng-model="formField.value"
+													name="{{formField.name}}" class="form-control" rows="3"
+													ng-disabled = "formField.readonly=='readonly' || formField.readonly"
+													placeholder=""  ng-class="formField.css" bs-tooltip="formField.errorMsg" ng-blur="checkData($index)"></textarea>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="text-center page-btn type1">
+	   	
+		<button class="btn btn-cancel" ng-click="back()">关闭</button>
+		<button class="btn btn-save" ng-click="approve()">确定</button>
+	</div>
+ </div>
+

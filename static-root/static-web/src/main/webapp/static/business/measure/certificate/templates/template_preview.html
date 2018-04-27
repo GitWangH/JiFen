@@ -1,0 +1,22 @@
+
+<!-- 标题栏结束 -->
+<div class="form">
+   <style type="text/css" media="all">
+			#rintArea .celltitle{
+			padding-left:10px;
+			}
+			</style>
+	<h2 class="title" style="text-align:center; font-size:x-large;">支付证书预览</h2>
+					<div class="form-column" style='padding-left:40px'>
+						<table border="1">
+						<tr><th rowspan="2">清单编号</th><th rowspan="2">清单名称</th><th colspan="4">合同价及变更金额</th><th rowspan="2">到本期末完成金额</th><th rowspan="2">到上期末完成金额</th><th rowspan="2">本期完成金额</th></tr>
+						<tr><th >原有合同价</th><th >复核合同价</th><th >变更合同价</th><th >合同价</th></tr>
+						<tr ng-repeat="item in templateItems " ><td >{{item.orderNo}}</td><td >{{item.name}}</td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td><td ></td></tr>
+						</table>
+						
+					</div>
+    <div class="text-center page-btn">
+        <button class="btn btn-cancel" ng-click="back()" >关闭</button>
+    </div>
+</div>
+<!-- 加载内容结束-->
