@@ -1,0 +1,29 @@
+.app{
+  .mint-radio-core{
+    &:after{
+      border-radius: 0;
+      border: 2px solid transparent;
+      border-left: 0;
+      border-top: 0;
+      content: " ";
+      top: 3px;
+      left: 6px;
+      position: absolute;
+      width: 4px;
+      height: 8px;
+      transform: rotate(45deg) scale(0);
+      transition: transform .2s;
+    }
+  }
+  .mint-radio-input{
+    &:checked{
+      & + .mint-radio-core{
+        &:after{
+          border-color: #fff;
+          background-color:transparent;
+          transform: rotate(45deg) scale(1);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.app{
+  .mint-popup{
+    width: 100%;
+    .group-list{
+      min-height: 290px;
+      .mint-radiolist-title{
+        font-size: $xs-size;
+        color: $text-black-color;
+        margin: 0;
+        padding: 10px $x-dis;
+      }
+      .mint-cell .mint-cell-wrapper{
+        .mint-radiolist-label{
+          padding:0;
+          .mint-radio-label{
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    .mint-button--large{
+      border-radius: 0;
+      min-height: 48px;
+    }
+  }
+}

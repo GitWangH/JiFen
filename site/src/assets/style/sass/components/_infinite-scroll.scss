@@ -1,0 +1,19 @@
+
+.no-more-data {
+  text-align: center;
+  font-size: $md-size;
+  line-height: 45px;
+  height: 45px;
+}
+.app{
+  .page-infinite-loading {
+    text-align: center;
+    height: 50px;
+    line-height: 50px;
+    div {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+}

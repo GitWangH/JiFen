@@ -1,0 +1,43 @@
+.product-item {
+  display: flex;
+  background-color: #ffffff;
+  align-items: center;
+  position: relative;
+  padding: 15px 20px;
+  &:after {
+    @include border-x($top: auto, $bottom: 0);
+  }
+  .product-img-wrap {
+    flex-shrink: 0;
+    position: relative;
+    width: 24%;
+    height: 0;
+    padding-bottom: 24%;
+    margin-right: 14px;
+    img {
+      @include absolute($top: 0, $left: 0);
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .product-info-wrap {
+    overflow: hidden;
+    flex: 1;
+    .product-title {
+      font-size: $lg-size;
+      color: $text-black-color;
+      @include text-ellpsis;
+    }
+    .product-points {
+      font-size: $lg-size;
+      color: $main-color;
+      margin-top: 14px;
+      position: relative;
+    }
+    .product-price {
+      color: $text-adorn-color;
+      font-size: $xxs-size;
+      margin-top: 4px;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.app{
+  //复选框样式重置
+  .mint-checkbox-core{
+    border-radius: 4px;
+  }
+  .mint-checkbox-input:checked + .mint-checkbox-core,
+  .mint-radio-input:checked + .mint-radio-core{
+    background-color: $main-color;
+    border-color: $main-color;
+  }
+}

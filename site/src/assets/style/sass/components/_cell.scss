@@ -1,0 +1,66 @@
+
+.app{
+  .mint-cell {
+    min-height: 48px;
+    &:after {
+      @include border-x;
+      bottom: 0;
+      left: $x-dis;
+      right: $x-dis;
+    }
+    &:first-child:after {
+      display: none;
+    }
+    &:last-child {
+      background-image: none;
+    }
+    .mint-cell-wrapper {
+      padding: 0 $x-dis;
+      background-image: none;
+      .mint-cell-title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: $lg-size;
+      }
+      .mint-cell-value {
+        &.is-link{
+          color: $main-color;
+          font-size: $sm-size;
+          line-height: 48px;
+        }
+      }
+      .l-mark{
+        position:relative;
+        .mark{
+          color: #999999;
+          position: absolute;
+          width: 50px;
+          display: block;
+          font-size: 11px;
+        }
+      }
+
+    }
+    .mint-cell-allow-right {
+      &:after{
+        width: 8px;
+        height: 8px;
+        border: 1px solid #ccc;
+        border-bottom-width: 0;
+        border-left-width: 0;
+      }
+    }
+  }
+  .earn-bonus-points{
+    .mint-cell-text{
+      font-size: $lg-size;
+      color: $text-black-color;
+    }
+    .mint-cell-label{
+      font-size: $xs-size;
+      color: $text-adorn-color;
+      margin-top: 8px;
+    }
+  }
+}

@@ -1,0 +1,165 @@
+接口问题：
+
+公共：
+1.图片地址均不正确，无法正常显示
+
+首页：
+
+
+商品列表页：
+1.商品列表筛选规则缺失，3个价格区间，3个内置条件
+
+
+商品详情页：
+
+
+提交订单：
+1.缺少支付
+2.获奖名单列表部分微调
+
+订单列表页：
+1.未提供不同状态值
+
+订单详情页：
+1.物流
+
+签到页：
+1.抽奖返回格式
+2.签到需添加字段：isSignup和isDraw
+
+
+赚取积分：
+
+积分明细：
+
+首页积分到期提醒：
+
+
+
+会员plus支付
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 请求参数说明
+
+// ———— queryType类型
+
+// 订单列表
+{
+  "page": 1,
+  "pageSize": 10,
+  "orderBy": "id desc",
+  "queryParamList": [{
+  "field": "phiMember.userName",
+  "type": "string",
+  "logic": "like",
+  "items": []
+}, {
+  "field": "phiMember.id",
+  "type": "string",
+  "logic": "=",
+  "items": []
+}, {
+  "field": "orderCode",
+    "type": "string",
+    "logic": "like",
+    "items": []
+}, {
+  "field": "phiMember.userName",
+    "type": "string",
+    "logic": "like",
+    "items": []
+}, {
+  "field": "phiOrderInfo.productName",
+    "type": "string",
+    "logic": "like",
+    "items": []
+}, {
+  "field": "phiOrderInfo.productType",
+    "type": "string",
+    "logic": "=",
+    "items": []
+}, {
+  "field": "status",
+    "type": "string",
+    "logic": "=",
+    "value": null,
+    "items": []
+}]
+}
+
+// 商品列表
+{
+	"page": 1,
+	"pageSize": 10,
+	"orderBy": "id desc",
+	"queryParamList": [{
+		"field": "productName",
+		"type": "string",
+		"logic": "like",
+		"value": "",
+		"items": []
+	}, {
+		"field": "productCode",
+		"type": "string",
+		"logic": "like",
+		"items": []
+	}, {
+		"field": "productClass", //商品类型
+		"type": "string",
+		"logic": "=",
+		"value": null,
+		"items": []
+	}, {
+		"field": "productStatus",
+		"type": "string",
+		"logic": "=",
+		"value": null,
+		"items": []
+	}, {
+		"field": "phiProductType", // 商品分类
+		"type": "string",
+		"logic": "=",
+		"value": null,
+		"items": []
+	}]
+}
+
+
+{
+  field: 'phiProductType', // 商品分类
+  type: 'string',
+  logic: '=',
+  value: null,
+  items: []
+}
+
+{
+  page: '',
+  pageSize: '',
+  orderBy: '',
+  queryParamList: []
+}

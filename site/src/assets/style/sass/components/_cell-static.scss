@@ -1,0 +1,18 @@
+.app{
+	.cell-list-static{
+		background-color:#fff;
+		.mint-cell{
+			min-height: 32px;
+			.mint-cell-wrapper{
+				font-size: $xs-size;
+				.mint-cell-title{
+					font-size: $xs-size;
+					color: $text-gray-color;
+				}
+				.mint-cell-value{
+					color: $text-black-color;
+				}
+			}
+		}
+	}
+}

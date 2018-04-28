@@ -1,0 +1,5 @@
+@mixin two-col-side($width) {
+    float: right;
+    width: $width;
+    margin-right: -$width;
+}

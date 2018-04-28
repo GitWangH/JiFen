@@ -1,0 +1,15 @@
+@mixin border-x($top: 0, $bottom: auto, $bordercolor:$border-color) {
+    content: " ";
+    position: absolute;
+    left:0;
+    right: 0;
+    top: $top;
+    bottom: $bottom;
+    border-top: 1px solid $bordercolor;
+    height: 1px;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+    z-index: 2;
+};

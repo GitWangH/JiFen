@@ -1,0 +1,47 @@
+.v-modal{
+  opacity: 1;
+  background-color: rgba(0,0,0,.4);
+}
+.mint-msgbox-wrapper{
+  .mint-msgbox{
+    border-radius: 4px;
+    background-color: rgba(248,248,248,.95);
+    width: 75%;
+    .mint-msgbox-title{
+      font-size:$md-size;
+      color: $text-black-color;
+    }
+    .mint-msgbox-content{
+      border-bottom: none;
+      &:after{
+        @include border-x;
+        bottom: 0;
+      }
+      .mint-msgbox-message{
+        font-size:$xs-size;
+        line-height:1.5;
+        color: $text-gray-color;
+      }
+    }
+    .mint-msgbox-btns{
+      height: 42px;
+      line-height:42px;
+      .mint-msgbox-btn{
+        background-color: transparent;
+        color: $text-black-color;
+        font-size: $xlg-size;
+        &.mint-msgbox-cancel{
+          border-right:none;
+          position: relative;
+          &:after{
+            @include border-y;
+            right: 0;
+          }
+        }
+        &.mint-msgbox-confirm{
+          color: $main-color;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+body, div, span, header, footer, nav, section, aside, article, ul, dl, dt, dd, li, a, p, h1, h2, h3, h4, h5, h6, i, b, textarea, button, input, select, figure, figcaption {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-style: normal;
+  text-decoration: none;
+  border: none;
+  box-sizing: border-box;
+  font-family: PingFangSC-Regular,Helvetica,"Droid Sans",Arial,sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  &:focus {
+    outline: none;
+  }
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  color: $text-black-color;
+}
+
+a {
+  color: $text-black-color;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  background-color: $body-bg-color;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0);
+  border-radius: 10px;
+  background-color: #F5F5F5;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: #555;
+}
+/*placeholder颜色*/
+::-webkit-input-placeholder{
+  color: $text-adorn-color;
+}
+input[type="button"], input[type="submit"], input[type="search"], input[type="reset"], input[type="text"] {
+  -webkit-appearance: none;
+}
+
+input, button {
+  outline: none;
+  border: none;
+}
+
+textarea {
+  -webkit-appearance: none;
+}
+html, body {
+
+  background-color: $body-bg-color;
+}

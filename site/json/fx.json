@@ -1,0 +1,623 @@
+{
+  "homeSwiper": [
+    {
+      "title": "标题1",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-5abf78289eab57ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700",
+      "href": "",
+      "time": "2017-12-08"
+    },
+    {
+      "title": "标题2",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-5abf78289eab57ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700",
+      "href": "",
+      "time": "2017-12-08"
+    },
+    {
+      "title": "标题3",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-5abf78289eab57ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700",
+      "href": "",
+      "time": "2017-12-08"
+    }
+  ],
+  "bonusPoints": {
+    "total": 2000
+  },
+  "homeAds": [
+    {
+      "title": "一分钟抽爆品",
+      "subTitle": "iphoneX等你拿",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-7a720f75af9cafb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/140",
+      "id": "1",
+      "time": "2017-12-08"
+    },
+    {
+      "title": "礼品卡特惠",
+      "subTitle": "满1000赠200",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-608e96ff1ac5cd26.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/140",
+      "id": "2",
+      "time": "2017-12-08"
+    }
+  ],
+  "homeGames": {
+    "header": {
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-ed92cfc02656c4c8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"
+    },
+    "list": [
+      {
+        "title": "九宫格",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-02c4cedb1559c864.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/2562",
+        "id": "1"
+      },
+      {
+        "title": "积分",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-5aa87a5864ac7fe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/430",
+        "id": "2"
+      },
+      {
+        "title": "幸运大转盘",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-17b9dc42f798ab66.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/430",
+        "id": "3"
+      }
+    ]
+  },
+  "hotProducts": {
+    "header": {
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-51cff66f686d1a92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"
+    },
+    "list": [
+      {
+        "title": "商品一",
+        "points": "2543",
+        "price": "",
+        "salesPrice": "¥258",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-65800f19bc3db26b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+        "id": "1"
+      },
+      {
+        "title": "商品二",
+        "points": "2543",
+        "price": "¥120",
+        "salesPrice": "¥258",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-9cdbda66732f4231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+        "id": "2"
+      },
+      {
+        "title": "商品三",
+        "points": "2543",
+        "price": "¥120",
+        "salesPrice": "¥258",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+        "id": "3"
+      },
+      {
+        "title": "商品三",
+        "points": "2543",
+        "price": "",
+        "salesPrice": "¥258",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-7a720f75af9cafb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/140",
+        "id": "4"
+      },
+      {
+        "title": "商品三",
+        "points": "2543",
+        "price": "",
+        "salesPrice": "¥258",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+        "id": "5"
+      }
+    ]
+  },
+  "homeCategory": [
+    {
+      "id": "1",
+      "title": "分类1",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-b4a50b67f3f55214.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    },
+    {
+      "id": "2",
+      "title": "分类2",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-1eacbedea0d6e948.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    },
+    {
+      "id": "3",
+      "title": "分类3",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-1eacbedea0d6e948.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    },
+    {
+      "id": "4",
+      "title": "分类4",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-981eb88fab22b21c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    },
+    {
+      "id": "5",
+      "title": "分类5",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-e0730f6b39c5bcdd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    },
+    {
+      "id": "6",
+      "title": "分类6",
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-947edfb529ad872d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/69"
+    }
+  ],
+  "bonusPointsInfo": {
+    "userImg": "https://upload-images.jianshu.io/upload_images/2182216-bac828dc740d9052.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/601",
+    "userName": "用户昵称",
+    "userLevel": 1,
+    "userPoints": 23556,
+    "userTips": "您有2100积分即将于12.31号过期"
+  },
+  "bonusPointsList": [
+    {
+      "id": "1",
+      "title": "斐讯商城购物",
+      "time": "2017-12-11",
+      "points": "+2183"
+    },
+    {
+      "id": "2",
+      "title": "斐讯商城购物",
+      "time": "2017-12-11",
+      "points": "-623"
+    },
+    {
+      "id": "3",
+      "title": "斐讯商城购物",
+      "time": "2017-12-11",
+      "points": "-8523"
+    },
+    {
+      "id": "4",
+      "title": "斐讯商城购物",
+      "time": "2017-12-11",
+      "points": "+2123"
+    },
+    {
+      "id": "5",
+      "title": "斐讯商城购物",
+      "time": "2017-12-11",
+      "points": "+2123"
+    }
+  ],
+  "productList":{
+    "list": [
+      {
+        "id": "0916fa44-b26d-werw-ad22-a818004547df",
+        "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "title": "盛典活动优先邀请函",
+        "points": 2038,
+        "price": "¥9876",
+        "status": 1,
+        "endTime": "2018.01.30 12:00结束"
+      },
+      {
+        "id": "0916fa44-wfgs-4c96-ad22-a818004547df",
+        "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "title": "盛典活动优先邀请函",
+        "points": 6598,
+        "price": "¥9876",
+        "status": 1,
+        "endTime": ""
+      },
+      {
+        "id": "0916fa44-gdrr-4c96-ad22-a818004547df",
+        "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "title": "盛典活动优先邀请函",
+        "points": 1298,
+        "price": "¥9876",
+        "status": 0,
+        "endTime": ""
+      },
+      {
+        "id": "0916fa44-sdfe-4c96-ad22-a818004547df",
+        "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "title": "盛典活动优先邀请函",
+        "points": 7598,
+        "price": "¥9876",
+        "status": 1,
+        "endTime": ""
+      },
+      {
+        "id": "0916fa44-hrte-4c96-ad22-a818004547df",
+        "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+        "title": "盛典活动优先邀请函",
+        "points": 2087,
+        "price": "¥9876",
+        "status": 1,
+        "endTime": ""
+      }
+    ],
+    "hasNextPage": true,
+    "hasPreviousPage": false,
+    "pageIndex": 0,
+    "pageSize": 8,
+    "totalCount": 20,
+    "totalPages": 4
+  },
+  "productFilter": {
+    "recommend": [
+      {
+        "id": "0916fa44-hrte-wefaa-ad22-a81800454asdfg",
+        "title": "3000分以下"
+      },
+      {
+        "id": "0916fa44-hrte-wrger-ad22-4151686355578",
+        "title": "3000-6000"
+      },
+      {
+        "id": "0916fa44-hrte-qsef-fgwe-a81800454asdfg",
+        "title": "6000分以上"
+      },
+      {
+        "id": "0916fa44-hrte-23ws-fgwe-a81800454asdfg",
+        "title": "新品专区"
+      },
+      {
+        "id": "0916fa44-hrte-4c96-ewef-a81800454asdfg",
+        "title": "积分全额免"
+      },
+      {
+        "id": "0916fa44-h98e-4c96-fgwe-a81800454asdfg",
+        "title": "加价购"
+      }
+    ],
+    "category": [
+      {
+        "id": "0916fa44-h98e-4c96-dees-a81800454asdfg",
+        "title": "分类1"
+      },
+      {
+        "id": "0916fa44-3231-4c96-fgwe-a81800454asdfg",
+        "title": "分类2"
+      },
+      {
+        "id": "0916fa44-wdge-4c96-fgwe-a81800454asdfg",
+        "title": "分类3"
+      },
+      {
+        "id": "0916fa44-rthr-4c96-fgwe-a81800454asdfg",
+        "title": "分类4"
+      },
+      {
+        "id": "0916fa44-qweq-4c96-fgwe-a81800454asdfg",
+        "title": "分类5"
+      },
+      {
+        "id": "0916fa44-afga-4c96-fgwe-a81800454asdfg",
+        "title": "分类6"
+      }
+    ]
+  },
+  "productDetail": {
+    "productImgs": [
+      {
+        "title": "商品广告图1",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-e9552a4cb852333b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/660"
+      },
+      {
+        "title": "商品广告图2",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-e9552a4cb852333b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/660"
+      },
+      {
+        "title": "商品广告图3",
+        "src": "https://upload-images.jianshu.io/upload_images/2182216-e9552a4cb852333b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/660"
+      }
+    ],
+    "title": "斐讯体脂称",
+    "subTitle": "隐藏式LED显示 8电极测全身 22项身体数据",
+    "points": 1678,
+    "price": "¥100.00",
+    "counter": 100,
+    "salesPrice": "¥200.00",
+    "tips": "即将于2017.12.31 12:00结束",
+    "details": [
+      "https://upload-images.jianshu.io/upload_images/2182216-68d582232cd6d80c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/700"
+    ]
+  },
+  "orderList": [
+    {
+      "id": "4224232441",
+      "orderStatus": 1,
+      "orderType": 2,
+      "prizeStatus": 2,
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-e9552a4cb852333b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/660",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    },
+    {
+      "id": "4224232442",
+      "orderStatus": 1,
+      "orderType": 3,
+      "prizeStatus": 0,
+      "src": "http://upload-images.jianshu.io/upload_images/2182216-657f2446141375d2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    },
+    {
+      "id": "4224232443",
+      "orderStatus": 1,
+      "orderType": 2,
+      "prizeStatus": 1,
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-65800f19bc3db26b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    },
+    {
+      "id": "4224232444",
+      "orderStatus": 3,
+      "orderType": 2,
+      "prizeStatus": 0,
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-9cdbda66732f4231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    },
+    {
+      "id": "4224232445",
+      "orderStatus": 3,
+      "orderType": 2,
+      "prizeStatus": 0,
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-9cdbda66732f4231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    },
+    {
+      "id": "4224232446",
+      "orderStatus": 1,
+      "orderType": 3,
+      "prizeStatus": 0,
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-7a720f75af9cafb5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/140",
+      "title": "盛典活动优先邀请券",
+      "points": 1563,
+      "price": "¥99",
+      "time": "2017-12-20 20:24:35",
+      "counter": 1,
+      "win": 0
+    }
+  ],
+  "orderDetail": {
+    "id": "sfesagdf-yyrt-4c96-fgwe-a81800454asdfg",
+    "orderType": 1,
+    "orderStatus": 2,
+    "prizeInfo": {
+      "prizeTime": "2017-12-13",
+      "prizeStatus": 2
+    },
+    "reciverInfo": {
+      "reciverName": "韩梅梅",
+      "reciverTel": 15022223333,
+      "reciverAddress": "陕西省西安市雁塔区丈八四路"
+    },
+    "expressInfo": {
+      "expressNumber": "asdf484616153",
+      "expressCompany": "顺丰快递"
+    },
+    "couponNumber": "526987155218431",
+    "orderInfo": {
+      "src": "https://upload-images.jianshu.io/upload_images/2182216-9cdbda66732f4231.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/160",
+      "orderTitle": "盛典活动优先邀请函",
+      "points": 1596,
+      "price": "¥99",
+      "salesPrice": "¥199",
+      "counter": 1
+    }
+  },
+  "prizeList": {
+    "title": "盛典活动邀请函",
+    "list": [
+      {
+        "name": "韩梅梅",
+        "tel": "152****6987"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6986"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6985"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6984"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6983"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6983"
+      },
+      {
+        "name": "韩梅梅",
+        "tel": "152****6983"
+      }
+    ]
+  },
+  "goSignUp": {
+    "isSuccess": true,
+    "days": 7
+  },
+  "drawPrize": [
+    {
+      "id": 1,
+      "selected": false,
+      "points": 10
+    },
+    {
+      "id": 1,
+      "selected": false,
+      "points": 200
+    },
+    {
+      "id": 1,
+      "selected": true,
+      "points": 20
+    },
+    {
+      "id": 1,
+      "selected": false,
+      "points": 60
+    },
+    {
+      "id": 1,
+      "selected": false,
+      "points": 100
+    },
+    {
+      "id": 1,
+      "selected": false,
+      "points": 120
+    }
+  ],
+  "addressList": [
+    {
+      "id": "afwe52522",
+      "name": "韩璐",
+      "tel": 15296868549,
+      "address": "辽宁省 辽阳市 宏伟区龙鼎山示范小区A区20栋A单元10号",
+      "isDefault": true
+    },
+    {
+      "id": "596a4sgas",
+      "name": "韩璐",
+      "tel": 15296868549,
+      "address": "辽宁省 辽阳市 宏伟区龙鼎山示范小区A区20栋A单元10号",
+      "isDefault": false
+    }
+  ],
+  "plus": {
+    "rightSum": {
+      "title": "开通PLUS会员尊享9大权益",
+      "list": [
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-13228567549b7dc1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        }
+      ]
+    },
+    "sinleAd": {
+      "src": "http://upload-images.jianshu.io/upload_images/2182216-70f2ab3bb56ae9cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+      "href": ""
+    },
+    "plusVip": {
+      "href": "",
+      "list": [
+        {
+          "src": "https://img.alicdn.com/imgextra/i3/628131667/TB2tlC_ibxmpuFjSZJiXXXauVXa_!!628131667.jpg_760x760Q50s50.jpg_.webp",
+          "href": ""
+        },
+        {
+          "src": "https://m.360buyimg.com/n12/jfs/t8881/356/797899853/64275/6122014b/59af9ae2Nb5bc8513.jpg!q70.jpg",
+          "href": ""
+        },
+        {
+          "src": "https://m.360buyimg.com/n12/jfs/t6577/273/2517719340/35416/84399e4a/596329f1N7e68cdf8.jpg!q70.jpg",
+          "href": ""
+        }
+      ]
+    },
+    "rightsIntro": {
+      "title": "PLUS会员9大权益",
+      "list": [
+        {
+          "title": "购物回馈",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-4db837e740f02823.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "首次开通送100元大礼包",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-588af1684b00d37e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "每月专享优惠券礼包",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-8dfd7da9dd02b774.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "专属权限",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-ed6a55dae58fc3cc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "运费补贴",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-d0bfbcd989eff4aa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "专属客服",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-def144f2f1f99ed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "专属客服",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-def144f2f1f99ed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "专属客服",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-def144f2f1f99ed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        },
+        {
+          "title": "专属客服",
+          "src": "http://upload-images.jianshu.io/upload_images/2182216-def144f2f1f99ed9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+          "href": ""
+        }
+      ]
+    }
+  },
+  "plusUser": {
+    "src": "http://upload-images.jianshu.io/upload_images/2182216-bac828dc740d9052.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240",
+    "username": "王一凡",
+    "userlevel": "PLUS会员",
+    "endtime": "2019年01月30日"
+  },
+  "addAddress": {
+    "name": "王一凡",
+    "tel": 15222223333,
+    "city": "110101",
+    "address": "西安市雁塔区丈八四路",
+    "isDefault": false
+  }
+}

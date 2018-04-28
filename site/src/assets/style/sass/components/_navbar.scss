@@ -1,0 +1,20 @@
+.app{
+  .mint-navbar{
+    &:after {
+      @include border-x;
+      bottom: -1px;
+    }
+  }
+  .mint-navbar .mint-tab-item{
+    font-size: $md-size;
+    color: $text-black-color ;
+  }
+  .mint-tab-item-label{
+    font-size: $md-size;
+  }
+  .mint-navbar .mint-tab-item.is-selected{
+    color: $main-color;
+    border-bottom: $main-color solid 2px;
+    margin-bottom: 0;
+  }
+}

@@ -1,0 +1,9 @@
+@mixin bg ($width, $height, $url, $size: contain){
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: $size;
+    background-image: url($url);
+}

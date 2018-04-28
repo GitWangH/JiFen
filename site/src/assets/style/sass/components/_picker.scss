@@ -1,0 +1,28 @@
+.app {
+  .mint-datetime-picker {
+    .picker-item {
+      font-size: $lg-size;
+    }
+    .mint-datetime-action {
+      color: $main-color;
+      font-size: $lg-size;
+    }
+    .mint-datetime-cancel {
+      position: relative;
+      color: $text-gray-color;
+      &:after {
+        @include border-y;
+        right: 0;
+      }
+    }
+    .picker-toolbar {
+      border: none;
+      position: relative;
+      &:after{
+        @include border-x;
+        bottom: 0;
+      }
+    }
+  }
+
+}

@@ -1,0 +1,7 @@
+@mixin v-middle {
+    //vertical middle
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}

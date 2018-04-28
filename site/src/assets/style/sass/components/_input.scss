@@ -1,0 +1,23 @@
+.app{
+  //  输入框样式
+  .mint-field{
+    .mint-cell-wrapper{
+      padding: 0 $x-dis;
+      .mint-cell-title{
+        width: 85px;
+      }
+      .mint-field-core{
+        font-size: $lg-size;
+        color: $text-black-color;
+        background-color: #fff;
+      }
+      textarea{
+        &.mint-field-core{
+          resize: none;
+        }
+      }
+    }
+  }
+
+}
+

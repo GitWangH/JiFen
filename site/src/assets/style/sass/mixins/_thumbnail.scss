@@ -1,0 +1,8 @@
+@mixin thumbnail($bgColor, $color) {
+    background-color: $bgColor;
+    a{
+        color: $color;
+        font-size: 14px;
+    }
+
+}

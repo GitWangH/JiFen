@@ -1,0 +1,15 @@
+@mixin border-y($left: auto, $right: 0, $bordercolor: $border-color) {
+    content: " ";
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: $left;
+    right: $right;
+    border-right: 1px solid $bordercolor;
+    width: 0;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleX(.5);
+    transform: scaleX(.5);
+    z-index: 2;
+};

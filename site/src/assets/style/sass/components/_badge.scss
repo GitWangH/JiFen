@@ -1,0 +1,10 @@
+.app{
+  .mint-badge {
+    &.is-size-small{
+      border-radius: 1000px;
+    }
+    &.is-primary{
+      background-color: $main-color;
+    }
+  }
+}
